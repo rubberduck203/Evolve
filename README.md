@@ -65,7 +65,7 @@ software.
 
 <HR>
 
-<h3>Genere</h3>
+<h3>Genre</h3>
 This program is a simulator of artificial life. A virtual universe is
 created that supports the basics of evolution: Replicators and cummulative selection.
 On the Internet, the ALIFE community includes a lot of software all trying to do related things.
@@ -81,7 +81,7 @@ goal is to evolve better and better replicators.
 </OL>
 
 <P>
-<B>Evolve 4.0</B> is most definately an example of (2). Replication and mutations are built
+<B>Evolve 4.0</B> is most definitely an example of (2). Replication and mutations are built
 into the system. One of its design goals was to partially simulate earth-based life.
 Evolve tries to emulate the same structure of cells and organisms as one finds in nature.
 
@@ -163,8 +163,6 @@ DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THIS PACKAGE.
 
 ***********************
 </PRE>
-
-<CENTER><IMG SRC="logo.gif"> <IMG SRC="logo.gif"> <IMG SRC="logo.gif"> <IMG SRC="logo.gif"></CENTER>
 
 </div>
 
