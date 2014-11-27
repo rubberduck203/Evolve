@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>3D Explorer</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> February 7, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>3D Explorer</h1>
+<P>
+<IMG SRC="ss3d_3.jpg">
+<P>
+Clicking on the the <IMG BORDER=1 SRC="tb_3d.jpg"> button will display this first person perspective
+of your simulaton. You can even watch the simulation in real-time.
+
+<P>
+<H1>Keys:</H1>
+<UL>
+<B>F1</B>		toggle simulator on/off <BR><P>
+<B>ESC</B>		quit (or Ctrl-C)	<BR><P>
+<B> w </B>		move forward		<BR><P>
+<B> s </B>		move backward		<BR><P>
+<B> a </B>		strafe left		<BR><P>
+<B> d </B>		strafe right		<BR><P>
+<B>space bar</B>	climb			<BR><P>
+<B>c</B>		descend			<BR><P>
+<B>g</B>		enter/exit game mode (see below)	<BR><P>
+</UL>
+
+<P>
+Arrow keys can also be used in place of w, s, a, d keys.
+
+<P>
+<H1>Mouse:</H1>
+Use your mouse to look around. Left click and move the mouse
+pointer will move where you are looking.
+
+<P>
+<H1>Simulation speed</H1>
+To alter the number of simulation steps computed between redrawing, press the <B>1, 2, 3, 4, 5,
+6, 7, 8, 9</B> keys.
+<P>
+<B>1</B> is the default. This sets the number of simulation steps between redrawing to 1. It
+provides the smoothest animation (but might be slow). Pressing '9' is good when viewing the
+simulation from far away.
+<P>
+To speed up the simulation press a larger digit.
+<P>
+
+<P>
+<H1>NOTES:</H1>
+<OL>
+<LI> The 3d explorer is a seperate program from the main Evolve application.
+
+<LI> This program operates on a <b>copy</b> of the simulation
+
+<LI> any simulation steps that elapse from pressing F1, will not be reflected in the 
+	riginal Evolve program.
+
+<LI> This program uses OpenGL, if your graphics card lacks 3d drivers, microsoft has software emulation
+which automatically be used, but this will be VERY slow. Check your graphics card manufacturer for the
+latest opengl drivers.
+
+<LI> when toggling simulation on/off the number of simulation steps is reverted back to '1'.
+
+</OL>
+
+<HR>
+<H1>Game Mode</H1>
+Press <B>'g'</B> to enter game mode. You appear at location (0,0). You can run around and EAT stuff
+using the left mouse button.
+<P>
+<CENTER><IMG SRC="game_mode.jpg"></CENTER>
+<P>
+
+The "kenny mccormick" avatar is your character. You move him around trying to eat and kill stuff.
+<P>
+Game mode is a highly "beta" feature. Eventually it will display score, number of lives, and
+have more game-like behavior. For now you must create levels by making sure the player avatar can
+get from (0,0) to the rest of the simulation. You'll need to draw/remove barriers to make this happen.
+<P>
+The 'c' and 'space bar' keys will adjust the height of the camera behind your player character.
+<P>
+Moving your mouse will rotate your view (horizontally). Pressing the left mouse button causes
+your character to eat all material immediately touching you.
+<P>
+If you die, you will see the sky/mountains. It is a sudden transition. Again, not
+very game-like behavior right now. Pressing 'g' will go back to 3d explorer mode, pressing
+'g' a 2nd time will restart you in game mode.
+<P>
+You can press F1 in game mode to pause the game.
+<P>
+When you are killed the organisms that ate you gets all your accumulated energy. (expect to see
+a sudden spike in births around the location of your death).
+<P>
+The window title bar displays your energy, when in game mode.
+<P>
+Energy is conserved. Adding/removing the player never alters the total energy in
+a simulation. If you exit game mode (without first being killed) organic material
+is placed where your character was.
+<P>
+
+
+<BR>
+<BR>
+<P>
+<BR>
+<BR>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

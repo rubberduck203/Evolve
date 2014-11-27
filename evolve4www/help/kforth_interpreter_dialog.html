@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>KFORTH Interpreter Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> May 12, 2006
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>KFORTH Interpreter Dialog</h2>
+<p>
+This dialog allows you to experiment with KFORTH programs. You can also develop
+new genetic programs, and verify that they compile.
+
+<P>
+<IMG SRC="KforthInterpreter.jpg">
+<P>
+
+<H2>File Buttons</H2>
+<UL>
+<LI> <B>Load:</B> First load a KFORTH program (*.kf).
+<P>
+
+<LI> <B>Compile:</B> Compiles the current program.
+<P>
+
+<LI> <B>Save:</B> Save's the current program.
+<P>
+</UL>
+<P>
+NOTE: If you modify something in the Kforth Source pane you will be prompted to
+save if you try to exit.
+<P>
+
+<H2>Debugger Buttons</H2>
+<UL>
+
+<LI> <B>Step:</B> Executes the next KFORTH instruction. Will "step into" any subroutine call.
+	(Function key: <B>F11</B>)
+<P>
+
+<LI> <B>Step Over:</B> Executes the next instruction, but if the instruction
+is one of <B>call</B>, <B>if</B>, or <B>ifelse</B> then this button will continue execution
+until this instruction returns. (Function key: <B>F10</B>)
+<P>
+
+<LI> <B>Run:</B> Runs the program until it terminates (or a breakpoint reached).
+	The interpreter has special protections
+	against stack overflows and infinite loops. The error, "Step Limit Exceeded", means
+	your program exceeded about 10 million steps. The error, "Stack Size Limit Exceeded", means
+	you have exceeded a stack size of about 10,000 elements. (Function key: <B>F5</B>)
+<P>
+
+<LI> <B>Reset:</B> Resets the interpeter to the start of the program.
+<P>
+
+<LI> <B>Breakpoint:</B> Add or remove a breakpiont. You can click on an instruction in
+	the Kforth Instruction pane, and add or remove a breakpoint BEFORE this instruction. A
+	little veritical bar will appear before the instruction, which is how we indicate a breakpoint.
+	(Function key: <B>F9</B>)
+<P>
+
+<LI> <B>Clear Breakpoints:</B> Clear all breakpoints. (Function key: <B>F8</B>).
+<P>
+
+<LI> <B>Instructions:</B> Displays a list of KFORTH instructions. The current instruction will be shown
+in the KFORTH Instruction help dialog. You can also click on an instruction and press this button.
+<P>
+
+</UL>
+
+<P>
+The KFORTH Interpreter allows the special organism instructions
+like OMOVE, LOOK, EAT, etc... Inside of the interpreter these instructions are just
+no-op's. But at least you can examine real genetic programs and single step through them (even
+though they won't actually do anything).
+<P>
+
+<HR>
+
+<H2>KFORTH MACHINE</H2>
+This section of the dialog shows the current state of the kforth machine. All 10 registers R0 ... R9
+are shown. CB is the current code block being executed. PC is the current program counter. Both CB
+and PC are 0 based numbers. Code block 0, refers to the code block with the label "main:". PC is
+relative to the current code block being executed.
+<P>
+The data stack shows the elements currently on the data stack. The top most item represents the
+"top" of the stack.
+<P>
+The call stack shows the saved locations for cb and pc. This stack allows KFORTH to return
+from a subroutine call.
+<P>
+
+<HR>
+
+<H2>KFORTH INTERPRETER</H2>
+This dialog allows you to execute generic KFORTH program (that is, KFORTH programs that do
+not use CELL instructions). However "dummy" versions of the CELL instructions are
+provided, so that genetic programs may be explored using this dialog without getting compiler
+errors. You can even step thru the code, but since all the CELL instructions "fail" you won't learn
+much.
+<P>
+
+<HR>
+
+
+<H2>KFORTH Instruction Dialog</H2>
+If you click on <B>[Instructions]</B> this pop-up dialog will appear:
+<P>
+<IMG SRC="KforthInstructions.jpg">
+<P>
+This dialog lets you browse the list of available instructions.
+
+<P>
+
+<HR>
+
+<H2>Function Key Summary</H2>
+<UL>
+<LI> <B>F5</B> - Run
+<LI> <B>F8</B> - Clear all breakpoints
+<LI> <B>F9</B> - Add/remove breakpoint
+<LI> <B>F10</B> - Step over
+<LI> <B>F11</B> - Step into
+</UL>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

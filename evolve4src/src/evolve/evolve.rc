@@ -1,0 +1,1195 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\evolve.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\evolve.ico"
+IDR_evolveTYPE          ICON                    "res\\evolveDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDB_LOGO                BITMAP                  "res\\bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  30, 29
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_SIMULATION_START
+    BUTTON      ID_SIMULATION_CONTINUE
+    BUTTON      ID_SIMULATION_SINGLE_STEP
+    BUTTON      ID_SIMULATION_STOP
+    SEPARATOR
+    BUTTON      ID_VIEW_ZOOM_IN
+    BUTTON      ID_VIEW_ZOOM_OUT
+    BUTTON      ID_VIEW_VIEW_ALL
+    BUTTON      ID_VIEW_ORGANISM
+    BUTTON      ID_VIEW_3D
+    BUTTON      ID_EDIT_RIGHTCLICK_CHOOSER
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "Tools"
+    BEGIN
+        MENUITEM "KFORTH Interpreter...",       ID_TOOLS_KFORTH_INTERPRETER
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Contents...",                 ID_HELP_CONTENTS
+        MENUITEM "KFORTH Instructions...",      ID_HELP_KFORTH
+        MENUITEM "Organism Instructions...",    ID_HELP_ORGANISMS
+        MENUITEM SEPARATOR
+        MENUITEM "&About evolve...",            ID_APP_ABOUT
+    END
+END
+
+IDR_evolveTYPE MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "&Delete\tDel",                ID_EDIT_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "&Find\tCtrl+F",               ID_EDIT_FIND
+        MENUITEM SEPARATOR
+        MENUITEM "Mutation Settings...",        ID_EDIT_SIM_PROPERTIES
+        MENUITEM "Clear Radioactive Tracers",   ID_EDIT_CLEAR_DYE
+        POPUP "Right Click Tool"
+        BEGIN
+            MENUITEM "None",                        ID_EDIT_RIGHTCLICK_NOTHING
+            , CHECKED
+            MENUITEM SEPARATOR
+            MENUITEM "Draw Thick Barrier",          ID_EDIT_RIGHTCLICK_BARRIER
+
+            MENUITEM "Draw Thin Barrier",           ID_EDIT_RIGHTCLICK_THIN_BARRIER
+
+            MENUITEM "Radioactive Tracer",          ID_EDIT_RIGHTCLICK_DYE
+            MENUITEM "Move Organism",               ID_EDIT_RIGHTCLICK_MOVE
+            MENUITEM "Tweak Energy",                ID_EDIT_RIGHTCLICK_ENERGY
+
+        END
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Universe Properties...\tF7",  ID_VIEW_UNIVERSE
+        MENUITEM "Organism...\tF8",             ID_VIEW_ORGANISM
+        MENUITEM "Strain Population...",        ID_VIEW_STRAIN_POPULATION
+        MENUITEM SEPARATOR
+        MENUITEM "Zoom In",                     ID_VIEW_ZOOM_IN
+        MENUITEM "Zoom Out",                    ID_VIEW_ZOOM_OUT
+        MENUITEM "View All\tF10",               ID_VIEW_VIEW_ALL
+        MENUITEM "View using 3D explorer\tF9",  ID_VIEW_3D
+        MENUITEM SEPARATOR
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "Simulation"
+    BEGIN
+        MENUITEM "Start Simulation\tF1",        ID_SIMULATION_START
+        MENUITEM "Continue\tF2",                ID_SIMULATION_CONTINUE
+        MENUITEM "Single Step\tF3",             ID_SIMULATION_SINGLE_STEP
+        MENUITEM "Stop Simulation\tF4",         ID_SIMULATION_STOP
+    END
+    POPUP "Tools"
+    BEGIN
+        MENUITEM "KFORTH Interpreter",          ID_TOOLS_KFORTH_INTERPRETER
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Contents...",                 ID_HELP_CONTENTS
+        MENUITEM "KFORTH Instructions...",      ID_HELP_KFORTH
+        MENUITEM "Organism Instructions...",    ID_HELP_ORGANISMS
+        MENUITEM SEPARATOR
+        MENUITEM "&About evolve...",            ID_APP_ABOUT
+    END
+END
+
+IDR_RIGHTCLICK_POPUP MENU 
+BEGIN
+    POPUP "XXX"
+    BEGIN
+        MENUITEM "None",                        ID_EDIT_RIGHTCLICK_NOTHING
+        , CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Draw Thick Barrier",          ID_EDIT_RIGHTCLICK_BARRIER
+        MENUITEM "Draw Thin Barrier",           ID_EDIT_RIGHTCLICK_THIN_BARRIER
+
+        MENUITEM "Radioactive Tracer",          ID_EDIT_RIGHTCLICK_DYE
+        MENUITEM "Move Organism",               ID_EDIT_RIGHTCLICK_MOVE
+        MENUITEM "Tweak Energy",                ID_EDIT_RIGHTCLICK_ENERGY
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_DELETE,         VIRTKEY, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F2,          ID_SIMULATION_CONTINUE, VIRTKEY, NOINVERT
+    VK_F3,          ID_SIMULATION_SINGLE_STEP, VIRTKEY, NOINVERT
+    VK_F1,          ID_SIMULATION_START,    VIRTKEY, NOINVERT
+    VK_F4,          ID_SIMULATION_STOP,     VIRTKEY, NOINVERT
+    VK_F9,          ID_VIEW_3D,             VIRTKEY, NOINVERT
+    VK_F8,          ID_VIEW_ORGANISM,       VIRTKEY, NOINVERT
+    VK_F7,          ID_VIEW_UNIVERSE,       VIRTKEY, NOINVERT
+    VK_F10,         ID_VIEW_VIEW_ALL,       VIRTKEY, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 177, 174
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Evolve"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,17,151,50,16,WS_GROUP
+    PUSHBUTTON      "Home Page",IDC_AB_HELP,108,151,52,16
+    LTEXT           "Evolve Version 4.8e",IDC_STATIC,89,7,74,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC,89,20,62,8
+    LTEXT           "Ken Stauffer",IDC_STATIC,89,33,42,8
+    CONTROL         "\n     Evolve is an Artificial Life simulator.\n\n     http://www.stauffercom.com/evolve4\n\n",
+                    IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,17,79,
+                    143,65,WS_EX_CLIENTEDGE
+    LTEXT           "ken@stauffercom.com",IDC_STATIC,89,46,73,8
+    CONTROL         131,IDC_STATIC,"Static",SS_BITMAP,7,7,72,48,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "<compiled date>",IDC_AB_INFO,19,64,140,8,SS_NOPREFIX
+END
+
+IDD_UNIVERSE DIALOGEX 0, 0, 380, 234
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Universe Properties"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,164,213,50,14
+    PUSHBUTTON      "Help",IDC_U_HELP,322,212,52,15
+    GROUPBOX        "Memory Usage",IDC_STATIC,225,22,149,184
+    LTEXT           "Filename:",IDC_STATIC,7,7,32,8
+    LTEXT           "Steps:",IDC_STATIC,34,64,22,8
+    LTEXT           "Organisms:",IDC_STATIC,19,79,37,8
+    LTEXT           "Cells:",IDC_STATIC,38,94,18,8
+    LTEXT           "Organic:",IDC_STATIC,28,177,28,8
+    LTEXT           "Spores:",IDC_STATIC,30,188,26,8
+    LTEXT           "Births:",IDC_STATIC,34,109,22,8
+    LTEXT           "Deaths:",IDC_STATIC,127,109,26,8
+    LTEXT           "Height:",IDC_STATIC,129,49,24,8
+    LTEXT           "Width:",IDC_STATIC,34,49,22,8
+    LTEXT           "Instructions:",IDC_STATIC,14,124,42,8
+    LTEXT           "Total Memory:",IDC_STATIC,250,135,47,8
+    LTEXT           "Grid Memory:",IDC_STATIC,253,39,44,8
+    LTEXT           "Program Memory:",IDC_STATIC,239,81,58,8
+    LTEXT           "Call Stack Memory:",IDC_STATIC,235,52,62,8
+    LTEXT           "Data Stack Memory:",IDC_STATIC,231,66,66,8
+    LTEXT           "Call Stack:",IDC_STATIC,22,138,34,8
+    LTEXT           "Organism Memory:",IDC_STATIC,237,95,61,8
+    GROUPBOX        "Universe Information",IDC_STATIC,7,23,213,184
+    LTEXT           "Spore Memory:",IDC_STATIC,247,108,50,8
+    LTEXT           "Data Stack:",IDC_STATIC,18,154,38,8
+    LTEXT           "C:\\crap\\crap\\foo\\bar\\bar\\crap.evolve",
+                    IDC_U_FILENAME,47,7,327,8
+    LTEXT           "999,999,999,999",IDC_U_STEPS,59,64,57,8
+    LTEXT           "999,999",IDC_U_ORGANIC,59,177,28,8
+    LTEXT           "999,999,999,999",IDC_U_ORGANISMS,59,79,57,8
+    LTEXT           "999,999",IDC_U_SPORES,59,188,28,8
+    LTEXT           "999,999,999,999",IDC_U_NDIE,155,109,57,8
+    LTEXT           "999,999,999,999",IDC_U_NBORN,59,109,57,8
+    LTEXT           "999,999,999,999",IDC_U_HEIGHT,155,49,57,8
+    LTEXT           "999,999,999,999",IDC_U_WIDTH,59,49,57,8
+    LTEXT           "999,999,999,999",IDC_U_INSTRUCTIONS,59,124,57,8
+    LTEXT           "999,999,999,999",IDC_U_DSTACK,59,154,57,8
+    LTEXT           "999,999,999,999",IDC_U_CSTACK,59,138,57,8
+    RTEXT           "999,999,999,999",IDC_U_GMEM,303,39,57,8
+    RTEXT           "999,999,999,999",IDC_U_CSMEM,303,52,57,8
+    RTEXT           "999,999,999,999",IDC_U_DSMEM,303,66,57,8
+    RTEXT           "999,999,999,999",IDC_U_PMEM,303,81,57,8
+    RTEXT           "999,999,999,999",IDC_U_OMEM,303,95,57,8
+    RTEXT           "999,999,999,999",IDC_U_SMEM,303,108,57,8
+    RTEXT           "999,999,999,999",IDC_U_TMEM,303,135,57,8
+    LTEXT           "999,999,999,999",IDC_U_CELLS,59,94,57,8
+    LTEXT           "999,999,999,999",IDC_U_STACK,155,146,57,8
+    LTEXT           "Total:",IDC_STATIC,133,146,20,8
+    LTEXT           "Energy:",IDC_STATIC,127,34,26,8
+    LTEXT           "999,999,999,999",IDC_U_ENERGY,155,34,57,8
+    LTEXT           "Seed:",IDC_STATIC,36,34,20,8
+    LTEXT           "999,999,999,999",IDC_U_SEED,59,34,57,8
+    LTEXT           "# sexual:",IDC_STATIC,121,79,32,8
+    LTEXT           "999,999,999,999",IDC_U_NSEXUAL,155,79,57,8
+    LTEXT           "(all values in bytes)",IDC_STATIC,273,153,63,8
+    LTEXT           "Spore Energy:",IDC_STATIC,106,188,47,8
+    LTEXT           "Organic Energy:",IDC_STATIC,100,177,53,8
+    LTEXT           "999,999",IDC_U_SPORE_ENERGY,155,188,54,8
+    LTEXT           "999,999",IDC_U_ORGANIC_ENERGY,155,177,54,8
+END
+
+IDD_SIMULATION_OPTIONS DIALOGEX 0, 0, 230, 247
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Mutation Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,105,226,50,14
+    EDITTEXT        IDC_SO_DUPLICATE,95,24,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SO_DELETE,95,46,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SO_INSERT,95,68,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SO_TRANSPOSITION,95,90,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SO_MODIFICATION,95,112,61,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SO_MUTATE_CB,95,134,61,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,45,226,50,14
+    PUSHBUTTON      "Help",IDC_SO_HELP,173,225,50,15
+    GROUPBOX        "Mutation Rates",IDC_STATIC,7,7,216,148
+    LTEXT           "Duplication:",IDC_STATIC,50,26,38,8
+    LTEXT           "Deletion:",IDC_STATIC,58,48,30,8
+    LTEXT           "Insertion:",IDC_STATIC,56,70,32,8
+    LTEXT           "Transposition:",IDC_STATIC,42,92,46,8
+    LTEXT           "Modification:",IDC_STATIC,46,114,42,8
+    LTEXT           "Mutate Code Block:",IDC_STATIC,25,136,63,8
+    EDITTEXT        IDC_SO_MAX_CB,95,169,61,12,ES_AUTOHSCROLL
+    LTEXT           "Max. Code Blocks:",IDC_STATIC,27,171,60,8
+    LTEXT           "Max. Apply:",IDC_STATIC,47,193,40,8
+    EDITTEXT        IDC_SO_MAX_APPLY,95,191,61,12,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,7,158,216,56
+END
+
+IDD_NEW_UNIVERSE DIALOGEX 0, 0, 363, 334
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "New Universe"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NU_SEED,50,22,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_WIDTH,50,40,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_HEIGHT,148,40,55,13,ES_AUTOHSCROLL
+    CONTROL         "Oval Barrier",IDC_NU_BARRIER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,216,42,57,10
+    EDITTEXT        IDC_NU_ENERGY,43,100,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM,103,100,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY2,43,122,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM2,103,122,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY3,43,145,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM3,103,145,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY4,43,166,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM4,103,166,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY5,43,188,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM5,103,188,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY6,43,210,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM6,103,210,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY7,43,233,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM7,103,233,194,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_ENERGY8,43,254,55,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NU_PROGRAM8,103,254,194,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,114,313,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,176,313,50,14
+    PUSHBUTTON      "Help",IDC_NU_HELP,307,312,49,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE,301,98,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE2,301,121,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE3,301,142,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE4,301,164,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE5,301,186,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE6,301,209,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE7,301,230,47,15
+    PUSHBUTTON      "Browse",IDC_NU_BROWSE8,301,252,47,15
+    LTEXT           "Seed:",IDC_STATIC,22,25,20,8
+    LTEXT           "Width:",IDC_STATIC,20,42,22,8
+    LTEXT           "Height:",IDC_STATIC,116,42,24,8
+    LTEXT           "KFORTH Program",IDC_STATIC,172,86,56,8
+    LTEXT           "Energy",IDC_STATIC,58,86,24,8
+    GROUPBOX        "Universe",IDC_STATIC,7,7,349,60
+    GROUPBOX        "Starting Population",IDC_STATIC,7,74,349,202
+    LTEXT           "",IDC_NU_ERROR,7,295,349,11
+    CTEXT           "1",IDC_NU_STRAIN,15,99,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    LTEXT           "Strain",IDC_STATIC,16,86,20,8
+    CTEXT           "2",IDC_NU_STRAIN2,15,121,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "3",IDC_NU_STRAIN3,15,143,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "4",IDC_NU_STRAIN4,15,166,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "5",IDC_NU_STRAIN5,15,187,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "6",IDC_NU_STRAIN6,15,209,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "7",IDC_NU_STRAIN7,15,231,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "8",IDC_NU_STRAIN8,15,254,16,14,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    PUSHBUTTON      "Mutation Settings >>",IDC_NU_MUTATION_SETTINGS,282,280,
+                    74,14
+END
+
+IDD_KFORTH DIALOGEX 0, 0, 531, 334
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "KFORTH Interpreter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,473,297,51,14
+    GROUPBOX        "KFORTH INSTRUCTIONS",IDC_STATIC,7,7,325,133
+    EDITTEXT        IDC_KI_SOURCE,15,182,311,124,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL
+    LISTBOX         IDC_KI_DATA_STACK,431,25,85,82,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "KFORTH MACHINE",IDC_STATIC,343,7,181,219
+    PUSHBUTTON      "Run",IDC_KI_RUN,94,142,30,14
+    PUSHBUTTON      "Compile",IDC_KI_COMPILE,343,270,52,14
+    PUSHBUTTON      "Step",IDC_KI_STEP,7,142,35,14
+    PUSHBUTTON      "Load",IDC_KI_LOAD,343,243,52,14
+    PUSHBUTTON      "Save",IDC_KI_SAVE,343,297,52,14
+    PUSHBUTTON      "Reset",IDC_KI_RESET,131,142,29,14
+    LTEXT           "CB",IDC_STATIC,351,23,10,8
+    LTEXT           "PC",IDC_STATIC,351,40,10,8
+    LTEXT           "R0",IDC_STATIC,351,57,10,8
+    LTEXT           "R1",IDC_STATIC,351,74,10,8
+    LTEXT           "R2",IDC_STATIC,351,91,10,8
+    LTEXT           "R3",IDC_STATIC,351,108,10,8
+    LTEXT           "R4",IDC_STATIC,351,125,10,8
+    LTEXT           "R5",IDC_STATIC,351,142,10,8
+    LTEXT           "R6",IDC_STATIC,351,159,10,8
+    LTEXT           "R7",IDC_STATIC,351,176,10,8
+    LTEXT           "R8",IDC_STATIC,351,193,10,8
+    LTEXT           "R9",IDC_STATIC,351,210,10,8
+    LTEXT           "",IDC_KI_R0,365,56,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R5,365,141,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R7,365,175,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R6,365,158,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R8,365,192,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R9,365,209,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R1,365,73,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R2,365,90,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R3,365,107,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_R4,365,124,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_PC,365,39,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_CB,365,22,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_KI_ERROR,7,317,307,10
+    GROUPBOX        "KFORTH SOURCE CODE",IDC_STATIC,7,169,325,144
+    LISTBOX         IDC_KI_CALL_STACK,431,126,86,84,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_KI_INSTRUCTIONS,15,17,310,111,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_NOHIDESEL | 
+                    ES_READONLY | WS_VSCROLL
+    PUSHBUTTON      "Instructions",IDC_KI_INSERT,281,142,43,14
+    PUSHBUTTON      "Help",IDC_KI_HELP,410,297,52,14
+    PUSHBUTTON      "Step Over",IDC_KI_STEP_OVER,49,142,38,14
+    PUSHBUTTON      "Breakpoint",IDC_KI_BREAKPOINT,167,142,39,14
+    PUSHBUTTON      "Clear Breakpoints",IDC_KI_WATCHPOINT,213,142,61,14
+    LTEXT           "Call Stack",IDC_STATIC,458,116,32,8
+    LTEXT           "Data Stack",IDC_STATIC,455,15,36,8
+END
+
+IDD_KFORTH_INSTRUCTION DIALOGEX 0, 0, 186, 233
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "KFORTH Instruction Help"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_IKI_LIST,6,7,173,122,LBS_NOINTEGRALHEIGHT | 
+                    LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Close",IDCANCEL,67,212,50,14
+    DEFPUSHBUTTON   "Insert",IDOK,129,212,50,14
+    LTEXT           "",IDC_IKI_DESC,6,138,173,65
+END
+
+IDD_EVOLVE_OPTIONS DIALOGEX 0, 0, 285, 202
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Evolve Options"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EO_MAP_UPDATE,97,25,60,12,ES_AUTOHSCROLL
+    CONTROL         "Enable Checkpointing",IDC_EO_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,68,86,10
+    EDITTEXT        IDC_EO_CHECKPOINT_INTERVAL,97,93,60,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EO_FILENAME,14,127,199,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_EO_BROWSE,221,127,50,13
+    PUSHBUTTON      "Macros",IDC_EO_MACROS,221,145,50,13
+    DEFPUSHBUTTON   "OK",IDOK,7,181,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,63,181,50,14
+    PUSHBUTTON      "Defaults",IDC_EO_DEFAULTS,169,182,50,13
+    PUSHBUTTON      "Help",IDC_EO_HELP,228,182,50,13
+    LTEXT           "Checkpoint Filename:",IDC_STATIC,14,116,69,8
+    LTEXT           "Checkpoint Interval:",IDC_STATIC,20,95,66,8
+    LTEXT           "Map Update Interval:",IDC_STATIC,17,25,70,8
+    GROUPBOX        "",IDC_STATIC,7,7,271,47
+    GROUPBOX        "",IDC_STATIC,7,57,271,113
+END
+
+IDD_VIEW_ORGANISM DIALOGEX 0, 0, 557, 334
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "View Organism"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,497,313,53,14
+    PUSHBUTTON      "Step",IDC_VO_SIMULATE,16,306,20,14
+    PUSHBUTTON      "Step Over",IDC_VO_STEP_OVER,40,306,38,14
+    PUSHBUTTON      "Run",IDC_VO_RUN,82,306,18,14
+    PUSHBUTTON      "Breakpoint",IDC_VO_BREAKPOINT,104,306,39,14
+    PUSHBUTTON      "Clear Breakpoints",IDC_VO_WATCHPOINT,147,306,61,14
+    PUSHBUTTON      "Instructions",IDC_VO_INSERT,212,306,43,14
+    PUSHBUTTON      "Help",IDC_VO_HELP,498,292,52,14
+    LTEXT           "",IDC_VO_R0,289,57,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_ID,61,18,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_GENERATION,61,31,42,11,0,WS_EX_STATICEDGE
+    EDITTEXT        IDC_VO_INSTRUCTIONS,15,82,244,216,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_NOHIDESEL | 
+                    ES_READONLY | WS_VSCROLL
+    GROUPBOX        "ORGANISM",IDC_STATIC,7,7,260,320
+    LISTBOX         IDC_VO_DATA_STACK,446,24,96,80,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "CELL",IDC_STATIC,273,7,277,203
+    LTEXT           "Code Block:",IDC_STATIC,303,19,38,8
+    LTEXT           "Program Counter:",IDC_STATIC,283,35,58,8
+    LTEXT           "R0",IDC_STATIC,277,57,10,8
+    LTEXT           "R1",IDC_STATIC,277,73,10,8
+    LTEXT           "R2",IDC_STATIC,277,87,10,8
+    LTEXT           "R3",IDC_STATIC,277,102,10,8
+    LTEXT           "R4",IDC_STATIC,277,118,10,8
+    LTEXT           "R5",IDC_STATIC,363,57,10,8
+    LTEXT           "R6",IDC_STATIC,363,73,10,8
+    LTEXT           "R7",IDC_STATIC,363,87,10,8
+    LTEXT           "R8",IDC_STATIC,363,102,10,8
+    LTEXT           "R9",IDC_STATIC,363,118,10,8
+    LTEXT           "",IDC_VO_PARENT1,191,17,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R7,377,87,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R6,377,73,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R8,377,102,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R9,377,118,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R1,289,73,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R2,289,87,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R3,289,102,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_R4,289,118,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_PC,345,35,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_CB,345,17,57,11,0,WS_EX_STATICEDGE
+    LISTBOX         IDC_VO_CALL_STACK,447,121,96,85,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_VO_MOOD,345,138,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "Mood:",IDC_STATIC,320,138,21,8
+    LTEXT           "Message:",IDC_STATIC,309,155,32,8
+    LTEXT           "Location:",IDC_STATIC,357,174,30,8
+    LTEXT           "Organism ID:",IDC_STATIC,15,19,43,8
+    LTEXT           "Parent 1:",IDC_STATIC,155,18,31,8
+    LTEXT           "Parent 2:",IDC_STATIC,155,31,31,8
+    LTEXT           "Energy:",IDC_STATIC,33,58,26,8
+    LTEXT           "# of cells:",IDC_STATIC,153,44,33,8
+    LTEXT           "Age:",IDC_STATIC,43,44,16,8
+    LTEXT           "Generation:",IDC_STATIC,19,31,39,8
+    LTEXT           "",IDC_VO_R5,377,57,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_PARENT2,191,31,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_AGE,61,44,42,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_NUM_CELLS,191,44,42,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_ENERGY,61,58,42,11,0,WS_EX_STATICEDGE
+    LTEXT           "Call Stack",IDC_STATIC,479,112,32,8
+    LTEXT           "Data Stack",IDC_STATIC,476,14,36,8
+    LTEXT           "",IDC_VO_MESSAGE,345,154,57,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_LOCATION,389,172,47,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VO_CELLIDX,301,172,47,11,0,WS_EX_STATICEDGE
+    LTEXT           "Cell:",IDC_STATIC,283,174,15,8
+    LTEXT           "Strain #:",IDC_STATIC,492,222,30,8
+    CTEXT           "",IDC_VO_STRAIN,526,221,14,11,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Vision Data >>",IDC_VO_VISION,328,191,81,14
+    LTEXT           "",IDC_VO_NUM_LCHILD,191,58,42,11,0,WS_EX_STATICEDGE
+    LTEXT           "# of living children:",IDC_STATIC,124,58,62,8
+    CTEXT           "",IDC_VO_XYTYPE,525,239,14,11
+END
+
+IDD_WATCHPOINTS DIALOGEX 0, 0, 255, 335
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Watchpoints & Breakpoints"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_WP_EXPR1,51,20,184,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WP_EXPR2,51,44,184,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WP_EXPR3,51,68,184,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WP_EXPR4,51,92,184,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WP_EXPR5,51,116,184,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WP_STEP_LIMIT,190,135,45,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,313,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,70,313,50,14
+    PUSHBUTTON      "Help",IDC_WP_HELP,198,313,50,14
+    PUSHBUTTON      "Disable All",IDC_WP_DISABLE_ALL,23,134,37,14
+    PUSHBUTTON      "Remove Breakpoint",IDC_WP_REMOVE,93,264,67,14
+    CONTROL         "",IDC_WP_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    34,23,16,8
+    CONTROL         "",IDC_WP_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    34,47,16,8
+    CONTROL         "",IDC_WP_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    34,71,16,8
+    CONTROL         "",IDC_WP_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    34,95,16,8
+    CONTROL         "",IDC_WP_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    34,119,16,8
+    LTEXT           "",IDC_WP_ERROR,7,294,241,8
+    LTEXT           "Step Limit:",IDC_STATIC,152,137,34,8
+    LTEXT           "1.",IDC_STATIC,20,23,8,8
+    LTEXT           "2.",IDC_STATIC,20,47,8,8
+    LTEXT           "3.",IDC_STATIC,20,71,8,8
+    LTEXT           "4.",IDC_STATIC,20,95,8,8
+    LTEXT           "5.",IDC_STATIC,20,119,8,8
+    GROUPBOX        "Watchpoints",IDC_STATIC,7,7,241,152
+    GROUPBOX        "Breakpoints",IDC_STATIC,7,165,241,119
+    LISTBOX         IDC_WP_LIST,14,179,226,81,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Instructions",IDC_WP_INSTRUCTIONS,144,313,50,14
+END
+
+IDD_STRAIN_POPULATION DIALOGEX 0, 0, 193, 245
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE
+CAPTION "Strain Population"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,39,224,50,14
+    DEFPUSHBUTTON   "Help",IDC_SP_HELP,104,224,50,14
+    CTEXT           "1",IDC_SP_LABEL1,41,20,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    GROUPBOX        "Strain Population",IDC_STATIC,7,7,177,207
+    CTEXT           "2",IDC_SP_LABEL2,41,42,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT2,69,43,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "3",IDC_SP_LABEL3,41,64,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT3,69,65,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "4",IDC_SP_LABEL4,41,90,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT4,69,91,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "5",IDC_SP_LABEL5,41,114,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT5,69,115,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "6",IDC_SP_LABEL6,41,137,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT6,69,138,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "7",IDC_SP_LABEL7,41,159,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT7,69,160,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    CTEXT           "8",IDC_SP_LABEL8,41,183,16,15,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    EDITTEXT        IDC_SP_EDIT8,69,184,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    EDITTEXT        IDC_SP_EDIT1,69,22,53,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "(999,999)",IDC_SP_STATIC1,131,24,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC2,131,45,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC3,131,67,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC4,131,93,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC5,131,117,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC6,131,140,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC7,131,162,33,8
+    LTEXT           "(999,999)",IDC_SP_STATIC8,131,186,33,8
+END
+
+IDD_FIND DIALOGEX 0, 0, 268, 52
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_FO_EDIT,33,7,228,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Help",IDC_FO_HELP,7,31,42,14
+    PUSHBUTTON      "Instructions",IDC_FO_INSTRUCTIONS,53,31,43,14
+    DEFPUSHBUTTON   "OK",IDOK,172,31,42,14
+    PUSHBUTTON      "Cancel",IDCANCEL,218,31,43,14
+    LTEXT           "Find:",IDC_STATIC,7,7,17,8
+END
+
+IDD_MUTATION_TESTER DIALOGEX 0, 0, 564, 300
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "KFORTH Mutation Tester"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,507,274,50,14
+    EDITTEXT        IDC_MT_GOAL,328,19,221,188,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    EDITTEXT        IDC_MT_START,16,20,221,188,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    GROUPBOX        "Starting Program",IDC_STATIC,7,7,236,226
+    GROUPBOX        "Goal Program",IDC_STATIC,321,7,236,226
+    PUSHBUTTON      "Load",IDC_MT_LOAD1,63,213,55,15
+    PUSHBUTTON      "Load",IDC_MT_LOAD2,384,212,55,15
+    PUSHBUTTON      "Save",IDC_MT_SAVE1,129,213,55,15
+    PUSHBUTTON      "Help",IDC_MT_HELP,507,250,50,15
+    PUSHBUTTON      "Run",IDC_MT_RUN,255,172,55,15
+    PUSHBUTTON      "Step",IDC_MT_STEP,255,196,55,15
+    PUSHBUTTON      "Reset",IDC_MT_RESET,255,217,55,15
+    LTEXT           "Generation:",IDC_STATIC,261,17,39,8
+    LTEXT           "# bred:",IDC_STATIC,268,58,26,8
+    LTEXT           "Difference Score:",IDC_STATIC,252,106,57,8
+    EDITTEXT        IDC_MT_SCORE,254,116,55,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_MT_BRED,254,66,55,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_MT_GENERATION,254,28,55,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_MT_LITTER,59,271,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_DEL,170,272,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_DUP,170,254,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_INS,295,254,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_SEED,59,253,51,12,ES_AUTOHSCROLL
+    LTEXT           "Litter size:",IDC_STATIC,19,273,34,8
+    LTEXT           "Random Seed:",IDC_STATIC,7,255,48,8
+    GROUPBOX        "Mutation Rates",IDC_STATIC,123,241,371,52
+    EDITTEXT        IDC_MT_MOD,436,254,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_TRANS,296,272,51,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MT_MCB,435,272,51,12,ES_AUTOHSCROLL
+    LTEXT           "Mutate Codeblock:",IDC_STATIC,371,273,61,8
+    LTEXT           "Modification:",IDC_STATIC,390,255,42,8
+    LTEXT           "Transposition:",IDC_STATIC,247,273,46,8
+    LTEXT           "Insertion:",IDC_STATIC,261,255,32,8
+    LTEXT           "Deletion:",IDC_STATIC,137,273,30,8
+    LTEXT           "Duplication:",IDC_STATIC,129,255,38,8
+    PUSHBUTTON      "Save",IDC_MT_SAVE2,448,212,55,15
+END
+
+IDD_CELL_VISION DIALOGEX 0, 0, 200, 262
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Vision Data"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,143,241,50,14
+    PUSHBUTTON      "Help",IDC_CV_HELP,81,241,49,14
+    CTEXT           "3,000",IDC_CV_N_WHERE,88,23,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_SW_WHERE,30,103,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_S_WHERE,86,103,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_E_WHERE,146,65,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_W_WHERE,30,65,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_NE_WHERE,146,23,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_SE_WHERE,146,103,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "3,000",IDC_CV_NW_WHERE,30,23,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "CELL",IDC_CV_CELL,81,60,38,34,SS_CENTERIMAGE,
+                    WS_EX_DLGMODALFRAME
+    CTEXT           "Cell",IDC_CV_NE_WHAT,146,34,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Spore",IDC_CV_E_WHAT,146,76,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Barrier",IDC_CV_S_WHAT,86,114,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Barrier",IDC_CV_SE_WHAT,146,114,26,11,0,
+                    WS_EX_STATICEDGE
+    CTEXT           "Barrier",IDC_CV_SW_WHAT,30,114,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Barrier",IDC_CV_W_WHAT,30,76,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Barrier",IDC_CV_N_WHAT,88,34,26,11,0,WS_EX_STATICEDGE
+    CTEXT           "Organic",IDC_CV_NW_WHAT,30,34,26,11,0,WS_EX_STATICEDGE
+    LTEXT           "0 = Nothing",IDC_STATIC,81,156,42,8
+    LTEXT           "1 = Cell",IDC_STATIC,81,167,42,8
+    LTEXT           "2 = Spore",IDC_STATIC,81,177,42,8
+    LTEXT           "4 = Organic",IDC_STATIC,81,188,42,8
+    LTEXT           "8 = Barrier",IDC_STATIC,81,199,42,8
+    GROUPBOX        "'what' Key",IDC_STATIC,64,143,72,77
+    GROUPBOX        "",IDC_STATIC,7,7,186,228
+END
+
+IDD_ENERGY_TWEAKER DIALOGEX 0, 0, 87, 26
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ET_ENERGY,7,7,55,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDOK,66,7,14,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 4,8,5,0
+ PRODUCTVERSION 4,8,5,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Stauffer Computer Consulting"
+            VALUE "FileDescription", "Artificial Life Simulator using KFORTH language"
+            VALUE "FileVersion", "4.8e"
+            VALUE "InternalName", "evolve.exe"
+            VALUE "LegalCopyright", "(c) 2007 Ken Stauffer.  All rights reserved."
+            VALUE "OriginalFilename", "evolve.exe"
+            VALUE "ProductName", "Evolve"
+            VALUE "ProductVersion", "4.8e"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_UNIVERSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 374
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 227
+    END
+
+    IDD_SIMULATION_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 240
+    END
+
+    IDD_NEW_UNIVERSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 356
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 327
+    END
+
+    IDD_KFORTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 524
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 327
+    END
+
+    IDD_KFORTH_INSTRUCTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+    END
+
+    IDD_EVOLVE_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_VIEW_ORGANISM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 550
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 327
+    END
+
+    IDD_WATCHPOINTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 327
+    END
+
+    IDD_STRAIN_POPULATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 238
+    END
+
+    IDD_FIND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 45
+    END
+
+    IDD_MUTATION_TESTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 557
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 293
+    END
+
+    IDD_CELL_VISION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 255
+    END
+
+    IDD_ENERGY_TWEAKER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 80
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 19
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "evolve"
+    IDR_evolveTYPE          "\nevolve\nevolve\nEvolve (*.evolve)\n.evolve\nMyUniverse\nMyUniverse"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "evolve"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open existing universe\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "About Evolve\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selected organism and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selected organism and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Paste organism into universe\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TB_SIMULATE          "Simulate Universe\nSimulate"
+    ID_TB_STOP              "Stop the Simulation\nStop the Simulation"
+    ID_TB_ZOOM_IN           "Zoom In\nZoom In"
+    ID_TB_ZOOM_OUT          "Zoom Out\nZoom Out"
+    ID_TB_VIEW_ALL          "View All\nView All"
+    ID_TB_EXAMINE           "Examine Organism\nExamine Organism"
+    ID_TB_CONTINUE          "Continue Simulate\nContinue Simulate"
+    ID_TB_STEP              "Single Step\nSingle Step"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_ZOOM_IN         "Zoom In\nZoom In"
+    ID_VIEW_ZOOM_OUT        "Zoom Out\nZoom Out"
+    ID_VIEW_VIEW_ALL        "View All\nView All"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_ORGANISM        "Examine Organism\nExamine Organism"
+    ID_SIMULATION_CONTINUE  "Simulate continiously\nSimulate Continiously"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SIMULATION_SINGLE_STEP "Single step simulation\nSimulate Single Step"
+    ID_SIMULATION_START     "Start the simulation\nStart Simulation"
+    ID_SIMULATION_STOP      "Stop the simulation\nStop Simulation"
+    ID_EDIT_DELETE          "Delete selected organism"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_3D              "Launch 3D Explorer\nLaunch 3D Explorer"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_RIGHTCLICK_CHOOSER "Right Click Tool\nRight Click Tool"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\evolve.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

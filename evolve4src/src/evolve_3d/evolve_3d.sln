@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "evolve_3d", "evolve_3d.vcproj", "{BECC3A80-573E-4BEF-B7A4-46526403A16F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{BECC3A80-573E-4BEF-B7A4-46526403A16F}.Debug.ActiveCfg = Debug|Win32
+		{BECC3A80-573E-4BEF-B7A4-46526403A16F}.Debug.Build.0 = Debug|Win32
+		{BECC3A80-573E-4BEF-B7A4-46526403A16F}.Release.ActiveCfg = Release|Win32
+		{BECC3A80-573E-4BEF-B7A4-46526403A16F}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

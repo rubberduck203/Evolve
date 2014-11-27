@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Towers of Hanoi</title>
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 10, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Towers of Hanoi</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<H1>Towers of Hanoi</H1>
+
+<P>
+<!- **************************************** -->
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; a "Towers of Hanoi" creature
+; ============================
+; (c) 2007, Ken Stauffer
+;
+; This creature builds a pile of disks, and then
+; plays 'towers of hanoi' with them.
+;
+; Add this organism to a blank universe (no barriers).
+;
+; NOTE:
+; These routines refer to three piles for storing disks.
+; Piles are encoded as follows:
+;
+;	-1 =	Left pile
+;	 0 =	Middle pile
+;	 1 =	Right pile
+;
+
+main:
+{
+	8	; <=== number of disks to play with
+
+	R8!
+	measure_universe call
+	pop R9!
+	R8 make_disks call
+	R8 -1 0 1 play_towers_of_hanoi call
+
+	{ 1 ?loop } call
+
+}
+
+;
+; ( -- width height)
+;
+; Measure the universe, return the width and height.
+;
+; Assumes:
+;	* Universe is empty, except for itself.
+;	* No "oval barrier" was used to create the universe.
+;
+measure_universe:
+{
+	{ -1 0 OMOVE ?loop } call
+	{  0 -1 OMOVE ?loop } call
+
+	0 { 1+ 1 0 OMOVE ?loop } call
+	0 { 1+ 0 1 OMOVE ?loop } call
+}
+
+;
+; ( disks -- )
+;
+; Create the initial pile of disks on left-hand side of
+; the universe.
+;
+make_disks:
+{
+	{ -1 0 OMOVE ?loop } call
+	{  0 1 OMOVE ?loop } call
+
+	jj: {
+		?dup {
+			dup make_disk call
+			1-
+			0 -1 OMOVE pop
+			{ -1 0 OMOVE ?loop } call
+			jj call
+		} if
+	} call
+	
+}
+
+;
+; ( size -- )
+;
+; Make a single disk. 'size' is how big the disk is.
+;
+make_disk:
+{
+	1 0 OMOVE pop
+	-1 0 1 MAKE-SPORE pop
+	1- ?dup
+	?loop
+}
+
+;
+; (pile size -- )
+;
+; Put a disk down on 'pile'.
+;
+; 'pile' is where to put the disk.
+; 'size' is the size of the disk we are putting.
+;
+; Assumes we are on top of a pile, and that
+; size is greater than 0.
+;
+put_disk:
+{
+	swap
+	dup
+	goto_pile call
+
+	dup
+	0 = { pop 1 } { negate } ifelse
+
+	swap
+	{
+		swap
+		dup 0 OMOVE pop
+		dup negate 0 1 MAKE-SPORE pop
+		swap
+
+		1-
+
+		?dup ?loop
+	} call
+
+	pop
+
+}
+
+;
+; (pile -- size )
+;
+; Pick up a disk from 'pile'
+;
+; 'pile' is where we will pick up a disk
+; 'size' is how big of a disk we picked up.
+;
+take_disk:
+{
+	dup
+	goto_pile call
+
+	dup
+	0 = { pop 1 } { negate } ifelse
+
+	0
+	{
+		0 1 EAT
+
+		0 > {
+			1+
+			swap
+			dup 0 OMOVE pop
+			swap
+			1
+		} {
+			0
+		} ifelse
+
+		?loop
+	} call
+	swap pop
+}
+
+
+;
+; (pile -- )
+;
+; Go to 'pile'.
+;
+goto_pile:
+{
+	;
+	; go up a little (above any disks)
+	;
+	R8 10 + { 0 -1 OMOVE pop 1- ?dup ?loop } call
+
+	dup
+	0 = {
+		; go to left
+		{ -1 0 OMOVE ?loop } call
+
+		; go to middle
+		R9 2 /
+		{
+			1 0 OMOVE pop
+			1-
+			?dup ?loop
+		} call
+	} {
+		dup 0 OMOVE ?loop
+	} ifelse
+
+	pop
+
+	; go all the way down
+	{ 0 1 OMOVE ?loop } call
+
+}
+
+;
+; ( from-pile to-pile -- )
+;
+; Move whatever disk is on top of 'from-pile' and
+; place it on top of 'to-pile'.
+;
+move_disk:
+{
+	swap
+	take_disk call
+	put_disk call
+}
+
+;
+; (n src aux dst -- )
+;
+; Solve Tower Hanoi problem.
+;
+; Implements this algorithm:
+;
+;	Solve(N, Src, Aux, Dst)
+;	{
+;		if N is 0 exit
+;		Solve(N-1, Src, Dst, Aux)
+;		Move from Src to Dst
+;		Solve(N-1, Aux, Src, Dst)
+;	}
+;
+;
+; The first invocation of this routine should be:
+;
+;	N -1 0 1 play_towers_of_hanoi call
+;
+;	(where N is the number of disks)
+;
+play_towers_of_hanoi:
+{
+
+	3 pick				; (n src aux dst n)
+	0 >
+	{
+		3 pick 1-		; (n src aux dst  n-1)
+		3 pick			; (n src aux dst  n-1 src)
+		2 pick			; (n src aux dst  n-1 src dst)
+		4 pick			; (n src aux dst  n-1 src dst aux)
+		
+		play_towers_of_hanoi call
+
+		2 pick			; (n src aux dst  src)
+		1 pick			; (n src aux dst  src dst)
+		move_disk call
+
+		3 pick 1-		; (n src aux dst  n-1)
+		2 pick			; (n src aux dst  n-1 aux)
+		4 pick			; (n src aux dst  n-1 aux src)
+		3 pick                  ; (n src aux dst  n-1 aux src dst)
+
+		play_towers_of_hanoi call
+
+	} if
+
+	pop pop pop pop
+}
+</PRE></TD></TABLE></CENTER>
+<!- **************************************** -->
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

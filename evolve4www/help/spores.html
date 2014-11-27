@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Spores</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> July 1, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Spores</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>Spores</h1>
+<P>
+This is your spore,
+<P>
+<IMG SRC="aspore.gif">
+<P>
+This is your spore on drugs,
+<P>
+<IMG SRC="asporedrugs.gif">
+<P>
+<H2>What is a spore?</H2>
+When you explore a simulation you'll notice blue squares. These are spores.
+Spores are created when an organism executes the instruction <B>MAKE-SPORE</B>.
+<P>
+A spore is the first stage in reproducing a new organism. The second (and last) stage
+is when a second spore is created on top of the first one. At this point the spore becomes
+fertilized and a new organism is born.
+<P>
+A spore, as the name implies, is like an egg or sperm. When first created, it contains
+an exact copy of the genetic program from the organism that created it (no mutations
+have been applied yet). When the second spore is created, the genetic program from that
+organism is <B>merged</B> with the genetic program associated with the spore. If
+this happens to be the same organism, then the result is an exact copy of this
+organisms genetic program (asexual reproduction). However, if the second organism
+is different then the two programs get merged, and unique variation could be created.
+<P>
+<HR>
+
+<H2>Asexual Reproduction</H2>
+Asexual reproduction occurs when the same organism creates a spore and then
+fertilizes it. Here are the instructions that an organism might
+execute to perform asexual reproduction:
+<PRE>
+
+	-1 0 5 MAKE-SPORE	; create spore at relative offset (-1, 0)
+				; with an energy of '5'.
+	-1 0 6 MAKE-SPORE	; create second spore at relative offset (-1, 0)
+				; with an energy of '6'.
+
+	; (a new organism will be created, with energy of 11)
+</PRE>
+<P>
+<IMG BORDER=1 SRC="spore1.gif">
+<IMG BORDER=1 SRC="spore2.gif">
+<P>
+That's about all there is to know about asexual reproduction. You may be wondering how
+genetic variation gets generated since the child program is identical to the parent?
+Well, in creating the new organism mutations (a seperate process) may have been introduced,
+so the child genetic program may be slightly different than it parent.
+<P>
+<HR>
+
+<H2>Sexual Reproduction</H2>
+Sexual reproduction occurs when two organisms donate a spore toward the creation
+of a new organism. What happens in this case is organism A creates a spore. Then
+organism B comes along and creates a second spore on top of the first.
+<P>
+Sexual reproduction differs from asexual reproduction in that two different genetic
+programs must be merged before the new organism is created.
+<P>
+<HR>
+
+<A NAME="merge">
+<H2>Merging Genetic Programs</H2>
+In <I>sexual</I> reproduction the genetic programs from the
+first and second spore must be merged. This is the concept of recombination. It has the potential
+to introduce novel variations into the universe.
+<P>
+Organism A creates the first spore, and then organism B comes along
+and fertilizes it. In this example we have two <I>different</I> genetic
+programs to merge. Here is how it happens:
+<P>
+First a random bit string is generated. The bit string consists of 16-bits. For examples, lets
+assume the bit string is 0101010101010101. This bit pattern is used to select the
+code block from the first or second organism. A "0" selects organism A and "1" selects
+the code block from organism B. The bit string is repeated as needed to cover all the
+code blocks. If one of the organisms has more code blocks, then it is always selected
+and added to the offsprings kforth program.
+<P>
+Here is the genetic program for organism A:<BR>
+<PRE>
+main: { X X Y Z }
+row1: { 1 2 3 }
+row2: { X0 Y0 }
+row3: { K 1 I 8 }
+row4: { R 1 2 J }
+row5: { B B 89 }
+</PRE>
+<P>
+Here is the genetic program for organism B:
+<PRE>
+main: { A B C }
+row1: { JJ YY ZZ }
+row2: { W P Q
+row3: { RY RY Z }
+row4: { S X S 0 }
+</PRE>
+<P>
+Here's how the two genetic programs are merged:
+<P>
+<TABLE WIDTH="70%" BORDER=1>
+<TR>	<TD WIDTH="25%"></TD>
+	<TD WIDTH="25%">Bit</TD>
+	<TD WIDTH="25%"><B>Organism A</B></TD>
+	<TD  WIDTH="25%"><B>Organism B</B></TD>
+	<TD WIDTH="25%"><B>Offspring</B></TD>
+
+<TR><TD ALIGN=CENTER><B>main:</B></TD>
+	<TD>0</TD>
+	<TD BGCOLOR="#50F020"> X X Y Z </TD>
+	<TD> A B C </TD>
+	<TD>X X Y Z </TD>
+
+<TR><TD ALIGN=CENTER><B>row1:</B></TD>
+	<TD>1</TD>
+	<TD> 1 2 3</TD>
+	<TD BGCOLOR="#50F020"> JJ YY ZZ </TD>
+	<TD> JJ YY ZZ </TD>
+
+<TR><TD ALIGN=CENTER><B>row2:</B></TD>
+	<TD>0</TD>
+	<TD BGCOLOR="#50F020"> X0 Y0 </TD>
+	<TD> W P Q </TD>
+	<TD> X0 Y0 </TD>
+
+<TR><TD ALIGN=CENTER><B>row3:</B></TD>
+	<TD>1</TD>
+	<TD> K 1 I 8 </TD>
+	<TD BGCOLOR="#50F020"> RY RY Z </TD>
+	<TD> RY RY Z </TD>
+
+<TR><TD ALIGN=CENTER><B>row4:</B></TD>
+	<TD>0</TD>
+	<TD BGCOLOR="#50F020"> R 1 2 J </TD>
+	<TD> S X S 0</TD>
+	<TD> R 1 2 J </TD>
+
+<TR><TD ALIGN=CENTER><B>row5:</B></TD>
+	<TD>1</TD>
+	<TD BGCOLOR="#50F020"> B B 89 </TD>
+	<TD><I>empty</I></TD>
+	<TD> B B 89 </TD>
+</TABLE>
+<P>
+This example shows a new variation being added
+to the gene pool. <B>Evolve 4.0</B> doesn't enforce sexual reproduction
+(unless the user has enabled <A HREF="xy_simulations.html">XY simulation</A> mode),
+it just offers the capability, and hopefully this kind of reproduction will evolve.
+<P>
+Only organism A has a <b>row5</b> so it always gets tranferred to the offsprings genetic program.
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

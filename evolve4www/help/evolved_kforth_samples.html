@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Evolved KFORTH samples</title>
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Evolved KFORTH Programs</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<H1>Evolved KFORTH Programs</H1>
+
+<P>
+<!- **************************************** -->
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+      -1  0  2dup  1  call  9  call  4  9  call  8  9  ?loop
+      9  call  8  2*  17  2+  call  -41 
+}
+
+row1:
+{
+      GROW  ROTATE  EAT  EAT  2-  EAT 
+}
+
+row2:
+{
+      20  20  WHERE  WHERE  and 
+}
+
+row3:
+{
+     
+}
+
+row4:
+{
+      swap  swap 
+}
+
+row5:
+{
+      ?loop  pop  pop  99  R5  R5  -46  -46  2*  1-  ENERGY  <>
+      2swap  CMOVE  -74  -74  9  9 
+}
+
+row6:
+{
+     
+}
+
+row7:
+{
+      MOOD  92  -10  13  CMOVE  -74  MOOD  pack2 
+}
+
+row8:
+{
+     
+}
+
+row9:
+{
+      -88  ENERGY  4  /  R0!  -1  0  R0  MAKE-SPORE  -1  0  R0
+      MAKE-SPORE  OMOVE  1  34  4  OMOVE  2dup  EAT  pop  OMOVE
+      negate  71  EAT  EAT  2-  OMOVE  EAT 
+}
+
+row10:
+{
+      ENERGY  5  /  R0!  1  1  R0  MAKE-SPORE  3  2  R0  MAKE-SPORE
+      pop  31  -3  OMOVE  EAT  -5  EAT  -5  OMOVE  -3  OMOVE
+      -3  EAT  pop  EAT  pop  OMOVE  pop 
+}
+
+row11:
+{
+      -19  <  2over  CMOVE 
+}
+
+row12:
+{
+      <>  1  32 
+}
+
+row13:
+{
+      MOOD!  -99  R1  -97  -73  -87  or  57  -20 
+}
+
+row14:
+{
+      R7!  59  < 
+}
+
+row15:
+{
+      -64  -  Rn!  -83  -64  -  82  Rn! 
+}
+
+row16:
+{
+      R0 
+}
+</PRE></TD></TABLE></CENTER>
+<!- **************************************** -->
+
+<P><BR><P>
+
+<P>
+<!- **************************************** -->
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+main:
+{
+      36  25  CB  9  call  9  call  1  call  9  call  CB  9  2
+      call  9  call  call  -61  >=  call  R4!  if  64  -75  9
+      call  4  9  call  82  6  CMOVE  -rot  pick  OMOVE 
+}
+
+row1:
+{
+      5  35  2dup  EAT  EAT  OMOVE  78  2dup 
+}
+
+row2:
+{
+      18  18  18  18  49  18  18  49 
+}
+
+row3:
+{
+     
+}
+
+row4:
+{
+      ENERGY  0  RECV  >  0  4  -3  0  R0  MAKE-SPORE  2dup  pop
+      OMOVE  -1  -1  2dup  ROTATE  NUM-CELLS  R0! 
+}
+
+row5:
+{
+     
+}
+
+row6:
+{
+      EAT  SEND  R7  -86  SEND  SEND  EAT  SEND  EAT  SEND  SEND
+      R7  -86  R0!  R5! 
+}
+
+row7:
+{
+      75  unpack4 
+}
+
+row8:
+{
+     
+}
+
+row9:
+{
+      ENERGY  4  /  R0!  -1  0  R0  MAKE-SPORE  EAT  -1  0  R0
+      MAKE-SPORE  <  -1  <  2dup  2negate  GROW  EAT  <=  -1
+      -1  2dup  EAT 
+}
+
+row10:
+{
+     
+}
+
+row11:
+{
+      80  13 
+}
+
+row12:
+{
+      EAT  OMOVE  74 
+}
+
+row13:
+{
+     
+}
+
+row14:
+{
+      2*  EAT 
+}
+
+row15:
+{
+      ?exit  5  ?dup  11  EAT  pop  2swap  SEND  EAT  15  NEAREST 
+}
+
+row16:
+{
+     
+}
+
+row17:
+{
+      -98  -61  >=  2swap 
+}
+
+row18:
+{
+      -98  -61  >=  2swap 
+}
+
+row19:
+{
+     
+}
+
+row20:
+{
+     
+}
+
+row21:
+{
+     
+}
+
+row22:
+{
+     
+}
+
+row23:
+{
+     
+}
+
+row24:
+{
+     
+}
+
+row25:
+{
+      ?exit  5  ?dup  11  EAT  pop  2swap  SEND  EAT  15  NEAREST 
+}
+
+row26:
+{
+      ?exit  5  ?dup  11  EAT  pop  2swap  SEND  EAT  15  NEAREST 
+}
+
+row27:
+{
+     
+}
+
+row28:
+{
+     
+}
+
+row29:
+{
+      ?exit  5  ?dup  11  EAT  pop  2swap  HAS-NEIGHBOR  -81 
+}
+
+row30:
+{
+      ?exit  5  ?dup  11  EAT  pop  2swap  HAS-NEIGHBOR  -81 
+}
+
+row31:
+{
+      66  -98  -74  11  -77  R4  pack2  R3  -74  11  -77 
+}
+
+row32:
+{
+      -98  -74  11  -77  66  -98  -74  11  -77  R4  pack2  R3
+      -74  11  -77 
+}
+
+row33:
+{
+      66  -96  -78  15  -96  -78  15  -77  -77  R4  pack2 
+}
+
+row34:
+{
+      66  -96  -78  15  -96  -78  15  -77  -77  R4  pack2 
+}
+
+row35:
+{
+      HAS-NEIGHBOR  =  R4  = 
+}
+
+row36:
+{
+      min  -38  R5!  -40 
+}
+
+row37:
+{
+      min 
+}
+
+row38:
+{
+     
+}
+
+row39:
+{
+     
+}
+
+row40:
+{
+     
+}
+
+row41:
+{
+     
+}
+
+row42:
+{
+      36  25  CB  9  call  9  call  1  call  9  call  2  call
+      9  call  call  9  3  call  R4!  if  64  -75  9  call  4
+      9  call  82  6  CMOVE  -rot  pick  OMOVE 
+}
+
+row43:
+{
+      36  25  CB  9  call  9  call  1  call  9  call  2  call
+      9  call  call  9  3  call  R4!  if  64  -75  9  call  4
+      9  call  82  6  CMOVE  -rot  pick  OMOVE 
+}
+
+row44:
+{
+      11  57  -83  xor 
+}
+
+row45:
+{
+     
+}
+
+row46:
+{
+      80  13 
+}
+
+row47:
+{
+      80  13 
+}
+</PRE></TD></TABLE></CENTER>
+<!- **************************************** -->
+
+<P><BR><P>
+
+<!- **************************************** -->
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+      9  call  1  call  call  swap  call  R0!  -75  78  ENERGY
+      >  ?loop 
+}
+
+row1:
+{
+      EAT  EAT  -87  -65  EAT  4  -88  EAT  91  3  13  EAT  EAT
+      EAT 
+}
+
+row2:
+{
+     
+}
+
+row3:
+{
+     
+}
+
+row4:
+{
+     
+}
+
+row5:
+{
+     
+}
+
+row6:
+{
+     
+}
+
+row7:
+{
+      <=  22 
+}
+
+row8:
+{
+      35  24  EAT  2+  -48  -46  2dup  72  EAT  OMOVE  EAT  OMOVE 
+}
+
+row9:
+{
+      ENERGY  4  /  R0!  -1  0  8  -1  GROW  0  R0  MAKE-SPORE
+      -1  0  R0  MAKE-SPORE  -54  xor  EAT  pack4  1-  -1  OMOVE
+      -1  dup  2dup  OMOVE  pop  EAT  OMOVE  3  54  61  74  OMOVE
+      -50  EAT  +  12 
+}
+
+row10:
+{
+      0 
+}
+
+row11:
+{
+     
+}
+
+row12:
+{
+      R8  -27 
+}
+
+row13:
+{
+     
+}
+
+row14:
+{
+      95  39  1+ 
+}
+
+row15:
+{
+      -94  -38  46 
+}
+
+row16:
+{
+     
+}
+
+row17:
+{
+      -59 
+}
+
+row18:
+{
+      83  R4!  -53  R3! 
+}
+
+row19:
+{
+      ?dup 
+}
+
+row20:
+{
+      R5!  <>  or 
+}
+
+row21:
+{
+     
+}
+
+row22:
+{
+      -99  R3  -99  R3 
+}
+
+row23:
+{
+      EAT  82  -76  EAT  82  -80  -43  R5  -38  LOOK2  HAS-NEIGHBOR
+      R0!  if 
+}
+
+row24:
+{
+     
+}
+</PRE></TD></TABLE></CENTER>
+<!- **************************************** -->
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

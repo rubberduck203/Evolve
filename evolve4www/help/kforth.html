@@ -1,0 +1,1532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - The KFORTH Language</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - The KFORTH Language</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>The KFORTH Language</h1>
+
+<P>
+
+<B>Table of Contents:</B>
+<UL>
+<LI> <A HREF="#introduction">Introduction</A>
+<LI> <A HREF="#labels">Labels</A>
+<LI> <A HREF="#registers">Registers</A>
+<LI> <A HREF="#comments">Comments</A>
+<LI> <A HREF="#flowcontrol">Flow Control</A>
+<LI> <A HREF="#nesting">Nested Code Blocks</A>
+<LI> <A HREF="#datatypes">Data Types</A>
+<LI> <A HREF="#reference">Instruction Reference</A>
+<LI> <A HREF="#examples">Examples</A>
+</UL>
+<P>
+
+<HR>
+
+<A NAME="introduction">
+<H2>Introduction:</H2>
+<P>
+So you want to learn KFORTH, do you? Well lets start with a simple example.
+<P>
+First launch the KFORTH Interpreter from the Evolve program. You'll see this
+dialog:
+<P>
+<IMG SRC="KforthInterpreter.jpg">
+<P>
+Now lets write a program to subtract two years. In the KFORTH SOURCE CODE pane enter the
+following KFORTH program:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+{ 2006  1968 - }
+
+</PRE></TD></TABLE></CENTER>
+
+<P>
+All KFORTH instructions must be enclosed within curly braces. This is called a "code block". Code blocks
+are assigned numbers starting with 0.
+Inside of the curly braces goes "the code". This consists of numbers and instructions
+(using in postfix notation).
+<P>
+Now press the <B>[Compile]</B> button. And this is what you will see in
+the upper pane:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+     2006  1968 -
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+The compiled version looks very similar to what we typed it. The first thing to note is
+the label <b>main:</b> was added in front our code block. In KFORTH the first code
+block (code block 0) is where program execution starts.
+That is why the disassmbler inserted the label <B>main:</B>.
+<P>
+Now click on <B>[RUN]</B>. The answer '38' will appear in the data stack pane. You can also
+single-step through this example. To single step, first press <B>[Reset]</B>.
+<P>
+Lets add another code block to this example.
+<P>
+<IMG BORDER=1 SRC="findx.gif">
+<P>
+Your neighbor is building a BBQ, to measure for the foundation he
+needs to know what 'x' is (I know, lame example, but I'm hungry right now).
+You want to help him so he'll invite you over for BBQ.
+You realize that this is a perfect job for KFORTH!
+We will add a new code block to our example, which when executed will compute 'x':
+<P>
+Here, type this:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+	{ 2006 1968 - }
+	{ 98 dup * 311 dup * + sqrt }
+</PRE></TD></TABLE></CENTER>
+<P>
+When you compile this program, the disassembly will be shown as:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	2006 1968 -
+}
+
+row1:
+{
+	98 dup * 311 dup * + sqrt
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+The disassembler gives every code block a label.
+The first one, as we already saw is called <B>main:</B> subsequent code
+blocks are labeled <B>row1, row2, row3 and so on...</B>
+<P>
+Now click on <B>[Run]</B>. Whoooa! What the fuck? The data stack only shows the
+same value '38'? What's wrong?
+<P>
+The problem is KFORTH automatically executes code block 0, but all other code blocks
+must be explictly called, using the <b>call</b> instruction.
+<P>
+Let's try this again.... Now we will add <B>'1 call'</B> to the end of the first code block, like so:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+	{ 2006 1968 - 1 call }
+	{ 98 dup * 311 dup * + sqrt }
+</PRE></TD></TABLE></CENTER>
+<P>
+Now click on <B>[Compile]</B> and then <B>[Run]</B>.
+<P>
+Hopefully, when the program terminates there are two items on the stack. '326' and '38'.
+The '326' is the answer to our "find x?" problem. Since KFORTH only uses integers
+the answer has been rounded to the nearest whole number.
+<P>
+This example shows how code blocks are treated as executable functions. The <b>call</b>
+instructions pops a number from the top of the data stack and treats it as a
+code block number, and calls that code block.
+<P>
+When humans write KFORTH they should use labels, so here is the same program with labels
+added:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+	{ 2006 1968 - findx call }
+
+findx:
+	{ 98 dup * 311 dup * + sqrt }
+</PRE></TD></TABLE></CENTER>
+<P>
+When your <B>[Compile]</B> this, your labels are lost and the disassembler picks
+labels like: <B>"main, row1, row2, row3, ..."</B>. Anyway, here is what
+you'll see in the disassembly pane:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	2006 1968 - 1 call
+}
+
+row1:
+{
+	98 dup * 311 dup * + sqrt
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+Also notice the label before the <b>call</b> instruction is <B>1</B> not <B>row1</B>. This
+is because the disassembler cannot reliably regenerate labels INSIDE of code blocks
+(I don't want to go into the reasons why, but you could calculate the code block number
+rather than hard code a value).
+<P>
+
+<HR>
+
+<A NAME="labels">
+<H2>Labels</H2>
+A label is any text followed by a colon '<TT>:</TT>'. A label
+can consist of any characters except: whitespace, colon '<TT>:</TT>', semi-colon '<TT>;</TT>' ,
+or curly braces '<TT>{</TT>', '<TT>}</TT>'.
+Also, a label cannot clash with the name of an existing instruction.
+<P>
+To define a label simply follow it by a colon (without spaces). The value of
+the label is the next code block number to be assigned (code block numbers
+are assigned startig at 0 and then incrementing by 1 for each new code block).
+<P>
+To use a label, just enter its name (do not use colon). The compiler will
+convert this label reference to the code block number.
+<P>
+
+<HR>
+
+<!-- ******************** this is removed in version 4.8 ********************
+
+<H2>Relative Code Block Adressing</H2>
+Previous versions of KFORTH used absolute code block addressing. This meant that
+<B>"3 call"</B> would mean call code block number <B>3</B>. KFORTH has been recently
+changed to use relative code block addressing. This means "3 call" calls the code block
+that is at offset 3 from the current code block being executed.
+<P>
+This means that the instructions <B>"0 call"</B> will call itself.
+And <B>"1 call"</B> will call the code block immediately after
+the current code block. And <B>"-1 call"</B> will call the code block immediately before the
+current code block. This figure demonstrates how relative code block addressing works:
+<P>
+<CENTER><IMG SRC="relcb.gif"></CENTER>
+<CENTER><I>Relative Code Block Adressing</I></CENTER>
+<P>
+This behavior applies to the "call", "if" and "elseif" instructions.
+<P>
+The instruction <B>CB</B> returns the current code block number, this will allow you
+to generate an absolute code block number for a label:
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{	findx CB + R1!
+}
+
+...
+
+findx:
+{
+	98 dup * 311 dup * + sqrt
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+This will store the absolute code block number for the label 'findx' in register R1.
+
+ *********************************  -->
+
+<H2>Case Insensitive</H2>
+Instructions and labels are case insensitive. So "MAKE-SPORE" is the same as "Make-Spore".
+<P>
+
+<HR>
+
+<A NAME="registers">
+<H2>Registers</H2>
+<P>
+The KFORTH computing model includes ten registers R0 through R9. These can be used
+to store/retrieve temporary values. For example,
+<P>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{	2006 1968 - R1!
+	findx call R5!
+	R1 R5 + R9!
+}
+
+findx:
+{
+	98 dup * 311 dup * + sqrt
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+This is the same example as before, but we have added <B>'R5!'</B> and <B>'R1!'</B>.
+These instructions take the value on top of the data stack and stores it
+into the indicated register.
+<P>
+The line <B>R1 R5 + R9!</B> fetches the value of R1 and R5 and adds these values
+and then writes the result to register <B>R9</B>.
+<P>
+Registers are not used by any KFORTH instructions, so they can be managed and
+used by the user without worrying about conflicts.
+<P>
+
+<HR>
+
+<A NAME="comments">
+<H2>Comments</H2>
+Use the semi-colon <B>;</B> to insert a comment into a KFORTH program.
+The rest of the line after the semi-colon is ignored.
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+; my first KFORTH program
+main:
+{
+	2006 1968 - R1! ; compute difference between 2006 and 1968
+	findx call R5!  ; call the findx routine and store in result in R5.
+	R1 R5 + R9!
+}
+
+; my first KFORTH subroutine
+findx:
+{
+	98 dup * 311 dup * + sqrt
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Stack Underflow</H2>
+It can be expected that a mutated KFORTH program would attempt instructions
+without having enough data on the data stack. How does KFORTH handle this?
+<P>
+KFORTH's policy for <B>stack underflow</B> is to treat the operation as a NO-OP.
+Meaning the program just continues to the next instruction without removing
+anything from the stack.
+<P>
+For example, this code calls the plus (+) instruction but only 1 data item is
+on the stack.
+
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	200 + 3 *
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+The <B>'+'</B> operation needs two values on the stack. Since this is not the case, the
+stack underflow policy is to simply proceed to the next instruction. When
+the <B>'*'</B> operation is executed it finds two values on the data stack, so it is able
+to perform its job (computes 600, replacing 200 and 3 on the data stack).
+<P>
+
+<HR>
+
+<P>
+<H2>Undefined Functions</H2>
+In addition to stack underflow, sometimes the value to an instruction (a function) are
+not defined. For example division by 0 and trying to take the square root of a negative number.
+Therefore, <b>div</b>
+<b>mod</b>, and <b>/mod</b> will act as NO-OP instructions when the second operand is zero. And
+when the argument to <b>sqrt</b> is negative the instruction leaves the stack unchanged.
+<P>
+
+<HR>
+
+<A NAME="flowcontrol">
+<H2>Flow Control</H2>
+<P>
+We already know about the <b>call</b> instruction, which transfers control to
+a new code block. What else can we do? KFORTH includes the following instructions
+for flow control:
+<P>
+<UL>
+<LI> <B>call</B> - call a code block
+<LI> <B>if</B> - call a code block IF true
+<LI> <B>ifelse</B> - call code block 
+<LI> <B>?loop</B> - jump to beginning of code block if true
+<LI> <B>?exit</B> - jump to end of code block if true
+</UL>
+
+<HR>
+
+<H2>call</H2>
+<P>
+We have already seen this instruction at work. It's the unconditional form
+of subroutine call. Below we explore <b>if</b> and <b>ifelse</b> which
+are conditional subroutine call instructions.
+<P>
+You may be wondering what "call" does with a bogus code block number?
+For example, "-900 call", or "555 call". 
+When <B>call</B> instruction (and <B>if</B>, <B>ifelse</B>) is used with a bogus
+code block number, it removes the values from the stack, as if this were a normal instruction, but
+it won't call any code block. Conceptually, we can think of a KFORTH program
+as having empty rows for every possible integer (except the ones that have been defined).
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	5000 call
+}
+
+row1: { }
+row2: { }
+row3: { }
+row4: { }
+row5: { }
+row6: { }
+...
+row9999999: { }
+
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>if</H2>
+<P>
+Here's an example of using the IF instruction.
+<P>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	521 R1!
+	R1 dup 500 >= blah if
+}
+
+blah:
+{
+	500 -
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+This code checks if R1 is greater than 500 and if true, calls the subroutine
+<B>blah</B>. Blah will subtract 500. The 'dup' instruction creates
+a 2nd copy of R1 on the data stack.
+<P>
+
+<HR>
+
+<A NAME="nesting">
+<H2>Nested Code Blocks:</H2>
+There is another human friendly way to write this same thing. It is
+called nested code blocks. Here is how to re-write this example,
+
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	521 R1!
+	R1 dup 500 >= { 500 - } if
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+We nested the code block that use to be <b>blah</b>, directly into main.
+If you <B>[Compile]</b>, you'll notice that the nesting is removed. This
+reveals how the nesting actually works. Nesting code blocks is just for
+human convienience.
+<P>
+When compiled it maps to the orginal version we wrote that used the
+code block <B>blah</B>, see:
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	521 R1! R1 dup 500 >= 1 if 
+}
+
+row1:
+{
+	500 - 
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+Nesting can be of unlimited depth. But, again this nesting is a lexical
+feature, and does not imply and special powers in the KFORTH language.
+It is simply a way to make writing KFORTH programs
+simpler.
+<P>
+
+<HR>
+
+<H2>ifelse</H2>
+This instruction calls one of two code blocks depening on if
+the condition is true or false.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	499 R1!
+	R1 dup 500 >=
+		{ 500 - R1! }
+		{ 2 / R1! }  ifelse
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+First notice that the KFORTH compiler is free-format, allowing you
+to space your KFORTH programs any way which you desire.
+<P>
+This is what the code will be converted into by the compiler:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	499 R1! R1 dup 500 >= 1 2 ifelse 
+}
+
+row1:
+{
+	500 - R1! 
+}
+
+row2:
+{
+	2 / R1! 
+}
+</PRE></TD></TABLE></CENTER>
+
+<P>
+Which does the same as this C code:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+/* C code, not KFORTH */
+void main()
+{
+	int R1;
+
+	R1 = 499;
+	if( R1 >= 500 ) {
+		R1 = R1 - 500;
+	} else {
+		R1 = R1 / 2;
+	}
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<P>
+The <b>ifelse</b> instruction requires three arguments to be on the data stack. If this
+is not the case, then the <B>stack underflow</B> policy is to just treat the <B>ifelse</B>
+as a no-op.
+<P>
+
+<HR>
+
+<H2>?loop</H2>
+<P>
+<CENTER><IMG BORDER=0 SRC="loopop.gif"></CENTER>
+<P>
+As this awsome diagram illustrates, the <B>?loop</B> instruction loops! It is a form
+of controlled goto. It does not do a subroutine call, instead we simply branch back
+to the beginning of the current code block (if the value on top of the stack is non-zero).
+Otherwise we continue to the next instruction.
+<P>
+
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	{ ...stuff... } call 1 ?loop
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+The instructions <B>1 ?loop</B> causes execution to return to the start of the code block, therefore this will
+loop forever.
+<P>
+
+<HR>
+
+<H2>?exit</H2>
+<P>
+<CENTER><IMG BORDER=0 SRC="exitop.gif"></CENTER>
+<P>
+This diagram shows how the exit instruction works. The <b>?exit</b> instruction conditionally
+exits (branches to the end of the code block) the current code block.
+If the top of the data stack is non-zero then we
+jump to the end of the code-block. Otherwise we continue to the next instruction.
+As with <B>?loop</B>, this instruction does not involve any subroutine calling. It is a branch.
+<P>
+These are the only branching instructions in KFORTH.
+<P>
+
+<HR>
+
+<P>
+<A NAME="datatypes">
+<H2>DATA TYPES</H2>
+KFORTH has the most elaborate and rich data types in the whole history of computer
+languages!!!! Bwhahahahaha! Just kidding. KFORTH only has one data type: a 64-bit signed integer.
+<P>
+That's it. There are no strings, booleans, arrays, etc...
+<P>
+a 64-bit number is quite large. Here is the min/max range of this data type:<BR>
+	<B>-9,223,372,036,854,775,808</B> to <B>+9,223,372,036,854,775,807</B>
+<P>
+Only decimal notation is accepted. Numeric literals may be preceeded by a minus (-) sign to
+indicate a negative value.
+<P>
+
+<HR>
+
+<!-- ********************  BEGIN CUT/PASTE latest reference data here ******************** -->
+<A NAME="reference">
+<P>
+<H2>KFORTH INSTRUCTION REFERENCE</H2>
+<P>
+Here are all the core KFORTH instructions. (the instructions that
+control organisms/cells are listed <A HREF="organisms.html#reference">here</A>).
+<P>
+The USAGE column uses forth notation to document these instructions.
+This notation attempts to show the data stack before and after the call
+to the instruction. For example,
+<PRE>
+	(a b c -- n )
+</PRE>
+The stuff before <TT>--</TT> is the state of the data stack before calling the
+instruction. And the stuff after <TT>--</TT> is state of the data stack AFTER this
+instruction finishes.
+<P>
+In this example, the instruction takes three arguments <B>a</B>, <B>b</B>, and <B>c</B>. After
+the instruction executes those three arguments are replaced with a single value <B>n</B>
+(which is the result).
+<P>
+
+
+<P>
+<CENTER><TABLE 	BORDER=1 WIDTH="80%">
+<TR BGCOLOR=#10f050>
+<TD ALIGN=LEFT><B>INSTRUCTION</B></TD>
+	<TD ALIGN=LEFT><B>USAGE</B></TD>
+	<TD ALIGN=LEFT WIDTH="40%"><B>DESCRIPTION</B></TD>
+
+<TR>
+<TD ALIGN=LEFT><B>call</B></TD>		<TD ALIGN=LEFT>( code-block -- )</TD>
+<TD ALIGN=LEFT>
+	Remove top item from the stack. This value
+	is a 'code-block' number which will be called.
+	If code block is invalid, the request is ignored.
+	In disassembly row123 is code-block 123, and so on.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>if</B></TD>		<TD ALIGN=LEFT>( expr code-block -- )</TD>
+<TD ALIGN=LEFT>
+	Removes two items from top of stack. If <I>expr</I> is
+	non-zero then <I>code-block</I> is called. Otherwise, execution
+	continues on the next instruction.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>ifelse</B></TD>	<TD ALIGN=LEFT>( expr true-block false-block -- )</TD>
+<TD ALIGN=LEFT>
+	removes three items from top of stack. If <I>expr</I> is 
+	non-zero then call <I>true-block</I>, else call <I>false-block</I>.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?loop</B></TD>	<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove 1 item from the stack. If value is non-zero 
+	jump to the start of the current code block. Otherwise 
+	continue with the next instruction after '?loop'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?exit</B></TD>	<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove 1 item from the stack. If non-zero then 
+	exit current code block.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>pop</B></TD>		<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove item from stack and discard it.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>dup</B></TD>		<TD ALIGN=LEFT>( a -- a a )</TD>
+<TD ALIGN=LEFT>
+	Duplicate item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>swap</B></TD>		<TD ALIGN=LEFT>( a b -- b a )</TD>
+<TD ALIGN=LEFT>
+	Swap top two elements on the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>over</B></TD>		<TD ALIGN=LEFT>( a b -- a b a )</TD>
+<TD ALIGN=LEFT>
+	Copy second item from the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>rot</B></TD>		<TD ALIGN=LEFT>( a b c -- b c a )</TD>
+<TD ALIGN=LEFT>
+	Rotate third item to top.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>pick</B></TD>		<TD ALIGN=LEFT>( ... v3 v2 v1 n -- ... v3 v2 v1 vn )</TD>
+<TD ALIGN=LEFT>
+	Grab arbitrary item on the stack. n is the item to grab. 
+	n numbering begins with 1.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?dup</B></TD>		<TD ALIGN=LEFT>( n -- n n | 0 )</TD>
+<TD ALIGN=LEFT>
+	Duplicate top element if non-zero.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>-rot</B></TD>		<TD ALIGN=LEFT>( a b c -- c a b )</TD>
+<TD ALIGN=LEFT>
+	Rotate top to third position.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2swap</B></TD>	<TD ALIGN=LEFT>( a b c d --  c d a b )</TD>
+<TD ALIGN=LEFT>
+	Swap pairs.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2over</B></TD>	<TD ALIGN=LEFT>( a b c d -- a b c d a b)</TD>
+<TD ALIGN=LEFT>
+	Leapfrog pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2dup</B></TD>		<TD ALIGN=LEFT>( a b -- a b a b )</TD>
+<TD ALIGN=LEFT>
+	Dupicate pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2pop</B></TD>		<TD ALIGN=LEFT>( a b  -- )</TD>
+<TD ALIGN=LEFT>
+	Remove pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>nip</B></TD>		<TD ALIGN=LEFT>( a b -- b )</TD>
+<TD ALIGN=LEFT>
+	Remove 2nd item from stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>tuck</B></TD>		<TD ALIGN=LEFT>( a b -- b a b)</TD>
+<TD ALIGN=LEFT>
+	Copy top item to third position.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>1+</B></TD>		<TD ALIGN=LEFT>( n -- n+1 )</TD>
+<TD ALIGN=LEFT>
+	Add 1 to the item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>1-</B></TD>		<TD ALIGN=LEFT>( n -- n-1 )</TD>
+<TD ALIGN=LEFT>
+	Subtract 1 from item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2+</B></TD>		<TD ALIGN=LEFT>( n -- n+2 )</TD>
+<TD ALIGN=LEFT>
+	Add 2 to item on top of the stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2-</B></TD>		<TD ALIGN=LEFT>( n -- n-2 )</TD>
+<TD ALIGN=LEFT>
+	Subtract 2 from the item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2/</B></TD>		<TD ALIGN=LEFT>( n -- n/2 )</TD>
+<TD ALIGN=LEFT>
+	Half value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2*</B></TD>		<TD ALIGN=LEFT>( n -- n*2 )</TD>
+<TD ALIGN=LEFT>
+	Double value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>abs</B></TD>		<TD ALIGN=LEFT>( n -- abs(n) )</TD>
+<TD ALIGN=LEFT>
+	Absolute value of n.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>sqrt</B></TD>		<TD ALIGN=LEFT>( n -- sqrt(n) )</TD>
+<TD ALIGN=LEFT>
+	Square root. n must be positive.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>+</B></TD>		<TD ALIGN=LEFT>( a b -- a+b )</TD>
+<TD ALIGN=LEFT>
+	Addition top to elements on stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>-</B></TD>		<TD ALIGN=LEFT>( a b -- a-b )</TD>
+<TD ALIGN=LEFT>
+	Subtraction first item on stack from 2nd.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>*</B></TD>		<TD ALIGN=LEFT>( a b -- a*b )</TD>
+<TD ALIGN=LEFT>
+	Multiply.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>/</B></TD>		<TD ALIGN=LEFT>( a b -- a/b )</TD>
+<TD ALIGN=LEFT>
+	Divide.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>mod</B></TD>		<TD ALIGN=LEFT>( a b -- a%b )</TD>
+<TD ALIGN=LEFT>
+	Modulos.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>/mod</B></TD>		<TD ALIGN=LEFT>( a b -- a%b a/b )</TD>
+<TD ALIGN=LEFT>
+	Divide and modulos.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>negate</B></TD>	<TD ALIGN=LEFT>( n -- -n )</TD>
+<TD ALIGN=LEFT>
+	negate top item on stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2negate</B></TD>	<TD ALIGN=LEFT>( a b -- -a -b )</TD>
+<TD ALIGN=LEFT>
+	negate top two items on stack. (useful for computing a "flee" direction
+	to evade something).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>=</B></TD>		<TD ALIGN=LEFT>( a b -- EQ(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;&gt;</B></TD>		<TD ALIGN=LEFT>( a b -- NE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Not equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;</B></TD>		<TD ALIGN=LEFT>( a b -- LT(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Less than.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&gt;</B></TD>		<TD ALIGN=LEFT>( a b -- GT(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Greater than.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;=</B></TD>		<TD ALIGN=LEFT>( a b -- LE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Less than or equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&gt;=</B></TD>		<TD ALIGN=LEFT>( a b -- GE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Greater than or equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>0=</B></TD>		<TD ALIGN=LEFT>( n -- EQ(n,0) )</TD>
+<TD ALIGN=LEFT>
+	Is element on top of the stack equal to 0?
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>or</B></TD>		<TD ALIGN=LEFT>( a b -- a|b )</TD>
+<TD ALIGN=LEFT>
+	Bitwise OR. Can be used as a logical OR operator too, because 
+	KFORTH boolean operators return 1 and 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>and</B></TD>		<TD ALIGN=LEFT>( a b -- a&b )</TD>
+<TD ALIGN=LEFT>
+	Bitwise AND. Can be used a a logical AND operator too, because 
+	KFORTH boolean operators return 1 and 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>not</B></TD>		<TD ALIGN=LEFT>( n -- !n )</TD>
+<TD ALIGN=LEFT>
+	Logical NOT.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>invert</B></TD>	<TD ALIGN=LEFT>( n -- ~n )</TD>
+<TD ALIGN=LEFT>
+	Invert bits (Bitwise NOT).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xor</B></TD>		<TD ALIGN=LEFT>( a b -- a^b )</TD>
+<TD ALIGN=LEFT>
+	XOR function.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>min</B></TD>		<TD ALIGN=LEFT>( a b -- min(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Minimum value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>max</B></TD>		<TD ALIGN=LEFT>( a b  -- max(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Remove 2 items from stack and replace with 
+	maximum value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>CB</B></TD>		<TD ALIGN=LEFT>( -- CB )</TD>
+<TD ALIGN=LEFT>
+	Pushes the current code block number on the data stack. Can be used
+	to implement "relative" code block addressing.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>Rn</B></TD>		<TD ALIGN=LEFT>( n -- Rn )</TD>
+<TD ALIGN=LEFT>
+	Pushes register Rn on the data stack. If 
+	n is not 0-9 the request is ignored.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R0</B></TD>		<TD ALIGN=LEFT>(   -- R0 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R0 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R1</B></TD>		<TD ALIGN=LEFT>(   -- R1 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R1 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R2</B></TD>		<TD ALIGN=LEFT>(   -- R2 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R2 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R3</B></TD>		<TD ALIGN=LEFT>(   -- R3 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R3 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R4</B></TD>		<TD ALIGN=LEFT>(   -- R4 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R4 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R5</B></TD>		<TD ALIGN=LEFT>(   -- R5 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R5 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R6</B></TD>		<TD ALIGN=LEFT>(   -- R6 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R6 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R7</B></TD>		<TD ALIGN=LEFT>(   -- R7 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R7 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R8</B></TD>		<TD ALIGN=LEFT>(   -- R8 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R8 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R9</B></TD>		<TD ALIGN=LEFT>(   -- R9 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R9 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>Rn!</B></TD>		<TD ALIGN=LEFT>( val n -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 2 items from the data stack 
+	'n' is the register and 'val' is the value to 
+	store into register Rn. 
+	If 'n' is not 0-9 then this instruction ignores the request.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R0!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R0
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R1!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R1
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R2!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R2
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R3!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R3
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R4!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R4
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R5!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R5
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R6!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R6
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R7!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R7
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R8!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R8
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R9!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R9
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>SIGN</B></TD>		<TD ALIGN=LEFT>( n -- SIGN(n) )</TD>
+<TD ALIGN=LEFT>
+	Compute sign of 'n'. If n is negative, SIGN will return -1. if
+	n is greater than 0, SIGN will return 1. If n is 0, SIGN will
+	return 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>PACK2</B></TD>		<TD ALIGN=LEFT>( a b -- n )</TD>
+<TD ALIGN=LEFT>
+	Combine two 32-bit integers 'a' and 'b' into a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>UNPACK2</B></TD>		<TD ALIGN=LEFT>( n -- a b )</TD>
+<TD ALIGN=LEFT>
+	Extract two 32-bit integers 'a' and 'b' from a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>PACK4</B></TD>		<TD ALIGN=LEFT>( a b c d -- n )</TD>
+<TD ALIGN=LEFT>
+	Combine four 16-bit integers 'a', 'b', 'c', and 'd' into a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>UNPACK4</B></TD>		<TD ALIGN=LEFT>( n -- a b c d )</TD>
+<TD ALIGN=LEFT>
+	Extract four 16-bit integers 'a', 'b', 'c', and 'd' from a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+</TABLE></CENTER>
+<!-- ******************** END CUT/PASTE latest reference data here ******************** -->
+
+<P>
+<HR>
+<P>
+<A NAME="examples">
+<H2>Example Code 1</H2>
+<P>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+  
+    3 cube call
+    99 cube call
+
+   ; this line computes (9^3)^3
+   9 cube call cube call
+
+}
+
+;
+; cube the value on top of the stack
+;
+cube:
+{
+    dup dup * *
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Example Code 2</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	20 fact call
+}
+
+;
+; Recursive factorial algorithm:
+; ( n -- factorial(n) )
+;
+fact:
+{
+	dup 0 =
+		{ pop 1 }
+		{ dup 1 - fact call * } ifelse
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Example Code 3</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; compute: (R0 * 8 / R3 + R1) * R2
+;
+; Where:
+;   R0 = 10
+;   R1 = 20
+;   R2 = 5
+;   R3 = 2
+;
+main:
+{
+    10 R0!
+    20 R1!
+    5  R2!
+    2 R3!
+
+   R0 8 * R3 / R1 + R2 *
+}
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Example Code 4</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+	20 fact call
+}
+
+;
+; non-recursive factorial algorithm:
+; ( n -- factorial(n) )
+;
+fact:
+{
+    1 swap
+    {
+        dup 0 = ?exit
+        dup 1- -rot
+        * swap
+        1 ?loop
+    } call
+
+    pop
+}
+
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Example Code 5</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; use code blocks as a form of array/table lookup.
+; This will fetch the pair (5, 6) from the "table":
+;
+main:
+{
+    mytable 3 + call
+}
+
+
+mytable:
+   { 2 3 }		; index 0
+   { 1 1 }		; index 1
+   { 3 4 }		; index 2
+   { 5 6 }		; index 3
+   { 10 5 }	; index 4
+
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<HR>
+
+<H2>Example Code 6</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; Code blocks can also be used as a cheap
+; way to implement named contants.
+; (see PI).
+;
+main: {
+	ugly call 100 511 897 + + +
+}
+
+ugly: {
+    987 PI call +
+}
+
+; a constant, as a code block
+PI: { 3 }
+
+</PRE></TD></TABLE></CENTER>
+
+<P>
+<HR>
+<P>
+
+<H2>Example Code 7</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; look_n_fertilize
+; ----------------
+;
+; USAGE: (x y e -- r)
+;
+; DESCRIPTION:
+;	This subroutine looks for a spore in direction (x, y).
+;	If a spore is found, then ferilize it with a second
+;	spore with energy 'e'
+;
+; RETURNS
+;	0 is no spore found, or could not create a spore
+;	1 is returned on success
+;
+; HOW TO CALL:
+;	1 0 5 look_n_fertilize call
+; 
+look_n_fertilize:
+{
+	-rot 2dup look-spore
+		{ rot make-spore } { 2pop pop 0 } ifelse
+}
+</PRE></TD></TABLE></CENTER>
+
+<P>
+<HR>
+<P>
+
+<H2>Example Code 8</H2>
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+main:
+{
+    -100 19 normalize call
+    -40 -234 normalize call
+}
+
+;
+;  ( x y -- NORM(x) NORM(y) )
+;
+; normalized a pair of values:
+;
+normalize:
+{
+         norm1 call swap norm1 call swap
+}
+
+;
+; (n -- NORM(n))
+;
+; Compute this function:
+;
+;	n < 0	NORM(n) = -1
+;	n = 0	NORM(n) = 0
+;	n > 0	NORM(n) = 1
+;
+norm1:
+{
+	dup 0 > { pop 1 } { 0= { 0 } { -1 } ifelse } ifelse
+}
+</PRE></TD></TABLE></CENTER>
+
+
+<P>
+<HR>
+<P>
+
+<H2>Example Code 9</H2>
+<P>
+See an example of <A HREF="hanoi_example.html">Towers of Hanoi</A> in KFORTH.
+<P>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

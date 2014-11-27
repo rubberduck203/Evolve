@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Mutation Settings Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 22, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Mutation Settings Dialog</h2>
+<p>
+This dialog lets you change the mutation rates. The defaults should be fine though. But
+knock yourself out.
+
+<P>
+<IMG SRC="SimulationOptions.jpg">
+<P>
+
+You can control the probability that a mutation will occur by going to
+the simulation options dialog. The mutation algorithm first decides if
+it will act at the <B>instructon-level</B>, or <B>code block-level</B>.
+<P>
+<TABLE WIDTH="80%" BORDER=1>
+<TR>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="20%"><B>Mutation Type</B></TD>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="40%"><B>Instruction-level</B></TD>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="40%"><B>Code Block-level</B></TD>
+
+<TR>
+<TD><B>Duplication</B></TD>
+	<TD>Pick a random strand of instructions and repeat it at the same spot<P></TD>
+	<TD>Pick a random code block and add a copy to end of program<P></TD>
+
+<TR>
+<TD><B>Deletion</B></TD>
+	<TD>Pick a random strand of instructions and remove it<P></TD>
+	<TD>Pick a random code block and remove it.<P></TD>
+
+<TR>
+<TD><B>Insertion</B></TD>
+	<TD>Pick a random strand of instructions and insert it into a random spot.<P></TD>
+	<TD>insert a new code block and fill with random instructions.<P></TD>
+
+<TR>
+<TD><B>Transposition</B></TD>
+	<TD>Swap 2 random instruction strands<P></TD>
+	<TD>Swap 2 random code blocks<P></TD>
+
+<TR>
+<TD><B>Modification</B></TD>
+	<TD>Pick a random strand of instruction and modify it.<P></TD>
+	<TD>Pick a random code block and modify every single instruction or number<P></TD>
+
+</TABLE>
+
+<P>
+(NOTE: A <I>strand</I> is a sequence of instructions between 1 and 4.)
+
+<P>
+The setting <B>Mutate Code Block</B> controls the probability of
+performing a code block-level mutation versus an instruction-level mutation.
+The default is <B>25%</B>, which means 1 out of 4 mutations will be code block-level
+mutations.
+
+<P>
+The setting <B>Max. Code Blocks</B> limits the size of mutated programs to never
+exceed this maximum number of code blocks. The default is <B>100</B>.
+
+<P>
+The setting <B>Max. Apply</B> controls the number of time the mutation algorithm is applied
+before a new organism is born. The default is <B>10</B>. This means that a random number from
+1 to 10 is chosen before mutating a KFORTH program. The mutation algorithm is then applied
+this many times. To disable mutations you can set this to 0. This setting can be any number
+from 0 to 20.
+
+<P>
+See the section, <A HREF="mutations.html#mutations">Mutations/Replication</A> for more information on
+how these probabilities control the mutation algorithm.
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

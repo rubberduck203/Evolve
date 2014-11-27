@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>History of Evolve 4.0</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 22, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>History of Evolve</h2>
+
+<h4>Timeline:</h4>
+<UL>
+<LI> <B>1996 - Evolve 1.0</B><BR>
+Written in C on a sun3 workstation. No visualization. I had to
+use a perl script to convert the simulation to Post Script and then use GNU GhostScript (gs)
+to view snapshots of the universe.
+<P>
+
+<LI> <B>1998 - Evolve 2.0</B><BR>
+Ported the original code to Borland Builder C/C++ on a PC. Implemented
+a decent GUI to visualize the universe. Added new instructions, and tweaked the simulation.
+<P>
+
+<LI> <B>2001 - Evolve 3.0 </B><BR>
+Rewritten in Eiffel as a learning exercise. Many concepts added to the simulator (like
+"energy" and "barriers"). A decent GUI to visualize the universe. Added new instructions,
+and tweaked the simulation. The old webpage for Evolve 3.0 is still available
+<A HREF="http://www.stauffercom.com/evolve">here</A>.
+<P>
+
+<LI> <B>2006 - Evolve 4.0 </B><BR>
+This version. For performance reasons Eiffel was dropped as the implementation and
+another complete rewrite in C/C++. This time the genetic language was massively improved, and SEX
+was added!!!! None of the original code was reused for this version.
+<P>
+</UL>
+
+
+<h4>Version 1.0</h4>
+In 1996 I read a wonderful book by Richard Dawkins, <I>The Blind Watchmaker</I> that
+in addition to providing a clear description of the workings of evolution
+it also described some interesting computer software called <I>biomorphs</I>.
+His biomorphs would evolve by mutating a small set of genes through successive
+generations. However the selection process was user controlled. The
+user selected organisms based on whatever criteria they wished.
+<P>
+I got to thinking that it would be more interesting to have a complete simulation of
+evolution, including a selection process that was based on only one criteria: <B>Survival</B>.
+I also wanted a more sophisticated mechanism for genes. In biomprphs the genetics were limited
+to four of five genes (which were just integers).
+<P>
+Richard Dawkins' description of the power of cummulative selection was so convincing that
+I imagined that a sufficiently good simulation of this process would eventually evolve some
+very "smart" creatures. And this was the inspiration for this software.
+<P>
+My idea was to create a simple 2-dimensional universe using finite elements. Conceptually
+the universe would consist of discrete locations (Such as (0,0), (5,4), etc...). There
+would not be any bounds to this universe (a feature that has since been dropped in version 4.0),
+and creatures could roam in virtually unlimited directions North, South, East and West.
+The entities that would inhabit this simple world consisted of organisms. Every organism
+would occupy one or more locations. The organism would be a series of cells that all had
+to be physically located next to each other.
+<P>
+Each organism would consist of a genetic program. Each instruction would encapsulate
+a very simple operation. For example the instruction <B>"REPRODUCE NORTH(#10)"</B> would cause
+the organism to spawn a copy (with possible mutations) 10 units north of the cell that
+executed the instruction. Other operations included: <B>MOVE</B>, <B>CONSUME</B>, <B>NEW</B>, <B>DIE</B>.
+To make the range of behaviors that could evolve more interesting I included GOTO and
+a few other instructions that were purely programmatic in nature.
+<P>
+In 1996, I had a spare Sun3 workstation that I hoped to run this simulator for months at a time, and
+periodically I would examine the current universe to see what "smart" creatures had evolved.
+<P>
+
+<h4>Version 2.0</h4>
+The initial version was not very good. For one thing I didn't
+have any GUI. The only way to examine the universe was to dump the state of the
+universe to a text file. I had to use a perl script that converted my simulation files
+into postscript (which I could then view using Ghostscript).
+But the results and interactivity was lacking.
+<P>
+So two
+years later in 1998 I pulled to orginal code off of my Sun workstation (which was
+headed for a Sunnyvale landfill) and decided to port it to Borland Builder C++.
+It was very easy to get a simple GUI going and I was very
+excited to run a simulation and be able to see the simulation results.
+<P>
+During this time I enhanced the instruction set. I realized that in real-life organisms,
+each cell has a state seperate from the other cells. You nerve cells are different from
+your skin cells. I added registers and flags and a stack to each cell.
+The genetic program was shared by all cells in the organism (just like our DNA is common
+to cells, but each cell does different things based on state).
+<P>
+I continued to enhance this version. I added many nice GUI features like zoom, cut/paste.
+I would periodically revisit this program and run simulations for a couple of days but
+I never seemed to evolve anything very interesting.
+<P>
+One of the problems was the unbounded universe. The creatures would just move in a single
+direction and go off into inifinity. My model for rewarding organisms with energy if they
+consume other organisms had problems. It was unstable. Depending on the parameters I used,
+I either got an exponential growth of organisms (and the machine would run out of memory).
+Or the creatures would die off quickly.
+<P>
+I continued to tweak my universe model. I added a "crowded cells" parameter so that
+if the carrying capacity of the simulation reached a certain level, then it would become
+harder and harder for organisms to reproduce. The amount of energy needed to reproduce
+would dynamically change based on the total number of cells in the universe.
+<P>
+Anyway, after sufficient tweaking the simulation began to exhibit the characteristics
+of cummulative selection, and I was happy.
+<P>
+
+<h4>Version 3.0</h4>
+In 2001, I decided to re-implement the entire simulator application in Eiffel. The main
+goal was to learn eiffel. But I made several improvements to the program during this
+time. One improvment was adding "barriers" to the universe. A BARRIER is a way to limit
+the universe to a enclosed region. When I ran the simulator with an enclosure, I began
+to see much more evolution of smart creatures. They moved around more, and they would
+change their direction and interact strangely with other creatures.
+<P>
+Unfortunately the Eiffel implementation was my first large scale Eiffel program. It
+suffered from many problems. Mostly it couldn't handle the constant creation/destruction
+of objects during the simulation. I love Eiffel, but damn if this app. was just too slow
+for my needs. Here's the old website for <A HREF="http://www.stauffercom.com/evolve">evolve 3.0</A>.
+
+<h4>Version 4.0</h4>
+In 2006, I rewrote the whole thing in C/C++. I hate C++, but I guess over the years
+I have warmed up to it enough to use it. I do appreciate C++'s performance advantage over
+Eiffel. And with lots and lots of ASSERT()'s you can protect yourself from endless hours
+of debugging. This is the latest and greatest version.
+<P>
+Version 4.0 is much improved:
+<UL>
+<LI> Uses a Forth-like genetic language.
+<LI> Each cell can execute in a virtual machine with unlimited data/call stack
+<LI> Made replication a 2-step process involving spores, and supports both sexual and asexual reproduction.
+<LI> Cleaner GUI.
+<LI> Simulation files are platform independent.
+<LI> The command line simulator can run on Linux (or any unix) as well as windows.
+<LI> More accessable source code for better hacking.
+	(Eiffel is still kind of a niche language for most hackers).
+<LI> More flexible instructions for controlling the organism
+<LI> A better LOOK primitive which is not limited to up/down/left/right directions.
+<LI> Grid movement is extended to include diagonals. (not limited to up, down, left and right anymore)
+<LI> Much faster than previous implementations.
+</UL>
+
+<HR>
+
+<BR>
+<BR>
+<P>
+<BR>
+<BR>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+// Microsoft Visual C++ generated Help ID include file.
+// Used by evolve.rc
+//
+#define HIDC_CV_NW_WHERE                0x80920477    // IDD_CELL_VISION

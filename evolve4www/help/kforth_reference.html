@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - KFORTH Instruction Reference</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - KFORTH Instruction Reference</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<!-- ********************  BEGIN CUT/PASTE latest reference data here ******************** -->
+<A NAME="reference">
+<P>
+<H2>KFORTH INSTRUCTION REFERENCE</H2>
+<P>
+Here are all the core KFORTH instructions. (the instructions that
+control organisms/cells are listed <A HREF="organisms.html#reference">here</A>).
+<P>
+The USAGE column uses forth notation to document these instructions.
+This notation attempts to show the data stack before and after the call
+to the instruction. For example,
+<PRE>
+	(a b c -- n )
+</PRE>
+The stuff before <TT>--</TT> is the state of the data stack before calling the
+instruction. And the stuff after <TT>--</TT> is state of the data stack AFTER this
+instruction finishes.
+<P>
+In this example, the instruction takes three arguments <B>a</B>, <B>b</B>, and <B>c</B>. After
+the instruction executes those three arguments are replaced with a single value <B>n</B>
+(which is the result).
+<P>
+
+
+<P>
+<CENTER><TABLE BORDER=1 WIDTH="80%">
+<TR BGCOLOR=#10f050>
+<TD ALIGN=LEFT><B>INSTRUCTION</B></TD>
+	<TD ALIGN=LEFT><B>USAGE</B></TD>
+	<TD ALIGN=LEFT WIDTH="40%"><B>DESCRIPTION</B></TD>
+
+<TR>
+<TD ALIGN=LEFT><B>call</B></TD>		<TD ALIGN=LEFT>( code-block -- )</TD>
+<TD ALIGN=LEFT>
+	Remove top item from the stack. This value
+	is a 'code-block' number which will be called.
+	If code block is invalid, the request is ignored.
+	In disassembly row123 is code-block 123, and so on.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>if</B></TD>		<TD ALIGN=LEFT>( expr code-block -- )</TD>
+<TD ALIGN=LEFT>
+	Removes two items from top of stack. If <I>expr</I> is
+	non-zero then <I>code-block</I> is called. Otherwise, execution
+	continues on the next instruction.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>ifelse</B></TD>	<TD ALIGN=LEFT>( expr true-block false-block -- )</TD>
+<TD ALIGN=LEFT>
+	removes three items from top of stack. If <I>expr</I> is 
+	non-zero then call <I>true-block</I>, else call <I>false-block</I>.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?loop</B></TD>	<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove 1 item from the stack. If value is non-zero 
+	jump to the start of the current code block. Otherwise 
+	continue with the next instruction after '?loop'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?exit</B></TD>	<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove 1 item from the stack. If non-zero then 
+	exit current code block.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>pop</B></TD>		<TD ALIGN=LEFT>( n -- )</TD>
+<TD ALIGN=LEFT>
+	Remove item from stack and discard it.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>dup</B></TD>		<TD ALIGN=LEFT>( a -- a a )</TD>
+<TD ALIGN=LEFT>
+	Duplicate item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>swap</B></TD>		<TD ALIGN=LEFT>( a b -- b a )</TD>
+<TD ALIGN=LEFT>
+	Swap top two elements on the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>over</B></TD>		<TD ALIGN=LEFT>( a b -- a b a )</TD>
+<TD ALIGN=LEFT>
+	Copy second item from the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>rot</B></TD>		<TD ALIGN=LEFT>( a b c -- b c a )</TD>
+<TD ALIGN=LEFT>
+	Rotate third item to top.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>pick</B></TD>		<TD ALIGN=LEFT>( ... v3 v2 v1 n -- ... v3 v2 v1 vn )</TD>
+<TD ALIGN=LEFT>
+	Grab arbitrary item on the stack. n is the item to grab. 
+	n numbering begins with 1.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>?dup</B></TD>		<TD ALIGN=LEFT>( n -- n n | 0 )</TD>
+<TD ALIGN=LEFT>
+	Duplicate top element if non-zero.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>-rot</B></TD>		<TD ALIGN=LEFT>( a b c -- c a b )</TD>
+<TD ALIGN=LEFT>
+	Rotate top to third position.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2swap</B></TD>	<TD ALIGN=LEFT>( a b c d --  c d a b )</TD>
+<TD ALIGN=LEFT>
+	Swap pairs.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2over</B></TD>	<TD ALIGN=LEFT>( a b c d -- a b c d a b)</TD>
+<TD ALIGN=LEFT>
+	Leapfrog pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2dup</B></TD>		<TD ALIGN=LEFT>( a b -- a b a b )</TD>
+<TD ALIGN=LEFT>
+	Dupicate pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2pop</B></TD>		<TD ALIGN=LEFT>( a b  -- )</TD>
+<TD ALIGN=LEFT>
+	Remove pair.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>nip</B></TD>		<TD ALIGN=LEFT>( a b -- b )</TD>
+<TD ALIGN=LEFT>
+	Remove 2nd item from stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>tuck</B></TD>		<TD ALIGN=LEFT>( a b -- b a b)</TD>
+<TD ALIGN=LEFT>
+	Copy top item to third position.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>1+</B></TD>		<TD ALIGN=LEFT>( n -- n+1 )</TD>
+<TD ALIGN=LEFT>
+	Add 1 to the item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>1-</B></TD>		<TD ALIGN=LEFT>( n -- n-1 )</TD>
+<TD ALIGN=LEFT>
+	Subtract 1 from item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2+</B></TD>		<TD ALIGN=LEFT>( n -- n+2 )</TD>
+<TD ALIGN=LEFT>
+	Add 2 to item on top of the stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2-</B></TD>		<TD ALIGN=LEFT>( n -- n-2 )</TD>
+<TD ALIGN=LEFT>
+	Subtract 2 from the item on top of the stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2/</B></TD>		<TD ALIGN=LEFT>( n -- n/2 )</TD>
+<TD ALIGN=LEFT>
+	Half value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2*</B></TD>		<TD ALIGN=LEFT>( n -- n*2 )</TD>
+<TD ALIGN=LEFT>
+	Double value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>abs</B></TD>		<TD ALIGN=LEFT>( n -- abs(n) )</TD>
+<TD ALIGN=LEFT>
+	Absolute value of n.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>sqrt</B></TD>		<TD ALIGN=LEFT>( n -- sqrt(n) )</TD>
+<TD ALIGN=LEFT>
+	Square root. n must be positive.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>+</B></TD>		<TD ALIGN=LEFT>( a b -- a+b )</TD>
+<TD ALIGN=LEFT>
+	Addition top to elements on stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>-</B></TD>		<TD ALIGN=LEFT>( a b -- a-b )</TD>
+<TD ALIGN=LEFT>
+	Subtraction first item on stack from 2nd.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>*</B></TD>		<TD ALIGN=LEFT>( a b -- a*b )</TD>
+<TD ALIGN=LEFT>
+	Multiply.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>/</B></TD>		<TD ALIGN=LEFT>( a b -- a/b )</TD>
+<TD ALIGN=LEFT>
+	Divide.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>mod</B></TD>		<TD ALIGN=LEFT>( a b -- a%b )</TD>
+<TD ALIGN=LEFT>
+	Modulos.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>/mod</B></TD>		<TD ALIGN=LEFT>( a b -- a%b a/b )</TD>
+<TD ALIGN=LEFT>
+	Divide and modulos.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>negate</B></TD>	<TD ALIGN=LEFT>( n -- -n )</TD>
+<TD ALIGN=LEFT>
+	negate top item on stack.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>2negate</B></TD>	<TD ALIGN=LEFT>( a b -- -a -b )</TD>
+<TD ALIGN=LEFT>
+	negate top two items on stack. (useful for computing a "flee" direction
+	to evade something).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>=</B></TD>		<TD ALIGN=LEFT>( a b -- EQ(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;&gt;</B></TD>		<TD ALIGN=LEFT>( a b -- NE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Not equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;</B></TD>		<TD ALIGN=LEFT>( a b -- LT(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Less than.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&gt;</B></TD>		<TD ALIGN=LEFT>( a b -- GT(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Greater than.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&lt;=</B></TD>		<TD ALIGN=LEFT>( a b -- LE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Less than or equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>&gt;=</B></TD>		<TD ALIGN=LEFT>( a b -- GE(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Greater than or equal to.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>0=</B></TD>		<TD ALIGN=LEFT>( n -- EQ(n,0) )</TD>
+<TD ALIGN=LEFT>
+	Is element on top of the stack equal to 0?
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>or</B></TD>		<TD ALIGN=LEFT>( a b -- a|b )</TD>
+<TD ALIGN=LEFT>
+	Bitwise OR. Can be used as a logical OR operator too, because 
+	KFORTH boolean operators return 1 and 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>and</B></TD>		<TD ALIGN=LEFT>( a b -- a&b )</TD>
+<TD ALIGN=LEFT>
+	Bitwise AND. Can be used a a logical AND operator too, because 
+	KFORTH boolean operators return 1 and 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>not</B></TD>		<TD ALIGN=LEFT>( n -- !n )</TD>
+<TD ALIGN=LEFT>
+	Logical NOT.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>invert</B></TD>	<TD ALIGN=LEFT>( n -- ~n )</TD>
+<TD ALIGN=LEFT>
+	Invert bits (Bitwise NOT).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xor</B></TD>		<TD ALIGN=LEFT>( a b -- a^b )</TD>
+<TD ALIGN=LEFT>
+	XOR function.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>min</B></TD>		<TD ALIGN=LEFT>( a b -- min(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Minimum value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>max</B></TD>		<TD ALIGN=LEFT>( a b  -- max(a,b) )</TD>
+<TD ALIGN=LEFT>
+	Remove 2 items from stack and replace with 
+	maximum value.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>CB</B></TD>		<TD ALIGN=LEFT>( -- CB )</TD>
+<TD ALIGN=LEFT>
+	Pushes the current code block number on the data stack. Can be used
+	to implement "relative" code block addressing.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>Rn</B></TD>		<TD ALIGN=LEFT>( n -- Rn )</TD>
+<TD ALIGN=LEFT>
+	Pushes register Rn on the data stack. If 
+	n is not 0-9 the request is ignored.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R0</B></TD>		<TD ALIGN=LEFT>(   -- R0 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R0 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R1</B></TD>		<TD ALIGN=LEFT>(   -- R1 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R1 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R2</B></TD>		<TD ALIGN=LEFT>(   -- R2 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R2 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R3</B></TD>		<TD ALIGN=LEFT>(   -- R3 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R3 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R4</B></TD>		<TD ALIGN=LEFT>(   -- R4 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R4 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R5</B></TD>		<TD ALIGN=LEFT>(   -- R5 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R5 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R6</B></TD>		<TD ALIGN=LEFT>(   -- R6 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R6 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R7</B></TD>		<TD ALIGN=LEFT>(   -- R7 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R7 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R8</B></TD>		<TD ALIGN=LEFT>(   -- R8 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R8 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R9</B></TD>		<TD ALIGN=LEFT>(   -- R9 )</TD>
+<TD ALIGN=LEFT>
+	Pushes register R9 on the data stack
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>Rn!</B></TD>		<TD ALIGN=LEFT>( val n -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 2 items from the data stack 
+	'n' is the register and 'val' is the value to 
+	store into register Rn. 
+	If 'n' is not 0-9 then this instruction ignores the request.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R0!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R0
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R1!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R1
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R2!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R2
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R3!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R3
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R4!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R4
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R5!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R5
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R6!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R6
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R7!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R7
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R8!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R8
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>R9!</B></TD>		<TD ALIGN=LEFT>( val -- )</TD>
+<TD ALIGN=LEFT>
+	Removes 1 item 'val' from the data stack 
+	and stores 'val' into register R9
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>SIGN</B></TD>		<TD ALIGN=LEFT>( n -- SIGN(n) )</TD>
+<TD ALIGN=LEFT>
+	Compute sign of 'n'. If n is negative, SIGN will return -1. if
+	n is greater than 0, SIGN will return 1. If n is 0, SIGN will
+	return 0.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>PACK2</B></TD>		<TD ALIGN=LEFT>( a b -- n )</TD>
+<TD ALIGN=LEFT>
+	Combine two 32-bit integers 'a' and 'b' into a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>UNPACK2</B></TD>		<TD ALIGN=LEFT>( n -- a b )</TD>
+<TD ALIGN=LEFT>
+	Extract two 32-bit integers 'a' and 'b' from a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>PACK4</B></TD>		<TD ALIGN=LEFT>( a b c d -- n )</TD>
+<TD ALIGN=LEFT>
+	Combine four 16-bit integers 'a', 'b', 'c', and 'd' into a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>UNPACK4</B></TD>		<TD ALIGN=LEFT>( n -- a b c d )</TD>
+<TD ALIGN=LEFT>
+	Extract four 16-bit integers 'a', 'b', 'c', and 'd' from a single value 'n'.
+	<P>
+	<P>
+</TD>
+
+</TABLE></CENTER>
+<!-- ******************** END CUT/PASTE latest reference data here ******************** -->
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

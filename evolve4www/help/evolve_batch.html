@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve Batch Utility</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 22, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>Evolve Batch Utility</h1>
+<tt>evolve_batch</tt> is a command line utility. It runs on both
+linux and windows. The primary purpose is to run a simulation from
+a shell or console window (without the GUI).
+<P>
+
+<H1>Command line modes</H1>
+<UL>
+<LI> <b> s </b> -- simulate
+<LI> <b> p </b> -- print information
+<LI> <b> k </b> -- execute kforth program and print top of data stack.
+<LI> <b> = </b> -- compare two .evolve files
+<LI> <b> 1s </b> -- simulate until 1 strain left
+<LI> <b> rc </b> -- pick random creature and display its KFORTH.
+</UL>
+<P>
+
+<HR>
+<H1>s</H1>
+<PRE>
+	C:\> evolve_batch s 24h input.evolve output.evole
+
+	C:\> evolve_batch s 60m input.evolve output.evole
+
+	C:\> evolve_batch s 3600s input.evolve output.evole
+
+	C:\> evolve_batch s 1000u input.evolve output.evole
+</PRE>
+<P>
+All 4 of these commands will read <tt>input.evolve</tt> and when finished
+the output is written to <tt>output.evolve</tt>. The input will not be changed
+by these commands.
+<P>
+The first commmand runs the simulation for 24 hours. The second command runs
+the simulation for 60 minutes. The third command runs the simulation for 3600 seconds.
+<P>
+The last command runs the simulation for 1000 <B>steps</B>. This last variation
+is not timer based. It simply runs the simulation for that many steps.
+<P>
+
+<HR>
+<H1>p</H1>
+<P>
+<B>Evolve_batch</B> will also dump statistics about a simulation file.
+<PRE>
+	C:\> evolve_batch p some_file.evolve
+
+filename         some_file.evolve
+step             35627500
+nborn            713951387
+ndie             713949271
+width            500
+height           400
+seed             12410
+norganism        2117
+energy           150000
+num_cells        4063
+num_instructions 185693
+call_stack_nodes 4019
+data_stack_nodes 11671
+num_organic      1499
+num_spores       644
+num_sexual       0
+grid_memory      1600000
+cstack_memory    64304
+dstack_memory    186736
+program_memory   2226401
+organism_memory  801136
+spore_memory     15456
+check_sum        5711437
+</PRE>
+<P>
+
+<HR>
+<H1>k</H1>
+<P>
+
+<HR>
+<H1>=</H1>
+<P>
+
+<HR>
+<H1>1s</H1>
+<P>
+(not implemented)
+
+<HR>
+<H1>rc</H1>
+<P>
+(not implemented)
+
+
+<P>
+<BR>
+<BR>
+<P>
+<BR>
+<BR>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

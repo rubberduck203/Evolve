@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Find Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 27, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Find Dialog</h2>
+<p>
+<CENTER><IMG SRC="FindDialog.jpg"></CENTER>
+<CENTER><I>match organisms that have between 20 and 40 units of energy</I></CENTER>
+<P>
+The find dialog can be access by the <B>Edit >> Find </B> menu item, or pressing
+<B>Ctrl+F</B>.
+<P>
+Use this dialog if you want to search for organisms with certain properties. You enter
+a search expression using KFORTH notation. The matching organisms will be tagged using
+the radioactive tracer feature.
+<P>
+<h2>Examples</h2>
+<P>
+<TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+  MAX-ENERGY ENERGY =
+
+</PRE></TD></TABLE>
+<P>
+Find all organisms that have the maximum energy.
+<P>
+<TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+  AGE 100 >=  NCHILDREN 1 = and
+
+</PRE></TD></TABLE>
+<P>
+Find organisms that are at least 100 steps old, and have 1 living children
+<P>
+<TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+  NUM-CB 45 = NUM-DEAD 1 >= and
+
+</PRE></TD></TABLE>
+<P>
+Find organisms that have a kforth program consiting of 45 code blocks, and have 1 or more dead cells.
+<P>
+<TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+  NUM-CELLS 20 >= NUM-CELLS 25 <= and
+
+</PRE></TD></TABLE>
+<P>
+Find organisms with between 20 and 25 cells.
+<P>
+
+<P>
+<TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+  parent1 parent2 <>
+
+</PRE></TD></TABLE>
+<P>
+Find organisms that were created sexually.
+<P>
+Click on <B>[INSTRUCTIONS]</B> to see the available kforth instructions for this
+mode. (only the find related instructions are shown).
+<P>
+
+<P>
+The results of the find operation are shown using
+<A HREF="radioactive_tracers.html">Radioactive Tracers</A>. A find expression of "0" or blank will
+clear all tracers.
+<P>
+NOTE: Syntax errors will be checked for. However another kind of error is one in which the number of
+items on the data stack is not 1. In this case the expression is treated as FALSE. (For
+example the expression, "AGE AGE" leaves two values on the stack, and so always is treated as FALSE).
+<P>
+The <A HREF="strain_population_dialog.html">strain population dialog</A> will show
+the number of organisms with radioactive tracers.
+<P>
+
+<H2>Minimum, Maximum, Average Instructions</H2>
+There are a couple KFORTH instructions that are computed by examining all organisms.
+These are the MIN, MAX and AVG instructions.
+<P>
+The MIN / MAX / AVG instructions return values that get computed based on the overall simulation.
+So MAX-ENERGY would be the maximum energy value for all organisms in the current
+simulation. AVG-ENERGY is the average energy value for all organisms. MIN-ENERGY would the
+smallest energy value found after examining all organisms. THese MIN/MAX/AVG constants can be
+used to search for the organism with the most or least value. (Click on the [Instructions] button
+to see the full list).
+<P>
+
+<BR><P>
+<BR><P>
+<BR><P>
+<BR><P>
+<BR><P>
+<BR><P>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>
+

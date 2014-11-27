@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Genetics</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Genetics</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>Genetics</h1>
+<P>
+The genetic programming language used by Evolve is called <B>KFORTH</B>. All KFORTH programs
+are compiled into a tabular representation. Each element of the table is either a number or
+an instruction. Each row is called a "code block". The
+first row is special because this is where execution always starts.
+<P>
+A KFORTH program begins executing at (0, 0) (code block 0, program counter 0). If the
+table element contains a number, it is pushed on the data stack, otherwise the instruction
+is executed.
+<P>
+When the end of a row is reached, the previous location is removed from the call stack.
+If the call stack is empty, the program has terminated.
+<P>
+The <B>call</B> instruction, as its name implies, "calls" a new code block. This is anaologous to a
+function call, or subroutine call in most languages. There are also two conditional call
+instructions: <B>if</B> and <B>ifelse</B>. These instructions call a code block depending on
+a condition. These instructions transfer control to a new code block (after first
+saving the current location).
+<P>
+To visualize the tabular layout of a KFORTH program, consider this source code:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+;
+; Compute factorial(20), using a recursive algorithm
+;
+main:
+{
+	20 fact call
+}
+
+;
+; Recursive factorial algorithm:
+; ( n -- factorial(n) )
+;
+fact:
+{
+	dup 0 =
+		{ pop 1 }
+		{ dup 1 - fact call * } ifelse
+}
+</PRE></TD></TABLE></CENTER>
+
+<P>
+
+This will be compiled into the following table. All labels, nesting and comments
+(which are for human convenience) are absent:
+
+<P>
+<IMG SRC="genes.gif">
+<P>
+
+
+
+<P>
+<A HREF="mutations.html#mutations">Mutations</A> operate on this tabular structure. A simple mutation
+is to pick two random entries and swap them. Or two random rows can be swapped. etc...
+<P>
+The tabular structure of compiled
+KFORTH programs makes it very fast to apply a mutation to a program. Very little error checking
+must be performed. Any weird and wacky random transformation to this table will result in
+valid KFORTH program.
+
+<P>
+During <A HREF="spores.html#merge">sexual reproduction</A> two genetic programs are combined.
+We accomplish this by interlacing code blocks from the first parent with the second parent.
+(Parent 1 donates her even numbered code blocks and parent 2 donates his odd numbered code blocks).
+
+
+<P>
+To learn more, see the description of the <A HREF="kforth.html">KFORTH language</A>.
+
+<P>
+<BR>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

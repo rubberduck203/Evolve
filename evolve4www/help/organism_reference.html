@@ -1,0 +1,748 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Organism Instruction Reference</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> May 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Organism Instruction Reference</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<!-- ********************  BEGIN CUT/PASTE latest reference data here ******************** -->
+<A NAME="reference">
+<H2>ORGANISM INSTRUCTION REFERENCE</H2>
+The core KFORTH instruction (like dup, pop, +, *, /, etc..) are covered
+in the section entitled <A HREF="kforth.html#reference">the KFORTH Language</A>.
+What follows is a detailed reference guide for the instructions that control organisms and cells:
+<P>
+
+<H3>Interacting with the universe:</H3>
+<UL>
+<LI> <A HREF="#ref_OMOVE"><B>OMOVE</B></A>
+<LI> <A HREF="#ref_ROTATE"><B>ROTATE</B></A>
+<LI> <A HREF="#ref_CMOVE"><B>CMOVE</B></A>
+<LI> <A HREF="#ref_EAT"><B>EAT</B></A>
+<LI> <A HREF="#ref_MAKE-SPORE"><B>MAKE-SPORE</B></A>
+<LI> <A HREF="#ref_GROW"><B>GROW</B></A>
+</UL>
+
+<H3>Vision:</H3>
+<UL>
+<LI> <A HREF="#ref_LOOK"><B>LOOK</B></A>
+<LI> <A HREF="#ref_WHAT"><B>WHAT</B></A>
+<LI> <A HREF="#ref_WHERE"><B>WHERE</B></A>
+<LI> <A HREF="#ref_NEAREST"><B>NEAREST</B></A>
+<LI> <A HREF="#ref_FARTHEST"><B>FARTHEST</B></A>
+<LI> <A HREF="#ref_NEAREST2"><B>NEAREST2</B></A>
+<LI> <A HREF="#ref_FARTHEST2"><B>FARTHEST2</B></A>
+</UL>
+
+<H3>Communicating between cells:</H3>
+<UL>
+<LI> <A HREF="#ref_MOOD"><B>MOOD</B></A>
+<LI> <A HREF="#ref_MOOD!"><B>MOOD!</B></A>
+<LI> <A HREF="#ref_BROADCAST"><B>BROADCAST</B></A>
+<LI> <A HREF="#ref_SEND"><B>SEND</B></A>
+<LI> <A HREF="#ref_RECV"><B>RECV</B></A>
+</UL>
+
+<H3>Query information about ourselves:</H3>
+<UL>
+<LI> <A HREF="#ref_ENERGY"><B>ENERGY</B></A>
+<LI> <A HREF="#ref_AGE"><B>AGE</B></A>
+<LI> <A HREF="#ref_NUM-CELLS"><B>NUM-CELLS</B></A>
+<LI> <A HREF="#ref_HAS-NEIGHBOR"><B>HAS-NEIGHBOR</B></A>
+</UL>
+
+<P>
+<HR>
+<P>
+
+
+<A NAME="ref_OMOVE">
+<H2>OMOVE</H2>
+<B>Usage:</B> ( x y -- r )<P>
+Move entire organism by 1 square in the up, down, left, right, or diagonal direction.
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+<LI> Remove the (x, y) coordinates from the stack.
+<LI> Normalize the coordinates.
+<LI> Examine every square that we may be moving to to make sure it is empty, or contains one of our cells.
+<LI> If the move is possible, reposition every cell in our organism by the (x, y) offset.
+<LI> A move using vector (0, 0) always fails, and returns 0.
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - move failed.
+<LI> <B>1</B> - move was successful.
+</UL>
+<P>
+<B>ENERGY:</B> Does not require any energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_ROTATE">
+<H2>ROTATE</H2>
+<B>Usage:</B> ( n -- r )<P>
+Rotate the organism by 90 degree units around the cell that executes
+this instruction.
+<P>
+<OL>
+<LI> If there is not 1 element on the data stack, then skip this instruction.
+<LI> Remove the rotation amount n from the stack.
+<LI> Translate all cells in the organism to the new location, and check that
+the spot is vacant (or contains cells from this organism). If not, return 0.
+<LI> Else, rotate organism and return 1.
+<LI> A rotation value of <B>0</B> always fails, and returns 0.
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - organism could not be rotated.
+<LI> <B>1</B> - success.
+</UL>
+<P>
+<B>ENERGY:</B> Does not require any energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_CMOVE">
+<H2>CMOVE</H2>
+<B>Usage:</B> ( x y -- r )<P>
+Move the cell that executes this instruction relative to the organism.
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+<LI> Remove the (x, y) coordinates from the stack.
+<LI> Normalize the coordinates.
+<LI> Examine the destination square (as indicated by the offsets) and see if it
+is vacant. If not, return 0.
+<LI> Check that the organism is propery connected after the move. If not return 0.
+<LI> Else, Move the cell to the new location and return 1.
+<LI> A CMOVE of (0,0) always fails and returns <B>0</B>.
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - cell could not be moved.
+<LI> <B>1</B> - success.
+</UL>
+<P>
+<B>ENERGY:</B> Does not require any energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_EAT">
+<H2>EAT</H2>
+<B>Usage:</B> ( x y -- n )<P>
+Eat stuff at (x, y) from this cell. Return 'n' the amount of energy eaten.
+<P>
+<OL>
+<LI> Normalize the (x, y) coordinates.
+<P>
+<LI> Try to eat whatever is at this location:
+
+<LI> Organic material (white squares) will be eaten and all its energy transferred
+	to this organism.
+	<P>
+
+<LI> Spores (blue squares) will be eaten and all their energy transferred to this organism.
+	Even spores created by this organism will be eaten (so be careful!).
+	<P>
+
+<LI> Living tissue from other creatures will be eaten:
+	<P>
+
+<UL>
+<LI> The living tissue must be from ANOTHER organism, not itself.
+	The cell cannot eat itself!
+	<P>
+
+<LI> The cell being eaten must not already be flagged as dead (not already red).
+	<P>
+
+<LI> The cell being eaten is then flagged as dead (red square).
+	<P>
+
+<LI> All stack elements from this cell will be converted to energy and trasnferred to
+	this organism.
+	<P>
+
+<LI> 1/x units of energy (where x is the number of cells in the organism being eaten)
+	will be removed from the organism we ate, and transferred to this organism.
+	<P>
+
+<LI> any remainder from the integer "1/x" calculation is also removed from the organism
+	we ate and transferred to us.
+	<P>
+</UL>
+
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - nothing was eaten
+<LI> <B>n</B> - the amount of energy we were able to eat.
+</UL>
+<P>
+<B>ENERGY:</B> Will transfer energy from eaten items to this organism.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_MAKE-SPORE">
+<H2>MAKE-SPORE</H2>
+<B>Usage:</B> ( x y e -- r )<P>
+Create new spore (or fertilize and existing spore).
+<P>
+<OL>
+<LI> If there are not 3 elements on the data stack, then skip this instruction.
+<LI> Remove energy 'e' from the stack. (this is the amount of energy that this
+	organism will give up and transfer to the new spore).
+<LI> Remove the (x, y) coordinates from the stack.
+<LI> Normalize the coordinates.
+<LI> For new spores, if energy 'e' is less than or equal to 0, then return 0.
+<LI> For fertilizing an existing spore, if energy 'e' is less than 0, then return 0.
+<LI> If energy 'e' is more than the amount of energy this organism has, then return 0.
+
+<LI> If the location indicated by the normalized (x, y) coordinates is not blank
+		or is not a spore, then return 0.
+
+<LI> If the location is blank, then create the first spore. Transfer 'e' units of
+	energy from this organism and give it to the new spore. Return 1.
+
+<LI> If the location is a spore (<B>and the strain # of the organism that created this spore
+	is the same as our strain</B>), then fertilize the
+	existing spore. Transfer 'e' units of energy from this organism to the fertilized
+	spore. Return -1.
+
+<LI> If the strain numbers do not match, then the spore will not be fertilized
+	and <B>0</B> will be returned on the data stack.
+
+<LI> If the organism is a sex-only creature (specified with a <B>xy*99</B> string) then
+	this instruction will fail (and return <B>0</B>) if the organism attempts to fertilize
+	a spore itself created. See the section <A HREF="xy_simulations.html">XY Simulations</A>
+	for more information.
+
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - could not make spore.
+<LI> <B>1</B> - created spore.
+<LI> <B>-1</B> - fertilized existing spore.
+</UL>
+<P>
+<B>ENERGY:</B> Requires 'e' units of energy.
+
+<P>
+When a spore is fertilized, the original genetic program used to create the
+spore, and the genetic program from the organism that fertilized the spore will be
+first merged. Then the resulting genetic program is MUTATED. Then a new organism
+is born. It will begin execution at the first instruction of code block 0 (main). It
+will be given 'e' units of energy, which is the sum of the energy specified with
+the first and second MAKE-SPORE instructions.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_GROW">
+<H2>GROW</H2>
+<B>Usage:</B> ( x y -- r )<P>
+Add a new cell to this organism.
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+
+<LI> Remove the (x, y) coordinates from the stack.
+
+<LI> Normalize the coordinates.
+
+<LI> If the location specified by the coordinates is not blank, then return 0.
+
+<LI> Compute the amount of energy needed to grow (this is the sum of
+	the data stack size and the call stack size).
+
+<LI> If organims does not have enough energy to GROW a new cell, then return 0.
+
+<LI> If the location specified is not "touching" the organism in the up, down,
+	left or right direction, then return 0.
+
+<LI> Create new cell at location specified. Clone this cells data
+	and call stack (as well as registers, and so on).
+
+<LI> Subtract the stack sizes from this organisms energy account.
+
+<LI> For the cell executing the GROW instruction return 1.
+
+<LI> For the new cell, just created, make it appear as if it returned -1.
+
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - could not grow
+<LI> <B>1</B> - grow succeeded (the cell that executed the GROW instruction)
+<LI> <B>-1</B> - grow succeeded (the new cell)
+</UL>
+<P>
+<B>ENERGY:</B> Requires (c.data_stack_size + c.call_stack_size + 1) units of energy.
+	(where 'c' is the cell executing the GROW instruction). The "+ 1" is for
+	the return value that we will place on the new cells data stack.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_LOOK">
+<H2>LOOK</H2>
+<B>Usage:</B> ( x y -- what where )<P>
+Look along a normalized (x, y) direction vector. Return the thing it found, and the distance.
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+
+<LI> Remove the (x, y) coordinates from the stack and normalize the coordinate.
+
+<LI> Look along the direction vector until something is found (or the edge of the
+universe is reached).
+
+<LI> Ignore any cell that happens to be from the same organism as us.
+
+<LI> Push the type of thing ('what' value) on the data stack. (WHAT value Key: 1=cell,
+	2=spore, 4=organic material, 8=barrier).
+
+<LI> Push the distance ('where' value) on the data stack. A distance of 1 means
+    the thing seen is touching this cell.
+
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>what where</B> - before reaching the end of the vector something was found. "something"
+	is one of ORGANIC MATERIAL, SPORE, or living cell.
+
+<LI> <B>0 0</B> - when then (x, y) vector was (0, 0).
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_WHAT">
+<H2>WHAT</H2>
+<B>Usage:</B> ( x y -- what )<P>
+<P>
+WHAT returns the type of thing seen along a direction vector.
+It is a shorthand for these instructions:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+	LOOK pop
+
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>0</B> - no spore seen along this vector.
+<LI> <B>distance</B> - before reaching the end of the vector a spore was found.
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_WHERE">
+<H2>WHERE</H2>
+<B>Usage:</B> ( x y -- where )<P>
+WHERE returns the distance to something along a direction vector.
+It is a shorthand for these instructions:
+<P>
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+	LOOK swap pop
+
+</PRE></TD></TABLE></CENTER>
+<P>
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_NEAREST">
+<H2>NEAREST</H2>
+<B>Usage:</B> ( mask -- x y )<P>
+Looks in all 8 directions and return the (x, y) direction vector that corresponds
+to the thing with the smallest distance (and matches a 'mask' value).
+<P>
+<OL>
+<LI> If there is not 1 element on the data stack, then skip this instruction.
+<LI> remove 'mask' value from data stack.
+<LI> strip all bits from the mask, except first 4 bits (e.g. 000001111)
+<LI> if mask bits are all 0, then return the vector (0, 0)
+<LI> Look in all 8 directions, beginning with a RANDOM direction and proceeding in
+	a clock-wise direction.
+<LI> Keep track of the closest thing seen (whose 'what' value is set in the bit-mask)
+<LI> Return the (x, y) direction vector.
+<LI> If nothing matched the bit-mask, then (0, 0) is returned.
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>x y</B> - the direction vector that is nearest and matches the 'mask'
+<LI> <B>0 0</B> - nothing matched the 'mask'
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_FARTHEST">
+<H2>FARTHEST</H2>
+<B>Usage:</B> ( mask -- x y )<P>
+Looks in all 8 directions and return the (x, y) direction vector that corresponds
+to the thing with the largest distance (and matches a 'mask' value).
+<P>
+<OL>
+<LI> If there is not 1 element on the data stack, then skip this instruction.
+<LI> remove 'mask' value from data stack.
+<LI> strip all bits from the mask, except first 4 bits (e.g. 000001111)
+<LI> if mask bits are all 0, then return the vector (0, 0)
+<LI> Look in all 8 directions, beginning with a RANDOM direction and proceeding in
+	a clock-wise direction.
+<LI> Keep track of the farthest thing seen (whose 'what' value is set in the bit-mask)
+<LI> Return the (x, y) direction vector.
+<LI> If nothing matched the bit-mask, then (0, 0) is returned.
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>x y</B> - the direction vector that is farthest and matches the 'mask'
+<LI> <B>0 0</B> - nothing matched the 'mask'
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_NEAREST2">
+<H2>NEAREST2</H2>
+<B>Usage:</B> ( mask dist -- x y )<P>
+Looks in all 8 directions and return the (x, y) direction vector that corresponds
+to the thing with the smallest distance (and matches a 'mask' value and is within
+the distance search radius).
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+<LI> remove 'mask' value from data stack.
+<LI> remove 'dist' value from data stack.
+<LI> strip all bits from the mask, except first 4 bits (e.g. 000001111)
+<LI> if mask bits are all 0, then return the vector (0, 0)
+<LI> if 'dist' is 0 or less, then return the vector (0, 0)
+<LI> Look in all 8 directions, beginning with a RANDOM direction and proceeding in
+	a clock-wise direction.
+<LI> Keep track of the closest thing seen (whose 'what' value is set in the bit-mask
+	and whose distance is less then or equal to 'dist').
+<LI> Return the (x, y) direction vector.
+<LI> If nothing matched the bit-mask or was within the search radius, then return (0, 0).
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>x y</B> - the direction vector that is nearest and matches the 'mask'
+<LI> <B>0 0</B> - nothing matched the 'mask'
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_FARTHEST2">
+<H2>FARTHEST2</H2>
+<B>Usage:</B> ( mask dist -- x y )<P>
+Looks in all 8 directions and return the (x, y) direction vector that corresponds
+to the thing with the smallest distance (and matches a 'mask' value and is within
+the distance search radius).
+<P>
+<OL>
+<LI> If there are not 2 elements on the data stack, then skip this instruction.
+<LI> remove 'mask' value from data stack.
+<LI> remove 'dist' value from data stack.
+<LI> strip all bits from the mask, except first 4 bits (e.g. 000001111)
+<LI> if mask bits are all 0, then return the vector (0, 0)
+<LI> if 'dist' is 0 or less, then return the vector (0, 0)
+<LI> Look in all 8 directions, beginning with a RANDOM direction and proceeding in
+	a clock-wise direction.
+<LI> Keep track of the farthest thing seen (whose 'what' value is set in the bit-mask
+	and whose distance is less then or equal to 'dist').
+<LI> Return the (x, y) direction vector.
+<LI> If nothing matched the bit-mask or was within the search radius, then return (0, 0).
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>x y</B> - the direction vector that is farthest and matches the 'mask'
+<LI> <B>0 0</B> - nothing matched the 'mask'
+</UL>
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+
+<A NAME="cellular_communications">
+<H1>Communicating Between Cells</H1>
+<P>
+<CENTER><IMG SRC="cell_com.gif"></CENTER>
+<CENTER><I>Cellular Communications</I></CENTER>
+
+<P>
+Refer to this figure for the descriptions of the following instructions.
+The <b>mood</b> register is something the cell sets, and others can look at. The <b>message</b> register
+is something that others set, and this cell looks at.
+<P>
+Using the instructions <B>pack2, pack4, unpack2, unpack4</B> many values can be combined into a
+single 64-bit integer and stored in the MOOD and MESSAGE registers. For example, to send 4 integers to
+another cell, this code could be used:
+<P>
+<PRE>
+	23 -999 5901 3 pack4		; combined these 4 (16-bit intgers) into single 64-bit int.
+	-1 1 SEND			; send to cell
+
+</PRE>
+<P>
+The reciving cell, can extract these 4 values like so:
+<P>
+<PRE>
+	RECV
+	unpack4			; the values 23, -999, 5901, 3 are now on the stack
+</PRE>
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_MOOD">
+<H2>MOOD</H2>
+<B>Usage:</B> ( x y -- m )<P>
+Every cell has its own "MOOD" register. This instruction queries another cell
+using an (x, y) vector. This vector <B>is not normalized</B> which allows the cell
+to query any other cell within its own organism (not just adjacent cells). For example,
+if cell 2 executed the following instructions:
+<PRE>
+	0 0 MOOD   ; returns -23
+	-1 0 MOOD   ; returns 123
+	-1 1 MOOD   ; returns 33
+	99 99 MOOD   ; returns 0
+</PRE>
+<P>
+If a bogus (x, y) is specified then 0 is pushed on the data stack. (0, 0) refers to the
+cell executing the instruction.
+<P>
+<B>ENERGY:</B> Does not use energy.
+
+<P>
+<HR>
+<P>
+
+<A NAME="ref_MOOD!">
+<H2>MOOD!</H2>
+<B>Usage:</B> ( m -- )<P>
+The cell executing this instruction will set its own <b>mood</b> register. It is not possible
+to set others. The purpose of the <b>mood</b> register is for a cell it advertise its "mood" to
+other cells in the organism. For example, if cell 3 executed these instructions:
+<PRE>
+	0 0 MOOD 1 + MOOD!
+</PRE>
+Then cell 3's mood would be increased by 1. So it would be set to 34.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_BROADCAST">
+<H2>BROADCAST</H2>
+<B>Usage:</B> ( m -- )<P>
+This instruction takes the value off of the top of the data stack and sets the <b>message</b>
+register for every cell in our organism.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_SEND">
+<H2>SEND</H2>
+<B>Usage:</B> ( m x y -- )<P>
+This instruction takes 3 arguments. An (x, y) vector and a value 'm'. The vector <b>is NOT
+normalized</b> so that the cell can send a message 'm' to any other cell in the same organism
+(not just adjacent cells). For example, if cell 1 exectuted this these two instructions:
+<PRE>
+	100     1 0 SEND   ; set cell 2's message register to 100
+	-46812  0 1 SEND   ; set cell 3's message register to -46812
+	0       0 0 SEND   ; set out message register to 0.
+	12   -99 99 SEND   ; does nothing because (-99, 99) is bogus
+</PRE>
+
+A SEND operation using bogus coordinates will be ignored.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_RECV">
+<H2>RECV</H2>
+<B>Usage:</B> ( -- m )<P>
+The RECV instruction just pushes a copy of our message register on top of
+the data stack.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_ENERGY">
+<H2>ENERGY</H2>
+<B>Usage:</B> ( -- e )<P>
+Fetch the organisms "energy" field and place it on our data stack. Please be
+aware that putting something on the data stack requires 1 unit of energy. So the
+value placed on the data stack is BEFORE the simulator subtracts 1 unit of energy for
+the data stack entry.
+<P>
+Also this instruction does not account for any energy that is stored in the form of stack
+elements. (This is a good thing, because such energy is not really available to be used).
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_AGE">
+<H2>AGE</H2>
+<B>Usage:</B> ( -- a )<P>
+Fetch the organisms "age" field (which is the number of elapsed simulation step)
+and push this value on our data stack.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_NUM-CELLS">
+<H2>NUM-CELLS</H2>
+<B>Usage:</B> ( -- n )<P>
+Push the number of cells that comprise this organism on our data stack.
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<HR>
+<P>
+
+<A NAME="ref_HAS-NEIGHBOR">
+<H2>HAS-NEIGHBOR</H2>
+<B>Usage:</B> ( x y -- r )<P>
+<OL>
+<LI> On the data stack should be two values. If not, we ignore this instruction.
+
+<LI> The two values are popped off the stack (they are NOT normalized).
+	This forms an (x, y) vector that refers to one of our
+	nearby grid locations.
+
+<LI> If we have a cell at this (x, y) offset, then this instruction returns 1.
+ Else 0 will be returned.
+
+<LI> The vector (0,0) is allowed, and always returns 1.
+
+</OL>
+<P>
+<B>RETURNS:</B>
+<UL>
+<LI> <B>1</B> - at offset (x, y) is one of our cells.
+<LI> <B>0</B> - at offset (x, y) it NOT one of our cells.
+</UL>
+
+<P>
+<B>ENERGY:</B> Does not use energy.
+<P>
+<!-- ******************** END CUT/PASTE latest reference data here ******************** -->
+
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

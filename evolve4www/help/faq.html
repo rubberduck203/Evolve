@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Frequently Asked Questions</title>
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> July 1, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Frequently Asked Questions</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<H1>Frequently Asked Questions</H1>
+
+<H2>What is the latest version?</H2>
+The latest version is <B>4.8e</B>. (Released on: July 1, 2007)
+<P>
+<HR>
+
+<H2>What is Evolve?</H2>
+<P>
+Evolve 4.0 is an artificial life simulator.
+<P>
+It is a mixture of Conway's "LIFE" and "Core Wars".
+Each organism has a genetic program which controls its behavior. The program has all
+the normal types of instructions you would expect from a programming language:
+flow control, arithmetic, subroutines, and so on. But, there are
+also special primitives for interacting with the universe. Such as EAT, LOOK, GROW,
+MOVE, MAKE-SPORE.
+<P>
+<HR>
+
+<H2>What is the purpose of Evolve?</H2>
+My goal is to run a large-scale simulation and see evidence of
+really cool (perhaps intellegent) behavior. And then... well, if that
+happens I will enlist my ALife creatures to do my taxes.
+<P>
+<HR>
+
+<H2>What is KFORTH?</H2>
+KFORTH is a forth-like language. The 'K' stands for "Ken's". So KFORTH means Ken's Forth.
+Woo hoo.
+<P>
+This is the language used to control the cells in the simulator. This language has several
+properties that make it perfect for being used in an ALife context. It is simple to
+implement/parse etc... It has a very simple instruction set. It only has one data type (which
+is a 64-bit integer). KFORTH programs compile into a simple row/column matrix, which 
+lends itself to sexual recombination (Evolve interlaces each row between the two parents).
+<P>
+<HR>
+
+<H2>Any large-scale simulations happening?</H2>
+Yes. I just started my <B>One Year of ALife</B> project. I have a dedicated
+linux box that will run an Evolve 4.0 simulation for 1 year. Every day a snapshot
+is uploaded to my website. Go 
+<A HREF="http://www.stauffercom.com/alife">here</A> to learn more and see the
+progress of this project.
+<P>
+<HR>
+
+<H2>Have you ever seen any intellegent behaviors evolve with this software?</H2>
+Sadly, no. But, let me add that (1) It
+has taken lots of tweaking to get to the current version of this simulator. And (2) only now
+that I have a dedicated linux box can I run this in the proper time frame needed to
+see cool things evolve.
+<P>
+It hasn't all been a waste. I have seen the essence of Darwinian selection many times.
+New innovations are constantly evolving and displacing other creatures. But when you
+observe their behaviors it is not "mind-blowing" or clever or intellegent.
+<P>
+My personal bench-mark for coolness will be if creatures evolve to use the "LOOK" instruction
+and actually evade/hunt other creatures. If this kind of behavior evolves I will be
+immensely happy.
+<P>
+<HR>
+
+<H2>What does a KFORTH program look like?</H2>
+Here's a sample:
+<PRE>
+main:
+{
+	20 fact call
+}
+
+;
+; Recursive factorial algorithm:
+; ( n -- factorial(n) )
+;
+fact:
+{
+	dup 0 =
+		{ pop 1 }
+		{ dup 1 - fact call * } ifelse
+}
+</PRE>
+The 'fact' routine computes the factorial. This is how humans write KFORTH. But
+names like 'fact' and 'main' are really labels for code blocks, which make it
+easier for us humans to write in KFORTH. These labels
+are mapped to code block numbers (main is <B>0</B>, and fact is <B>1</B>).
+<P>
+Another aid for humans are the nested code blocks like, <B><TT>{ pop 1 }</TT></B>.
+Again, when compiled these nested code blocks are pulled out and put into their own
+code block with their own code block number. In this case
+<B><TT>{ pop 1 }</TT></B> becomes code block <B>2</B>.
+<P>
+Here is the same program after being compiled:
+<PRE>
+main:
+{
+	20 1 call 
+}
+
+row1:
+{
+	dup 0 = 2 3 ifelse 
+}
+
+row2:
+{
+	pop 1 
+}
+
+row3:
+{
+	dup 1 - 1 call * 
+}
+</PRE>
+<P>
+Notice the nice grid-like layout of compiled KFORTH. This property makes it
+easy to merge 2 programs (during sexual recombination). Evolve just alternates
+rows of code blocks to form a new child program.
+<P>
+(click <A HREF="genes.gif">here</A> to see a graphical representation of this program as it
+would be stored internally)
+<P>
+Also notice that compiled programs have no real syntax requirements. Each row
+is simply a list of instructions or numbers. This means our mutation algorithm
+will be simpler because it doesn't have to worry about about preserving any special
+syntax crap.
+<P>
+Click <A HREF="kforth.html#examples">here</A> to see more KFORTH examples.
+<HR>
+
+<H2>What does an evolved KFORTH program look like?</H2>
+Click <A HREF="evolved_kforth_samples.html">here</A> to see some sample
+KFORTH programs that evolved after running them in a simulation. These KFORTH programs can
+actually be used to seed your own simulations.
+<P>
+<HR>
+
+<H2>Does KFORTH support recursion?</H2>
+Yes it does (see the example above). This was the biggest limitation of
+my previous attempts at an ALife simulator. Previous versions used a gross half-baked
+assembly language with a fixed sized stack (stack size=4).
+<P>
+I strongly believe that supporting recursion is paramount to evolving creatures
+with impressive behaviors. So I am optimistic that "Evolve 4.0" with KFORTH should
+succeed as an ALife simulator.
+<P>
+<HR>
+
+<H2>What instructions do organisms have?</H2>
+In addition to all the normal Forth-like operators, the following instructions
+cause the Cell executing them to interact with the universe:
+<UL>
+<LI> <B>OMOVE:</B> Move the organism.
+<P>
+<LI> <B>ROTATE:</B> Rotate the organism by 90 degree units.
+<P>
+<LI> <B>CMOVE:</B> Move a cell relative to the organism
+<P>
+<LI> <B>EAT:</B> Eat edible stuff near this cell.
+<P>
+<LI> <B>MAKE-SPORE:</B> Create a spore nearby
+<P>
+<LI> <B>GROW:</B> Add a cell to our organism
+<P>
+<LI> <B>LOOK:</B> Look in a direction and return what was seen and its distance.
+<P>
+<LI> <B>WHERE:</B> return distance to the thing seen while looking in a specified direction.
+<P>
+<LI> <B>WHAT:</B> return 'what' value of the thing seen while looking in a specified direction.
+<P>
+<LI> <B>NEAREST:</B> return direction to nearest thing after looking in all 8 directions.
+<P>
+<LI> <B>FARTHEST:</B>  return direction to farthest thing after looking in all 8 directions.
+<P>
+<LI> <B>NEAREST2:</B> same as NEAREST except the search radius can be limited.
+<P>
+<LI> <B>FARTHEST2:</B>  same as FARTHEST except the search radius can be limited.
+<P>
+<LI> <B>MOOD:</B> query the mood variable of another cell within the same organism.
+<P>
+<LI> <B>MOOD!:</B> set our mood variable.
+<P>
+<LI> <B>BROADCAST:</B> send a value to all cell within the same organism.
+<P>
+<LI> <B>SEND:</B> send a value to a particular cell (within the same organism).
+<P>
+<LI> <B>RECV:</B> query our message buffer and put its value on to the data stack.
+<P>
+<LI> <B>AGE:</B> query the age of our organism (number of simulation steps the organism has
+		been alive for). ("How old am I?")
+<P>
+<LI> <B>NUM-CELLS:</B> query the number of cells in our organism. ("How big am I?")
+<P>
+<LI> <B>HAS-NEIGHBOR:</B> query if the organism has a neighboring cell.
+<P>
+</UL>
+<P>
+Click <A HREF="organisms.html#reference">here</A> to learn more about these instructions.
+
+<P>
+<HR>
+
+<H2>Can cells communicate?</H2>
+In a very limited way. Each cell has a "MOOD" register, which only they can set.
+Other cells can query this MOOD register. I guess the theory being that a creature
+could evolve to use this register. If it was in "EVADE" mode, or "FORAGE" mode, it
+could set its mood, and the other cells could act accordingly.
+<P>
+Also, every cell has a MESSAGE register. This can be set by the SEND instruction, which
+allows any cell to send a value to any other cell (within the same organism, of course).
+The organism can query its own MESSAGE register and act accordingly.
+As special case, the BROADCAST instruction will set the MESSAGE register for all cells
+in the organism.
+<P>
+I provided these primitives but I have no idea if anything will evolve to use them.
+My experience with ALIFE simulators indicates that what <B>I</B> think is a useful idea,
+is not necessarily what <B>evolution</B> will think is useful.
+More information on communicating between cells is
+available <A HREF="organisms.html#cellular_communications">here</A>.
+<P>
+<P>
+<HR>
+
+<H2>How do you limit/prevent runaway stack growth?</H2>
+A single mutation inside of a tight loop, could easily cause
+these creatures to fill up its data stack (or call stack). The way I control this is the concept
+of 'energy'. Every organism has a counter that contains its energy. As it eats stuff,
+this counter grows. When you first create a simulation you specify the amount of energy
+for the first organism. This amount never changes (energy is conserved). It moves around
+between organisms etc...
+<P>
+For the most part energy is not needed to MOVE, LOOK, etc... But when a cell wants to
+push something on a stack (the data stack or call stack), it requires 1 unit of 
+energy to do so. If the organism doesn't have enough energy... well this will sound cruel, but
+in that case Evolve kills the cell that tries to do this.
+<P>
+This turns out to be a reasonable way to make sure evolving KFORTH programs are stack friendly.
+<P>
+This is also the reason why the amount of energy in your simulation controls the overall
+population. Every organism needs a minimum of 1 unit of energy to survive. So if
+you had a universe with a total of 300 units of energy, you could never have more
+than about 300 organisms.
+<P>
+When an organism or cell dies, any energy stored in the form of stack elements will be
+transferred back to the organism (or as organic material).
+<P>
+NOTE: Every cell gets <B>50</B> "no cost" stack elements, which it can use without
+needing energy. When the combined size of the call and data stacks grow past 50, then
+each additional stack element requires 1 unit of energy.
+<HR>
+
+<H2>Do any simulations die off?</H2>
+Yes, in some cases the simulation will
+reach a state where there are only a few organisms, and they don't reproduce
+for some reason (they are stuck in the wrong part of their genetic program).
+<P>
+When energy (and population) is too low you can have too much useful energy
+sitting around as spores or organic material and not enough moving creatures
+to eat it. So yes, some simulations will peter out.
+<P>
+<HR>
+
+<H2>Has any creature evolved to LOOK around?</H2>
+The vision system has been recently changed, and so far the results look good. But
+in the previous versions LOOK'ing  around was rare.
+<P>
+It is my goal to see creatures evolve that will make heavy use of the vision instructions. For
+me this represents a special kind of awareness for organisms. I believe evolution is progressive,
+in the sense that it tends to foster more and more awareness in creatures. Humans
+are therefore the best example of this trend in evolution. Hopefully this simulator
+will demonstrate a similar trend.
+<P>
+<HR>
+
+<H2>How do I pan the simulation window?</H2>
+Use the arrow keys to scroll the window when you are zoomed in. Or just click your mouse
+and drag the window.
+<P>
+<HR>
+
+<H2>How do I create barriers?</H2>
+Select the barrier right click tool. Now right click inside of the simulation
+window and drag your mouse to draw a barrier.
+If you want to erase, right click on an existing barrier first (now you're in
+erase mode). See the section on <A HREF="barriers.html">barriers</A> for more information.
+<P>
+<HR>
+
+<H2>Do you output any other format besides binary?</H2>
+Yes there is an ASCII format. It is a secret feature. If you specify a file with an extension
+of <B>.txt</B>, Evolve will write out a text file of your simulation. However this is very slow (you
+have been warned). The format is a self describing format called "Photon Ascii".
+<P>
+When you load a file Evolve checks if it is binary or ascii and load it correctly. 
+<P>
+Click <A HREF="ascii_example.html">here</A> to see an example of the ASCII file format.
+<P>
+<HR>
+
+<H2>What is 'evolve_batch'?</H2>
+<tt>evolve_batch</tt> is a command line utility. It runs on both
+linux and windows. The primary purpose is to run a simulation from
+a shell. See the section on <A HREF="evolve_batch.html">Evolve Batch</A> for
+more information.
+
+<HR>
+<P>
+
+<H2>I am missing 'MFC71.DLL'?</H2>
+This is a dependency that Evolve.exe has. You can download the missing .dll from many
+DLL installation websites. This DLL is now bundled when you install, <B>evolve4exe.zip</B>, so
+this error shouldn't happen anymore. But if it does, then you can grab a copy
+of this .DLL the Evolve installation directory. Good luck.
+<P>
+
+<HR>
+<P>
+
+<H2>I get "Bad Magic Number", when opening a sim file?</H2>
+This means the file is not in the proper format. If the file
+was generated using a newer version than your software, make sure you grab
+the latest version of Evolve. Your previous simulation files will still work (they
+will automatically be upgraded to the latest version).
+<P>
+
+<HR>
+<P>
+
+<H2>How fast is the Evolve simulator?</H2>
+Assuming a 2.0 Ghz machine, then a simulation with a population
+of 3,000 will produce 100 steps/sec. (a population of 6,000 will give 50 steps/sec.).
+<P>
+Every day you can expect about 3 to 5 million simulation steps to elapse.
+<P>
+Every 4 or 5 days you can expect about 1 billion births/deaths.
+<P>
+
+<HR>
+<P>
+
+<H2>How long can simulations be run? Are there any overflow considerations?</H2>
+The C data type used for counting things (like number of births, steps, etc...) all
+use 64-bit integers instead of the more standard 32-bit integers. This
+effectively removes any overflow issues associated with running a simulation
+for an extended period of time (Like the One Year of Alife project).
+<P>
+
+<HR>
+<P>
+
+<H2>What is an XY Simulation?</H2>
+This is a special type of simulation in which the organisms must reproduce
+sexually (rather than asexually).
+See the section on <A HREF="xy_simulations.html">XY Simulations</A> for more information.
+<P>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

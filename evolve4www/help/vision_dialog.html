@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Vision Data Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Vision Data Dialog</h2>
+<p>
+This dialog looks at the 8 direction surrounding a cell and displays what
+the vision related KFORTH instructions will return.
+
+<P>
+<IMG SRC="VisionDialog.jpg">
+<P>
+
+The cell is shown in the middle of the dialog. Surrounding the cell are the results
+from looking along each of the 8 directions. Shown is the distance (the WHERE value) and
+the type of thing seen (WHAT value).
+<P>
+The instructions <B>LOOK</B>, <B>WHAT</B>, <B>WHERE</B>, <B>NEAREST</B>,
+<B>NEAREST2</B>, <B>FARTHEST</B>, and <B>FARTHEST2</B>.
+will be using the same information as is displayed in this dialog. This dialog
+will help in debugging organisms.
+<P>
+<h2>Examples</h2>
+Here's some KFORTH instructions and what they will return, assuming the data shown above.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      1 NEAREST		; returns (-1, 1)
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The mask is '1' meaning find the nearest CELL. Which would be direction (-1, 1). There
+are three cells visible to this cell, and the one at (-1, 1) has the smallest distance; 29.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      3 NEAREST		; returns (-1, -1)
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The mask is '3' meaning find the nearest CELL or SPORE. Which would be direction (-1, -1) as the
+distance 11 is the smallest containing a SPORE.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      8 FARTHEST	; returns (1, 1)
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The mask is '8' meaning find the farthest BARRIER. Which would be direction (1, 1) as the
+distance 43 is the largest distance. This is a "tie" condition; FARTHEST/NEAREST look
+at each direction in clock-wise order beginning with a RANDOM direction. So the result
+may differ.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      1 -1 WHERE	; returns 46.
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The WHERE instruction returns the distance value for the what is seen along direction (1, -1). The result
+would be 46.
+<P>
+
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      0 1 WHAT		; returns 8.
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The WHAT instruction returns the type of thing seen (a 'what' value). In this case it returns
+8, because the along direction (0, 1) we see a barrier. And a BARRIER's 'what' value is 8.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      15 NEAREST		; returns (-1, -1)
+
+</PRE></TD></TABLE></CENTER>
+<P>
+The NEAREST and FARTHEST instructions take a mask, so OR'ing 1, 2, 4, and 8 is "everything". The OR'ing
+of all what-values is 15. This instruction therefore will return the direction to nearest CELL, SPORE,
+ORGANIC, or BARRIER. The result is direction (-1, -1) because 11 is the smallest distance.
+<P>
+
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+
+      15 FARTHEST		; returns (1, 0)
+
+</PRE></TD></TABLE></CENTER>
+<P>
+Here we get (1, 0). Looing along direction (1, 0) we see something at a distance of 87. This is the largest
+distance.
+<P>
+
+
+<P>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

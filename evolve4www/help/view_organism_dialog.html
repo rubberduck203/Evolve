@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Examine Organism Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> May 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Examine Organism Dialog</h2>
+<p>
+When you double-click on an organism, this dialog will appear.
+This dialog shows the inner details of an organism.
+<P>
+
+<P>
+<IMG SRC="ViewOrganism.jpg">
+<P>
+
+The ORGANISM area of this dialog displays stuff common to the entire organism. The CELL
+area displays the stuff unique to that cell. To examine different cells, click on
+the cell you want to view.
+<P>
+
+<H3>ORGANISM</H3>
+This section shows various details about the organism. The genetic
+program (which is shared among all the cells) is shown in the text
+control. The highlighted instruction is where the selected cell is
+currently executing.
+<P>
+<UL>
+<LI> <B>Organism ID:</B> Every organism is assigned a unique 64-bit ID number. This
+	ID increments as organisms are created. This field displays this organisms
+	unique ID.
+<P>
+
+<LI> <B>Parent 1:</B> ID value for the first parent (and only parent if this organism
+	was created asexually).
+<P>
+
+<LI> <B>Parent 2:</B> ID value for the second parent (if this organism
+	was created sexually). It will be blank if this organism was
+	created asexually.
+<P>
+
+<LI> <B>Generation</B> The generation of this organism all the way back to the first
+	organism. We compute this field based on the parents 'generation':
+<PRE>
+	generation = MAX(parent1.generation, parent2.generation) + 1
+</PRE>
+<P>
+
+<LI> <B># of cells:</B> The number of cells in this organism.
+<P>
+
+<LI> <B># of living children:</B> number of organism that have this organism as a parent.
+<P>
+
+<LI> <B>Age:</B> The number of simulation steps this organism has survived through.
+<P>
+
+<LI> <B>Energy:</B> How much energy does this organism have? This excludes the amount of energy
+	that went into stack elements.
+<P>
+
+<LI><B>Strain #:</B> This is the strain number for the whole organism. The color of the organism
+is also a clue to its strain.
+<P>
+
+</UL>
+<P>
+
+<H3>CELL</H3>
+This section shows the state of the cell you have selected in the
+display window. Use your mouse to select different cells. The
+current cell is highlighted with a blue rectangle.
+<P>
+These fields comprise the "execution context". Each cell has its own copy of these fields:
+<P>
+<UL>
+<LI><B>Code Block:</B> This specifies the code block currently being executed by
+	this cell. Code block numbers begin at 0. Code block zero is normally labeled "main:", and
+	subsequent code blocks are labeled "row1, row2, row3, ...".
+<P>
+
+<LI><B>Program Counter:</B> This is the instruction offset within the code block. This counter
+	begins at 0. If program counter refers to the last instruction plus 1, then this
+	cell has just reached the end of a code block.
+<P>
+
+<LI><B>R0 - R9:</B> General Purpose registers. Can be set with the instructions
+	<B>Rn!, R0!, R1!, R2!, ...</B> and the cell can fetch a register value
+	with the instructions <B>Rn, R0, R1, R2, ...</B>.
+<P>
+
+<LI><B>Mood:</B> This is like a general purpose register. The cell can set this field by
+	using the <B>MOOD!</B> instruction. Other cells can query our mood by using the
+	<B>MOOD</B> instruction.
+<P>
+
+<LI><B>Location:</B> The grid location of this cell.
+<P>
+
+<LI><B>Message:</B> Like a general purpose register except other cells can set this field by
+	using the <B>SEND</B> and <B>BROADCAST</B> instructions. This cell can fetch the value
+	of this field by using the <B>RECV</B> instruction.
+<P>
+
+<LI><B>Cell:</B> The cell number within the organism.
+<P>
+
+<LI><B>Data Stack:</B> Like the Forth programming language, this stack is used to
+keep track of data items that the cell is using for computation.
+The top of this list box represents the top of the stack.
+<P>
+
+<LI><B>Call Stack:</B> Like the Forth programming language, this stack
+contains the call history. As code blocks are entered/exited this stack grows
+ The top of this list box represents the top of the stack.and shrinks.
+<P>
+
+</UL>
+<P>
+
+<H3>BUTTONS:</H3>
+<UL>
+<LI><B>Vision Data:</B> This button will pop up another dialog showing
+the vision data that the KFORTH instructions LOOK, WHERE, WHAT, NEAREST, FARTHEST.
+<A HREF="vision_dialog.html">See vision dialog</A> for more information.
+<P>
+
+<LI><B>Step:</B> This button will simulate the universe for 1 step. The current
+instruction about to execute is highlighted. In this way
+you can observe the inner workings of a genetic program.
+(Function key: <B>F11</B>).
+<P>
+
+<LI><B>Step Over:</B> This button will simulate the universe for 1 step, but step
+over any subroutine calls. (Function key: <B>F10</B>).
+<P>
+
+<LI><B>Run:</B> Begin running the program (actually this begins simulating the whole
+universe). Stop when the cell dies, or when a breakpoint is reached.
+(Function key: <B>F5</B>).
+<P>
+
+<LI><B>Breakpoint:</B> Insert a breakpoint at the current cursor position. Just
+select an instruction and press this button. A breakpoint will be added (or removed).
+A breakpoint will show up as a vertical bar '|' next to the instruction.
+<P>
+Breakpoints only apply to the current cell being debugged. When you switch cells, the
+breakpoints are retained, and will be applied to the new cell.
+(Function key: <B>F9</B>).
+<P>
+
+<LI><B>Clear Breakpoints:</B> All breakpoints will be cleared.
+(Function key: <B>F8</B>).
+<P>
+
+<LI><B>Instructions:</B> This button will pop up a list of KFORTH instructions
+for your reference. Whatever instruction the cursor is pointing to will be displayed
+in the KFORTH Instruction dialog.
+<P>
+</UL>
+<HR>
+
+<H2>XY Organisms</H2>
+If the organism was created using the special <b>"xy*99"</B> strings, then the text <B>XY</B> will appear
+in the lower right corner of the dialog. Like so,
+<P>
+<CENTER><IMG SRC="xy_examine.jpg"></CENTER>
+<P>
+XY organisms can only reproduce by fertilizing spores that were created by other
+organisms (not itself). This means <B>sexual reproduction only</B>. Asexual reproduction is
+not possible for these types of organisms. See the section
+on <A HREF="xy_simulations.html">XY Simulations</A> for more information on how to create such
+organisms.
+<P>
+
+<HR>
+
+<H2>Vision Data Dialog</H2>
+Pressing the <B>[Vision Data >>]</B> button will display the following dialog. This
+dialog shows all the current vision data that will be used by the KFORTH instructions pertaining
+to vision (LOOK, WHAT, WHERE, NEAREST, FARTHEST).
+<P>
+<IMG SRC="VisionDialog.jpg">
+<P>
+See <A HREF="vision_dialog.html">vision dialog</A> for more information.
+<HR>
+
+<H2>KFORTH Instruction Help Dialog</H2>
+If you click on <B>[Instructions]</B> the following pop-up dialog will appear. This
+is for reference only.
+<P>
+<IMG SRC="KforthInstructions.jpg">
+<P>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - ASCII format</title>
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 15, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - ASCII format</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<H1>ASCII File Format Example</H1>
+
+When you save a simulation with a <B>.txt</B> extension it will be written in an
+ascii format. This is an example of what the ASCII format looks like.
+
+<P>
+<!- **************************************** -->
+<CENTER><TABLE BORDER=1 BGCOLOR="#F9FBDE" WIDTH="70%"><TR><TD ALIGN=LEFT><PRE>
+# PHOTON ASCII
+
+struct ORGANIC[N] {
+	X
+	Y
+	ENERGY
+}
+
+struct BARRIER[N] {
+	X
+	Y
+}
+
+struct ER {
+	FIDX
+	RIDX
+	STATE[N] {
+		VALUE
+	}
+}
+
+struct KFMO {
+	PROB_MUTATE_CODEBLOCK
+	PROB_DUPLICATE
+	PROB_DELETE
+	PROB_INSERT
+	PROB_TRANSPOSE
+	PROB_MODIFY
+}
+
+struct SPORE {
+	X
+	Y
+	ENERGY
+	PARENT
+	STRAIN
+	PROGRAM[N] {
+		TEXT_LINE
+	}
+}
+
+struct CELL {
+	ORGANISM_ID
+	X
+	Y
+	MOOD
+	MESSAGE
+
+	MACHINE {
+		TERMINATED
+		CB
+		PC
+		R[N] {
+			VALUE
+		}
+
+		CALL_STACK[N] {
+			CB
+			PC
+		}
+
+		DATA_STACK[N] {
+			VALUE
+		}
+	}
+}
+
+struct ORGANISM {
+	ORGANISM_ID
+	STRAIN
+	PARENT1
+	PARENT2
+	GENERATION
+	ENERGY
+	AGE
+	PROGRAM[N] {
+		TEXT_LINE
+	}
+}
+
+struct KEYLIST {
+	KEY
+	VALUE
+}
+
+struct UNIVERSE {
+	SEED
+	STEP
+	NEXT_ID
+	NBORN
+	NDIE
+	WIDTH
+	HEIGHT
+}
+
+UNIVERSE 8451671 6800 4742 4740 4457 100 100
+
+ER 24 23 63
+	-1757815678	59176341	-2115792136	1166810744
+	-276396015	451119109	1355433527	-334373066
+	1969546274	708222263	-1747132516	-1839061742
+	-1674985015	-326549310	1849105957	-350525336
+	-647755282	1564373059	919285098	1276645403
+	233690179	-1574805083	24516835	742990544
+	-352077178	2055409543	1541397119	-962219792
+	-959033950	-1041547530	1051238073	1805344183
+	1361650540	-792380441	-1430363824	-682772151
+	1614819439	-1483079714	-1902613269	-221690259
+	1108796409	1096228610	-1321452919	877652673
+	-630224599	-1341748427	625317337	-1668898602
+	749246222	-476486420	859380497	-573039534
+	-24872152	820334426	-1984852112	-994723482
+	-1880248209	-1125983359	-1150349613	2138773291
+	1467042007	-360967219	1569135121
+
+
+KFMO
+	2500
+	200
+	800
+	200
+	200
+	200
+
+
+BARRIER {
+	0	36
+	0	37
+	0	38
+	0	39
+	0	40
+	0	41
+	0	42
+	0	43
+	0	44
+	0	45
+	0	46
+	0	47
+	0	48
+	0	49
+	0	50
+	0	51
+	0	52
+	0	53
+	0	54
+	0	55
+	0	56
+	0	57
+	0	58
+	0	59
+	0	60
+	0	61
+	0	62
+	0	63
+	1	33
+	1	34
+	1	35
+	1	36
+
+}
+
+KEYLIST "HadStrain0" "Y"
+
+ORGANIC {
+	4	46	2
+	49	9	8
+	49	14	2
+	50	14	1
+	51	16	10
+	52	14	5
+	58	2	2
+	65	4	2
+	96	61	22
+}
+
+SPORE 9 64 1 4039 0
+  {  # program
+	"main:"
+	"{"
+	"      9  call  9  call  1  call  9  call  2  call  9  call  3  call  9  call  4  call"
+	"      9  call  5  call  9  call  6  call  9  call  7  call  9  call  8  call  9  call"
+	"      1  ?loop "
+	"}"
+	""
+	"row1:"
+	"{"
+	"      1  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row2:"
+	"{"
+	"      -1  0  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row3:"
+	"{"
+	"      -1  1  WHERE  sqrt  pop "
+	"}"
+	""
+	"row4:"
+	"{"
+	"      1  0  2dup  EAT  pop  ?loop "
+	"}"
+	""
+	"row5:"
+	"{"
+	"      1  -1  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row6:"
+	"{"
+	"      0  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row7:"
+	"{"
+	"      0  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row8:"
+	"{"
+	"      -1  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row9:"
+	"{"
+	"      ENERGY  4  /  R0!  -1  0  R0  MAKE-SPORE  pop  -1  0  R0  MAKE-SPORE  pop  1"
+	"      1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1"
+	"      OMOVE  pop  0  -1  OMOVE  pop "
+	"}"
+  }
+
+ORGANISM 3244 0 3178 3178 24 12 1138
+  {  # program
+	"main:"
+	"{"
+	"      9  call  9  call  1  call  9  call  2  call  9  call  3  call  9  call  4  call"
+	"      9  call  5  call  9  call  6  call  9  call  7  call  9  call  8  call  9  call"
+	"      1  ?loop "
+	"}"
+	""
+	"row1:"
+	"{"
+	"      1  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row2:"
+	"{"
+	"      -1  0  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row3:"
+	"{"
+	"      -1  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row4:"
+	"{"
+	"      1  0  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row5:"
+	"{"
+	"      1  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row6:"
+	"{"
+	"      1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row7:"
+	"{"
+	"      0  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row8:"
+	"{"
+	"      -1  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row9:"
+	"{"
+	"      ENERGY  4  /  R0!  -1  0  R0  MAKE-SPORE  pop  -1  0  R0  MAKE-SPORE  pop  1"
+	"      1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1"
+	"      OMOVE  pop  0  -1  OMOVE  pop "
+	"}"
+  }
+
+CELL 3244 38 30
+	0 0
+	0 4 5
+	{ 3 0 0 0 0
+	  0 0 0 0 0 }
+	{
+		0 17
+	}
+	{
+		1
+		0
+	}
+
+ORGANISM 3271 0 1717 1717 25 18 1121
+  {  # program
+	"main:"
+	"{"
+	"      9  call  9  call  1  call  9  call  2  call  9  call  3  call  9  call  4  call"
+	"      9  call  5  call  9  call  6  call  9  call  7  call  9  call  8  call  9  call"
+	"      1  ?loop "
+	"}"
+	""
+	"row1:"
+	"{"
+	"      0  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row2:"
+	"{"
+	"      -1  0  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row3:"
+	"{"
+	"      -1  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row4:"
+	"{"
+	"      0  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row5:"
+	"{"
+	"      1  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row6:"
+	"{"
+	"      1  1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row7:"
+	"{"
+	"      1  0  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row8:"
+	"{"
+	"      -1  -1  2dup  EAT  pop  OMOVE  ?loop "
+	"}"
+	""
+	"row9:"
+	"{"
+	"      ENERGY  4  /  R0!  -1  0  R0  MAKE-SPORE  pop  -1  0  R0  MAKE-SPORE  pop  1"
+	"      1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1  OMOVE  pop  0  -1"
+	"      OMOVE  pop  0  -1  OMOVE  pop "
+	"}"
+  }
+</PRE></TD></TABLE></CENTER>
+<!- **************************************** -->
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

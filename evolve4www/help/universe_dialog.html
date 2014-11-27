@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Universe Properties Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> January 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Universe Properties Dialog</h2>
+<p>
+This dialog displays general properties about the current simulation.
+
+<P>
+<IMG SRC="ViewUniverse.jpg">
+<P>
+
+<h2>Universe Information</h2>
+<UL>
+<LI> <B>Filename:</B> This is simulation filename
+<P>
+
+<LI> <B>Seed:</B> The seed value that was specified when this simulation was
+	first created.
+<P>
+
+<LI> <B>Energy:</B> The total amount of energy in this universe. This value never changes,
+	however it is recomputed by traversing the entire simulation data structures and adding up
+	all the energy. This is debug feature. This value could also change from
+	its starting condition if the cut/paste/delete features were used to add or remove organisms
+	from the universe.
+<P>
+
+<LI> <B>Width:</B> Width of the universe
+<P>
+
+<LI> <B>Height:</B> Height of the universe
+<P>
+
+<LI> <B>Steps:</B> Total number of simulation steps that have elapsed.
+<P>
+
+<LI> <B>Organisms:</B> Total number of organisms
+<P>
+
+<LI> <B># sexual:</B> number of organism that were created sexually, that is with two parents
+	instead of one parent.
+<P>
+
+<LI> <B>Cells:</B> Total the number of cells (yellow squares)
+<P>
+
+<LI> <B>Births:</B> Total number of organisms that have been born since the beginning of this simulation.
+<P>
+
+<LI> <B>Deaths:</B> Total number of organisms that have died since the beginning of this simulation.
+<P>
+
+<LI> <B>Instructions:</B> Sum of all program sizes for all organisms.
+<P>
+
+<LI> <B>Call Stack:</B> Sum of elements in all call stacks for all cells.
+<P>
+
+<LI> <B>Data Stack:</B> Sum of elements in all data stacks for all cells.
+<P>
+
+<LI> <B>Total:</B> Total stack elements (Call stack + Data stack)
+<P>
+
+<LI> <B>Organic:</B> Total number of organic material that laying around (food) (white squares).
+<P>
+
+<LI> <B>Organic Energy:</B> Total amount of energy that is contained in organic material (white squares).
+<P>
+
+<LI> <B>Spores:</B> Total number of spores in the universe (blue squares).
+<P>
+
+<LI> <B>Spore Energy:</B> Total amount of energy that is contained in spores material (blue squares).
+<P>
+
+
+</UL>
+
+<h2>Memory Usage</h2>
+This section just adds up all the memory that this simulation is using. All
+values are in bytes.
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

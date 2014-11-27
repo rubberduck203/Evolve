@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>XY Simulations</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> July 1, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h1>XY Simulations</h1>
+<P>
+The term <B>XY Simulation</B> refers to a specially created simulation in which all
+organisms must reproduce sexually. An XY organism cannot fertilize any spores created
+by itself. It can only fertilize spores that were created by other organisms, which is
+how sexual reproduction occurs in Evolve 4.0.
+<P>
+The name "xy" refers to the sex chromosomes in human biology.
+<P>
+
+<H2>How to create XY simulations</H2>
+Preceed the KFORTH program with special characters, like this:
+<P>
+<IMG SRC="xy_newuniverse.jpg">
+<P>
+This causes the organisms in that strain to be marked with a special "sex-only" flag.
+You'll need to specify a population number (like 100 and 50 as in this example).
+<P>
+
+<P>
+Boot strapping such a population will require a specially written KFORTH program that looks for
+spores and fertilizes them. Included in the distro are two
+files <b>sex_seed.kf</B> and <B>xy_seed.kf</B> which should get you started.
+<P>
+
+<P>
+These types of simulations are difficult to sustain, but definately are cool things to experiment
+with as they offer a real "gene pool" to observe.
+<P>
+
+You can verify the organism is sex-only by examining it. The letters <b>XY</b> will appear
+in this dialog to indicate that the organism is a sex-only reproducer:
+<P>
+<IMG SRC="xy_examine.jpg">
+<P>
+
+<P>
+Your population will spiral out as shown here:
+<P>
+<IMG SRC="xy_spiral.jpg">
+<P>
+
+<h1>Conclusion</h1>
+XY Simulations are quit different from the normal ones. When the organism is forced to
+reproduce sexually (rarther than asexually), suddenly its job becomes much harder. You'll
+notice that it is very hard to get a good simulation up and running. If it doesn't die off,
+the sim may get crazy creatures that grow to huge proportions.
+<P>
+<B>Update:</B> A new merge algorithm has been implemented. A random bit string is
+used to control the code block that is chosen from the first and second organism that
+donates a spore. This new algorithm has greatly improved the stability and usefulness
+of XY simulations. (you no longer get "crazy" creatures).
+<P>
+
+<BR>
+<BR>
+<P>
+<BR>
+<BR>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2007 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

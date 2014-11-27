@@ -1,0 +1,655 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Mutations and Replication</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 22, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Mutations and Replication</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<A NAME="replication">
+<H1>Replication</H1>
+<P>
+The following two figures show the steps involved during asexual and sexual reproduction. They
+show when MERGE and MUTATE operations occur during the creating of a new organism.
+<P>
+Asexual reproduction involves only one parent. The new organism inherits all
+of its parent genetic material. The only way that the new organism could
+differ from its parent is because of the <B>MUTATE</B> process.
+<P>
+<CENTER><IMG SRC="asexual.gif"></CENTER>
+<CENTER><I>Asexual Replication</I></CENTER>
+
+<P>
+Sexual reproduction involves two parents. Each donates their genetic material to
+the creation (and fertilization) of a spore. The two genetic programs are first merged,
+and then the <B>MUTATE</B> procedure is applied to the result.
+<P>
+<CENTER><IMG SRC="sexual.gif"></CENTER>
+<CENTER><I>Sexual Replication</I></CENTER>
+<P>
+See the section on <A HREF="spores.html#merge">SPORES</A> to learn about how the <B>MERGE</B> operation works.
+
+
+<P>
+<HR>
+<P>
+
+<A NAME="mutations">
+<H1>Mutations</H1>
+This section describes in detail how a genetic program is mutated prior to the creation of a new
+organism. The user can control the probabilities that these mutations occur using this dialog:
+<P>
+<CENTER><IMG SRC="SimulationOptions.jpg"></CENTER>
+<P>
+There are 5 types of mutations that are applied:
+<P>
+<OL>
+<LI><B>Duplication:</B>
+Duplicate an instruction or code block.
+<P>
+
+<LI><B>Deletion:</B>
+Delete an instruction or code block.
+<P>
+
+<LI><B>Insertion:</B>
+Insert a new instruction or code block.
+<P>
+
+<LI><B>Transposition:</B>
+Swap two instructions or code blocks.
+<P>
+
+<LI><B>Modification:</B>
+Modify an instruction or code block.
+<P>
+</OL>
+
+<P>
+The parameter, <B>Max. Code Blocks</B>, limits mutations so that the program never exceeds this number
+of code blocks.
+
+<P>
+The setting <B>Max. Apply</B> controls the number of time the mutation algorithm is applied
+before a new organism is born. The default is <B>10</B>. This means that a random number from
+1 to 10 is chosen before mutating a KFORTH program. The mutation algorithm is then applied
+this many times. To disable mutations you can set this to 0.
+
+<P>
+The parameter <B>Mutate Code Block</B>, controls the distribution between instruction-level mutations
+and code block-level mutations. The default, shown here, is <B>25%</B> which means 1 out every 4
+mutations will be applied to a whole code block.
+<P>
+<B>Instruction-level mutations:</B> operate on a small stretch of instructions and numbers.
+This will be refered to as a 'strand'. The length varies randomly from 1 to 4.
+<P>
+<B>Code block-level mutations:</B> operate on an entire code block.
+<P>
+
+<P>
+Therefore each of these five mutation types can have two variants.
+This table summarized the ten mutation operations:
+<P>
+<TABLE WIDTH="80%" BORDER=1>
+<TR>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="20%"><B>Mutation Type</B></TD>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="40%"><B>Instruction-level</B></TD>
+<TD BGCOLOR="#45f190" ALIGN=CENTER WIDTH="40%"><B>Code Block-level</B></TD>
+
+<TR>
+<TD><B>Duplication</B></TD>
+	<TD>Pick a random strand of instructions/numbers and repeat it at a random spot<P></TD>
+	<TD>Pick a random code block and add a copy to end of program<P></TD>
+
+<TR>
+<TD><B>Deletion</B></TD>
+	<TD>Pick a random strand of instructions/numbers and remove it<P></TD>
+	<TD>Pick a random code block and remove it.<P></TD>
+
+<TR>
+<TD><B>Insertion</B></TD>
+	<TD>Generate a random strand of instructions/numbers and insert
+		it at a random spot.<P></TD>
+	<TD>Insert a new code block and fill with random instructions.<P></TD>
+
+<TR>
+<TD><B>Transposition</B></TD>
+	<TD>Pick 2 random strands and swap them<P></TD>
+	<TD>Swap 2 random code blocks<P></TD>
+
+<TR>
+<TD><B>Modification</B></TD>
+	<TD>Pick a random strand and modify every instruction/number in it.<P></TD>
+	<TD>Pick a random code block and modify every single instruction or number<P></TD>
+
+</TABLE>
+
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H2>Mutation Process in Detail</H2>
+Right before a new organism is born, its genetic program is mutated using the following process:
+<P>
+The first step is to decide if we will apply the five mutation types at the instruction-level
+or the code block-level. Having made this determination we try to peform each of the
+mutations in this following order:
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Mutation Order</H3>
+Each of the five mutations are attempted in this order:
+
+<OL>
+<LI> Duplication.
+<LI> Deletion.
+<LI> Insertion.
+<LI> Transpostion.
+<LI> Modification.
+</OL>
+
+<P>
+Not all five mutations will occur, nor is it the case that we just pick one of them to occur. Each
+mutation type has its own probability it will occur.
+If by chance several of these mutations need to be applied, then this is the order it will happen.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Duplicate Code Block</H3>
+<OL>
+<LI> If program has no code blocks (very unlikely), exit without changing anything.
+<LI> If program already has <B>Max. Code Blocks</B>, then exit without performing this
+mutation.
+<LI> Pick a random code block
+<LI> Pick a random spot to insert a copy of the code block selected in previous step.
+<LI> Create "gap" by shifting all code blocks down and insert copy.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+<B>row2: { -4 -1 OMOVE EAT GROW ?loop and }</B>
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+<B>row1: { -4 -1 OMOVE EAT GROW ?loop and }</B>
+row2: { call /mod 69 LOOK2 79 ENERGY R4 }
+<B>row3: { -4 -1 OMOVE EAT GROW ?loop and }</B>
+row4: { 9 call 9 LOOK-SPORE call 8 8 }
+row5: { EAT <> negate call }
+
+</PRE>
+</TD>
+</TABLE></CENTER>
+<P>
+Code block 2 (row2) was duplicated and inserted after 'main'.
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Duplicate Instruction</H3>
+<OL>
+<LI> Pick a random code block
+<LI> If code block is empty, then exit without changing anything.
+<LI> Pick a random strand within th code block. (of length 1 to 4).
+<LI> Insert this random strand at a random spot.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 <B>OMOVE EAT GROW</B> ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop <B>OMOVE EAT GROW</B> and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+The random strand, "OMOVE EAT GROW" (from row2) got duplicated and inserted into
+a random spot within the same code block.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Delete Code Block</H3>
+<OL>
+<LI> Chose between deleting the code block.
+<LI> If this program only has one code block, then exit without changing anything.
+<LI> Pick a random code block
+<LI> Delete it.
+<LI> Shift all higher numbered code blocks to fill the gap.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+<B>row1: { -4 -1 OMOVE EAT GROW ?loop and }
+row2: { 9 call 9 LOOK-SPORE call 8 8 }
+row3: { EAT <> negate call }</B>
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+The code block <B>row1</B> was deleted and all successive code blocks were shifted
+up by 1. Here's an example of emptying the code block:
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Delete Instruction</H3>
+<OL>
+<LI> Pick a random code block.
+<LI> If code block is empty, then exit without changing anything.
+<LI> Pick a random strand (of length 1 to 4) within this code block.
+<LI> Delete it, and shift all successive instructions down by 1.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 <B>OMOVE EAT GROW</B> ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+The strand <B>OMOVE EAT GROW</B> was deleted from row2.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Insert Code Block</H3>
+<OL>
+<LI> If program already has <B>Max. Code Blocks</B>, then exit without performing this
+	mutation.
+<LI> Pick a random code block number for the insert to happen.
+<LI> Shift all code blocks at this number, to create an empty slot for the new code block.
+<LI> Pick a random length for the new code block (a value between 0 and 4).
+<LI> Fill new code block with that many random instructions/numbers.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+<B>row2: { -9 negate + 80 }</B>
+row3: { -4 -1 OMOVE EAT GROW ?loop and }
+row4: { 9 call 9 LOOK-SPORE call 8 8 }
+row5: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+At row2 we inserted a brand new chunk of random code. The length shown here is 4. The exising 
+code blocks were shifted down 1 to accomodate the new code block.
+<P>
+<B>NOTE:</B> (1) numbers and instructions have an equal probability of being generated.<BR>
+(2) New numbers will be selected randomly from the range -99 to 99.<BR>
+(3) Instructions all have the same probability of being chosen.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Insert Instruction</H3>
+<OL>
+<LI> Pick a random code block.
+<LI> Pick a random spot to insert a new strand (of length between 1 and 4).
+<LI> Shift all successive instructions to make room for the new strand.
+<LI> Create a new random instruction sequence (of length 1 to 4) at that spot.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 <B>MAKE-SPORE -9 dup</B> ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+In row1, the instructions <B>MAKE-SPORE -9 dup</B> were added at a random spot.
+<P>
+<B>NOTE:</B> As with Insert Code Block, the process for generating a new instructions is:
+<P>
+(1) numbers and instructions have equal probability of being generated.<BR>
+(2) New numbers will be selected randomly from the range -99 to 99.<BR>
+(3) Instructions all have the same probability of being chosen.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Transpose Code Block</H3>
+<OL>
+<LI> Pick 2 random code block.
+<LI> If they are same, exit without changing anything.
+<LI> Swap the code blocks
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+<B>row2: { EAT <> negate call }</B>
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+<B>row4: { -4 -1 OMOVE EAT GROW ?loop and }</B>
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+Rows 2 and 4 were swapped.
+<P>
+
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Transpose Instruction</H3>
+<OL>
+<LI> Choose 2 random code blocks
+<LI> If either one of them is empty, then exit without changing anything.
+<LI> choose 2 random strands of equal length (between 1 and 4 instructions long) from each code block.
+<LI> swap them.
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 <B>call 9 call</B> 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE <B>EAT GROW ?loop</B> and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 <B>EAT GROW ?loop</B> 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE <B>call 9 call</B> and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+The <B>EAT GROW ?loop</B> strand from main was swapped with the <B>call 9 call</B> from row2.
+<P>
+NOTE: This operation could transpose overlapping strands.
+<P>
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Modify Code Block</H3>
+<OL>
+<LI> If program has no code blocks (unlikely), exit without changing anything.
+<LI> Choose a random code block.
+<LI> Modify all numbers, but leave instructions alone
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod 69 LOOK2 79 ENERGY R4 }
+<B>row2: { -5 1 OMOVE EAT GROW ?loop and }</B>
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+row2 was modified. All instructions are preserved, but numbers are tweaked slighlty.
+Numbers will be incremented or decremented by 1 to 4 (or the sign is swapped).
+Thefefore, there are 9 possible tweaks to a number. Each action has the same probablility:
+<P>
+<CENTER><TABLE BORDER=1>
+<TR><TD><B>Action</B></TD> <TD><B>Probability</B></TD>
+<TR><TD> +4</TD> <TD> 1/9 </TD>
+<TR><TD> +3</TD> <TD> 1/9 </TD>
+<TR><TD> +2</TD> <TD> 1/9 </TD>
+<TR><TD> +1</TD> <TD> 1/9 </TD>
+<TR><TD>swap sign</TD> <TD> 1/9 </TD>
+<TR><TD> -1</TD> <TD> 1/9 </TD>
+<TR><TD> -2</TD> <TD> 1/9 </TD>
+<TR><TD> -3</TD> <TD> 1/9 </TD>
+<TR><TD> -4</TD> <TD> 1/9 </TD>
+</TABLE></CENTER>
+<P>
+<P>
+
+
+<!-- ====================================================================== -->
+<P><HR><P>
+
+<H3>Modify Instruction</H3>
+<OL>
+<LI> Pick a random code block.
+<LI> If code block is empty, then exit without changing anything.
+<LI> Pick a random stand (of length 1 to 4) within this code block.
+<LI> For each instruction/number in the strand:
+<OL>
+<LI> If it is a number, increment/decrement the value by 1 to 4 or swap sign. See table above.
+<LI> If it is an instruction, pick a new instruction (but do not change it to a number).
+</OL>
+</OL>
+
+<CENTER><TABLE WIDTH="75%" BORDER=1>
+<TR>
+<TD><B>BEFORE</B></TD> <TD><B>AFTER</B></TD>
+<TR>
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod <B>69 LOOK2</B> 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+
+<TD ALIGN=LEFT BGCOLOR="#F9FBDE" WIDTH ="50%">
+<PRE>
+main: { 8 call 9 call 1 call 9 call over }
+row1: { call /mod <B>-69 EAT</B> 79 ENERGY R4 }
+row2: { -4 -1 OMOVE EAT GROW ?loop and }
+row3: { 9 call 9 LOOK-SPORE call 8 8 }
+row4: { EAT <> negate call }
+</PRE>
+</TD>
+</TABLE></CENTER>
+
+<P>
+In row1 <B>69 LOOK2</B> was changed to <B>-69 eat</B>.
+<P>
+NOTE: The new instruction is randomly chosen from the set of all instructions. All instructions
+have equal probability of being chosen.
+<P>
+
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>

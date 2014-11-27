@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>New Universe Dialog</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> May 6, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>New Universe Dialog</h2>
+<p>
+This dialog is for creating a new universe/simulation.
+
+<P>
+<IMG SRC="NewUniverse.jpg">
+<P>
+
+<p>
+Pick any old random value for the seed. By default the a new seed is selected by calling
+GetTickCount() from the operating system. But you can enter a value here. The seed
+can be used to reproduce a simulation (of course the other settings must also
+be the same).
+<P>
+You can select any width and height
+you wish (up to a maximum of 3000 units). You can leave the defaults 500 x 500
+or, as shown here, use 700 x 500. The Oval Barrier option will create a pleasant
+enclosure for your universe (instead of a bare rectangle). This enclosure may be erased later
+and you can draw new barriers when the simulation window appears.
+<P>
+<H2>Starting Population</H2>
+Here you specify the starting population. This consists of up to 8 "strains". Each strain
+is a starting organism which will not interbreed with the other strains. Its color and strain value
+will follow the creature, and its offspring for the lifetime of the simulation.
+<P>
+Unless you know how to write KFORTH programs, it will be best to select 'seed.kf'
+which is the starting program I use for all my simulations. This is text file which
+you can look at using the "KFORTH Interpreter".
+<P>
+Energy is an important value for controlling the population of your universe. The default
+(1,000,000) is kind of high, man. Values between 100,000 to 300,000 will give
+you a population of about 1,000 - 5,000 organisms. Here we have entered 150,000.
+<p>
+A strain is omitted by keepignsetting the <B>KFORTH Program</B> field blank and
+setting <B>Energy</B> to 0 (or blank).
+<p>
+Oh, please note that commas are allowed inside of these edit controls. (Cool eh?)
+<P>
+<H2>Mutation Settings</H2>
+Clicking on this button will bring up the Mutation Settings Dialog. This will allow you to
+configure the mutation probabilities. The defaults should be sufficient. This is the dialog that
+will appear:
+<P>
+<IMG SRC="SimulationOptions.jpg">
+<P>
+<H2>Starting Locations</H2>
+If your simulation consists of only 1 strain, then that organism will be placed in
+the center of the simulation grid. If 2 or more starting organisms are selected, they
+will be placed uniformly around the simulation grid.
+<P>
+<CENTER><IMG SRC="placement.gif"></CENTER>
+<CENTER><I>placement of starting organism</I></CENTER>
+<P>
+This diagram shows 8 locations. This shows the placement when more than one
+strain has been specified. The first strain you specify will be
+placed in square 1. The second strain you specify will be placed in square 2. And so
+on... These numbers ARE not strain numbers. The placement is based on how many
+strains have been specified. The order is the to to bottom order in the dialog.
+<P>
+
+<H2>Competition Modes</H2>
+Strains allow Evolve to be used for games. Three variants can be played are:
+<OL>
+<LI> <B>Arena Bot Battle:</B> Each strain is one of the competing bots (robots).
+One of the rules is that no bot can have MAKE-SPORE in its genetic code. This means bots
+will not be able to reproduce. The goal is to see which bot can kill the other bots.
+You run this kind of simulation until only one competitor remains.
+<P>
+<LI> <B>Army Hoard Bot Battle:</B> Similar to regular bot battles, but the robots can multiply
+using the MAKE-SPORE instruction. Mutations are set to "0%", however. This means no evolution takes place.
+This allows you to design a genetic program which includes group behaviors and swarming tactics.
+<P>
+
+<LI> <B>Survival of the fittest:</B> In this game mode, you run a simulation to see if your strain
+can outcompete other strains. You permit MAKE-SPORE, and mutations are enabled.
+
+</OL>
+
+<H2>Starting Populations</H2>
+To create a strain with more than one organism, you can preceed the KFORTH program
+with a strings like: <B>xx*20</B> or <B>xy*50</B>.
+<P>
+Using the string <B>"xy"</B> will cause all the organisms in that strain to be
+sex only creatures. They will only be able to reproduce sexually.
+<P>
+<IMG SRC="xy_newuniverse.jpg">
+<P>
+In this example, strain 1 will consist of 100 organisms (the energy amount is divided
+evenly amoungst them). And strain 5 will consist of 50 organisms. This population of organisms will
+be grouped around the starting location described above. They will <b>spiral out</b> from this location.
+See the following screen shot:
+<p>
+<IMG SRC="xy_spiral.jpg">
+<p>
+See the section on <A HREF="xy_simulations.html">XY Simulations</A> for more information.
+<P>
+Here are some example strings that can be specified:
+<P>
+<CENTER><TABLE BORDER=1 WIDTH="80%">
+<TR BGCOLOR=#10f050>
+<TD ALIGN=LEFT><B>STRING</B></TD>
+	<TD ALIGN=LEFT WIDTH="40%"><B>DESCRIPTION</B></TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xx*1</B></TD>
+<TD ALIGN=LEFT>
+	Create a normal asexual and sexual organism (population 1). This
+	is the normal behavior when no special string is present.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xy*1</B></TD>
+<TD ALIGN=LEFT>
+	Create one organism that can only reproduce sexually. This
+	probably won't work, as it won't have any other organisms
+	around in which to fertilize their spores.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xx*100</B></TD>
+<TD ALIGN=LEFT>
+	Create 100 normal organisms. (NOTE: 100 is the max).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xy*100</B></TD>
+<TD ALIGN=LEFT>
+	Create 100 sex-only organisms. (by the way 100 is the maximum number
+	of organisms that can be specified).
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xy*20</B></TD>
+<TD ALIGN=LEFT>
+	Create 20 sex-only organisms.
+	<P>
+	<P>
+</TD>
+
+<TR>
+<TD ALIGN=LEFT><B>xx*7</B></TD>
+<TD ALIGN=LEFT>
+	Create 7 normal organisms in spiral pattern around starting location.
+	If total energy divided by 7 isn't a round number, the first creature
+	gets the remainder.
+	<P>
+	<P>
+</TD>
+
+
+</TABLE></CENTER>
+
+</OL>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>
+

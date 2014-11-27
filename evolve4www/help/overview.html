@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Evolve 4.0 - Overview</title>
+<!--Change this href to "msfunk_03.css" to give the page a different look!-->
+<link rel="stylesheet" type="text/css" href="msfunk_02.css" />
+
+</head>
+<body>
+<!--Begin headers-->
+<div id="title2" class="title2">
+<B>Last updated:</B> April 22, 2007
+</div>
+
+<div id="title3" class="title3">
+<a name="title">Evolve 4.0 - Overview</a>
+</div>
+
+
+<div id="subnav" class="subnav">
+<a href="http://www.stauffercom.com/evolve4/evolve4exe.zip">Download Executable</a> | 
+<a href="http://www.stauffercom.com/evolve4/evolve4src.zip">Download Source</a> |
+<a href="contents.html">User Manual</a>
+</div>
+<!--End headers-->
+
+<!--Begin nav-->
+<div id="menu">
+
+<p class="menu"><a href="index.html">Home</a></p>
+<p class="menu"><a href="screen_shots.html">Screen Shots</a></p>
+<p class="menu"><a href="overview.html">Overview</a></p>
+<p class="menu"><a href="getting_started.html">Getting Started</a></p>
+<p class="menu"><a href="organisms.html">Organisms and Cells</a></p>
+<p class="menu"><a href="spores.html">Spores</a></p>
+<p class="menu"><a href="genetics.html">Genetics</a></p>
+<p class="menu"><a href="mutations.html">Mutations/Replication</a></p>
+<p class="menu"><a href="kforth.html">KFORTH Language</a></p>
+<p class="menu"><a href="faq.html">FAQ</a></p>
+<p class="menu"><a href="contact.html">Contact Me</a></p>
+<p class="menu"><a href="links.html">Links</a></p>
+
+</div>
+
+<!--End nav-->
+
+<!--Begin main text-->
+<div id="maintext" height="600px">
+
+<IMG SRC="e.gif"><B><FONT SIZE=5>VOLVE</FONT> &nbsp;&nbsp; <FONT SIZE=6>4.0</FONT></B>
+
+<h2>Overview</h2>
+<P>
+<IMG BORDER=1 SRC="fullscreenkey.jpg">
+<P>
+This shows a typical simulation window. The rest of the page describes various aspects of the
+Evolve application.
+<P>
+<HR>
+<P>
+
+<h3>Toolbar</h3>
+<IMG BORDER=1 SRC="tool_bar.jpg">
+<P>
+<UL>
+<LI><IMG BORDER=1 SRC="tb_new.jpg"> - brings up the new simulation wizard, so you can create
+a new simulation.
+<P>
+<LI><IMG BORDER=1 SRC="tb_open.jpg"> - open an existing simulation.
+<P>
+<LI><IMG BORDER=1 SRC="tb_save.jpg"> - save current simulation.
+<P>
+<LI><IMG BORDER=1 SRC="tb_cut.jpg"> - cut selected organism (removes it from the current
+	simulation).
+<P>
+<LI><IMG BORDER=1 SRC="tb_copy.jpg"> - copy the selected organism to the clip board.
+<P>
+<LI><IMG BORDER=1 SRC="tb_paste.jpg"> - paste the organism from the clip board into the current simulation.
+<P>
+<LI><IMG BORDER=1 SRC="tb_start.jpg"> - start the simulator (simulates a large number of steps and then
+	updates the display).
+<P>
+<LI><IMG BORDER=1 SRC="tb_continue.jpg"> - start the simulator, but update the display after every step. Use this
+	mode to view the simulation in "real-time".
+<P>
+<LI><IMG BORDER=1 SRC="tb_single.jpg"> - Simulate the universe 1 step.
+<P>
+<LI><IMG BORDER=1 SRC="tb_stop.jpg"> - stop the simulation.
+<P>
+<LI><IMG BORDER=1 SRC="tb_zoomin.jpg"> - Zoom in. (mouse wheel can also be used)
+<P>
+<LI><IMG BORDER=1 SRC="tb_zoomout.jpg"> - Zoom out. (mouse wheel can also be used)
+<P>
+<LI><IMG BORDER=1 SRC="tb_viewall.jpg"> - View all. Zoom all the way out and display entire universe.
+<P>
+<LI><IMG BORDER=1 SRC="tb_examine.jpg"> - Examine an organism. After selecting an organism, press this button
+	to examine the inner details of the organism.(<A HREF="view_organism_dialog.html">View Organism</A>).
+<P>
+<LI><IMG BORDER=1 SRC="tb_3d.jpg"> - Launch the <A HREF="3dexplorer.html">3D Explorer program</A>. The current simulation will
+	be viewable using a 3D first person perspective.
+<P>
+<LI><IMG BORDER=1 SRC="tb_rctool.jpg"> - Right Click Tool. Configure the behavior of the right mouse button.
+		See the section <A HREF="rctool.html">right click tools</A>.
+<P>
+</UL>
+
+<P>
+<HR>
+<P>
+
+<h3>Status Bar</h3>
+<IMG BORDER=1 SRC="status_bar.jpg">
+<P>
+<UL>
+<LI><B>Status:</B> This shows the status of the simulation. When stopped the status
+is "IDLE". When running a simulation the status is "RUNNING".
+<P>
+<LI><B>Organisms:</B> This is the number of organisms alive right now.
+<P>
+<LI><B>Born:</B> This is the total number of organisms that have lived.
+<P>
+<LI><B>Die:</B> This is the number of organisms that have died.
+<P>
+<LI><B>Steps:</B> This is the total number of simulation steps.
+<P>
+<LI><B>Cursor:</B> As the user moves the mouse pointer over the universe, this
+is updated to reflect the actual (x, y) position the mouse is hovering over.
+<P>
+<LI><B>Energy:</B> If the mouse hovers over an organism, spore or organic material then the amount
+of energy for that object is displayed next to the cursor position.
+<P>
+</UL>
+
+<P>
+<HR>
+<P>
+<h3>3D Explorer</h3>
+<IMG SRC="ss3d_3.jpg">
+<P>
+Clicking on the the <IMG BORDER=1 SRC="tb_3d.jpg"> button will display this first person perspective
+of your simulaton. You can even watch the simulation in real-time. (click
+<A HREF="3dexplorer.html">here</A> to learn how to use the the 3D explorer).
+
+<P>
+<HR>
+<P>
+
+<h3>Viewing Organisms</h3>
+<IMG SRC="vobig.jpg">
+<P>
+Next to the main simulation window, this is the second most important display in the simulator.
+You can view the entire state of any organism.
+Show here is an organism that consists of many cells. All cells share the same KFORTH program.
+However each cell has its own execution context (stack, registers, program counter, etc...). This means
+different cells and be executing different parts of the same genetic program. (like life on earth).
+<P>
+You can click on each cell to view its own individual state information. You can single step through
+an organism by clicking on 'Step'. Debugging features allow you to completely study how an organism works.
+<P>
+<HR>
+<P>
+
+<h3>Vision Data</h3>
+<IMG SRC="VisionDialog.jpg">
+<P>
+This dialog appears when you click on the <B>[Vision Data >>]</B> button from the
+previous dialog. This screen allows you to see the distances and types of objects that the
+cell is will "see" when it executes a vision related instruction (such as "LOOK").
+<P>
+<HR>
+<P>
+
+<h3>Universe Properties</h3>
+<IMG SRC="ViewUniverse.jpg">
+<P>
+This dialog just summarizes the current state of the universe. It contains a useful
+set of statistics about the current simulation. Memory Usage computes how much RAM is being
+used internally to represent this simulation (all values in bytes). We use commas to display numbers,
+because they tend to get very large and this makes it easier to read them.
+<P>Also, Evolve uses 64-bit integers (instead of 32-bit), this effectively eliminates any possibility of integer
+overflow during an extended simulation run.
+
+<P>
+<HR>
+<P>
+
+<h3>KFORTH Interpreter</h3>
+<IMG SRC="KforthInterpreter.jpg">
+<P>
+This dialog lets you experiment with the KFORTH language. You can write simple programs and single step
+through them to see how KFORTH works. This dialog shows the source code and also how that
+source code is compiled (in the disassembly window).
+<p>
+The basic architecture of a KFORTH machine is a DATA stack and a CALL stack. Also each KFORTH machine
+has 10 general purpose registers ('R0' - 'R9'). Each data value is a signed 64-bit integer
+(in C/C++ this is known as a <b>long long</b>, or <b>_int64</b> data type).
+<P>
+<HR>
+<P>
+
+<h3>KForth Instructions Help</h3>
+<IMG SRC="KforthInstructions.jpg">
+<P>
+You can get help for all the KFORTH instructions (including the instructions used
+to control the organisms). This dialog is activated when the user clicks on the
+<b>[INSTRUCTIONS]</b> button.
+<P>
+<HR>
+<P>
+
+<h3>New Simulation</h3>
+<IMG SRC="NewUniverse.jpg">
+<P>
+This dialog is used to create a new simulation. The width and height configures the size of
+your universe. Seed is used to initialize the random number generator. This means that others
+can reproduce your results by using the same seed number (as well as the other initial settings
+from this dialog).
+<P>
+You can add 8 strains to a new simulation. Each strain has its own color, and you
+can see which strains succeed over time. Strains cannot interbreed.
+<P>
+The KFORTH program is the initial genetic program that the first organism starts out with.
+Energy is the amount of energy the universe will have. This number remains constant throughout
+the simulation.
+<P>
+Rather than a blank rectangle for your universe, the "Oval Barrier" will place a oval around the
+entire universe.
+<P>
+<HR>
+<P>
+
+<h3>Mutations</h3>
+<IMG SRC="SimulationOptions.jpg">
+<P>
+This screen lets you configure the mutations rates. Mutations
+are broken down into several types. The percentage represents
+the probability that that type of mutation will occur during
+the birth of an organism.
+<P>
+The last step in creating a new organism is to pass its genetic program (inherited without
+mutations from one or two parents) through our mutation algorithm. This algorithm
+uses these percentages to determine the probability that one of these errors will be introduced
+into the new organisms genetic program.
+
+<P>
+<HR>
+<P>
+
+<h3>Find Dialog</h3>
+<IMG SRC="FindDialog.jpg">
+<P>
+The find feature is a powerful tool for searching your simulation using
+complex criteria. (See <A HREF="find_dialog.html">Find Dialog</A> to learn more).
+<P>
+
+<P>
+<HR>
+<P>
+
+<h3>Strain Population</h3>
+<IMG SRC="StrainPopulation.jpg">
+<P>
+This dialog shows the population of each strain in your simulation.
+
+<P>
+<HR>
+<P>
+
+<h3>Key</h3>
+<IMG BORDER=1 SRC="key.jpg">
+<P>
+<UL>
+<LI> <B>Living Cells:</B> These are cells that are alive! They are part of an organism, and these
+types of squares can move, look, eat, and generally do what living things do.
+<P>
+
+<LI> <B>Dead Cells:</B> A cell that has just died will be colored red. Then it will either disappear
+completely, or turn in to "food" (a white square).
+<P>
+
+<LI> <B>Selected Organism:</B> By left clicking on a living cell the user can select an organism.
+A selected organism can be copied, cut, pasted, or examined.
+<P>
+
+<LI> <B>Food:</B> Food, or organic material is created when an organism is partially killed and
+it remains are left behind. This decaying organic material contains energy and can be eaten.
+<P>
+
+<LI> <B>Spores:</B> Organisms create spores in order to reproduce. In many cases the first spore
+is created (shown here as a blue square), but the spore has not been fertilized yet. These spores
+can be eaten, or another organism can place another spore in the same location, which will create
+a new organism.
+<P>
+
+<LI> <B>Barrier:</B> Barrier can be created by the user. Organisms cannot pass through them.
+Barriers can be created to limit migration of organisms between different regions.
+<P>
+
+</UL>
+<P><BR>
+<P>
+
+<IMG SRC="AboutBox.jpg">
+<P><BR>
+<P>
+
+<CENTER><IMG SRC="logo.gif"> <IMG SRC="logo.gif"> <IMG SRC="logo.gif"> <IMG SRC="logo.gif"></CENTER>
+
+</div>
+
+<div id="footer">
+<a href="mailto:ken@stauffercom.com">E-mail</a> | <a href="http://www.stauffercom.com">Home</a>
+<br />
+&copy; 2006 Ken Stauffer. All rights reserved.
+</div>
+</body>
+</html>
