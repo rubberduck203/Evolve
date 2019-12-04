@@ -3,7 +3,7 @@ Since I originally found it, the website has gone offline.
 I am posting the source and installer here in order to preserve the project for posterity.
 
 Below is the old project homepage, slightly modified to deal with broken links.
-The website, in it's entirety is available in the `evolve4www` directory.
+The website, in it's entirety is available at https://rubberduck203.github.io/Evolve/ thanks to [**@ilyar**](https://github.com/ilyar).
 It includes a quickstart and full manual.
 
 [Installer available here](https://github.com/ckuhn203/Evolve/releases/tag/v4.0)
