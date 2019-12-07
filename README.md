@@ -123,7 +123,7 @@ steps, with billions of births and deaths.
 
 <P>
 Evolve has been in development since 1996. Read about the history of Evolve 4.0
-<A HREF="history.html">here</A>.
+<A HREF="https://rubberduck203.github.io/Evolve/history.html">here</A>.
 
 <P>
 <HR>
